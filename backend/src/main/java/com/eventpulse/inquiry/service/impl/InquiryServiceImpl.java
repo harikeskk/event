@@ -160,6 +160,11 @@ public class InquiryServiceImpl implements InquiryService {
                 .vendorBusinessName(vendor.getBusinessName())
                 .vendorCategory(vendor.getCategory().name())
                 .vendorCoverImageUrl(vendor.getCoverImageUrl())
+                .vendorCity(vendor.getCity())
+                .vendorAddress(vendor.getAddressLine() != null
+                        ? (vendor.getCity() != null ? vendor.getAddressLine() + ", " + vendor.getCity() : vendor.getAddressLine())
+                        : vendor.getCity())
+                .vendorIsAvailable(vendor.getIsAvailable())
                 .vendorContactEmail(contactVisible ? vendor.getContactEmail() : null)
                 .vendorContactPhone(contactVisible ? vendor.getContactPhone() : null)
                 .eventType(inquiry.getEventType())

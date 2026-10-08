@@ -1,19 +1,22 @@
 ﻿{
-    "generatedAt":  "2026-10-08",
-    "trackedFiles":  69,
+    "generatedAt":  "2026-10-09",
+    "trackedFiles":  75,
     "tags":  {
                  "status-tracking":  [
                                          "frontend/app/my-inquiries/page.tsx"
                                      ],
                  "geosearch":  [
-                                   "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java",
                                    "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java",
                                    "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java",
                                    "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java",
                                    "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java",
                                    "frontend/app/page.tsx"
                                ],
+                 "page":  [
+                              "frontend/app/explore-vendors/page.tsx"
+                          ],
                  "map":  [
+                             "frontend/app/globals.css",
                              "frontend/app/page.tsx",
                              "frontend/components/LocationPicker.tsx",
                              "frontend/components/ui/map.tsx",
@@ -29,9 +32,6 @@
                  "navigation":  [
                                     "frontend/components/VendorNav.tsx"
                                 ],
-                 "mapping":  [
-                                 "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
-                             ],
                  "utils":  [
                                "frontend/lib/utils.ts"
                            ],
@@ -88,6 +88,10 @@
                              "backend/src/main/resources/application.yml",
                              "frontend/services/api.ts"
                          ],
+                 "vendors":  [
+                                 "backend/src/main/java/com/eventpulse/common/DataSeeder.java",
+                                 "frontend/services/api.ts"
+                             ],
                  "jwt":  [
                              "backend/pom.xml",
                              "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java",
@@ -100,12 +104,16 @@
                            ],
                  "auth-guard":  [
                                     "frontend/app/book/[vendorId]/page.tsx",
-                                    "frontend/app/my-inquiries/page.tsx"
-                                ],
-                 "optimistic":  [
+                                    "frontend/app/customer/page.tsx",
+                                    "frontend/app/my-inquiries/page.tsx",
                                     "frontend/app/vendor/bookings/page.tsx",
-                                    "frontend/app/vendor/page.tsx"
+                                    "frontend/app/vendor/page.tsx",
+                                    "frontend/app/vendor/portfolio/page.tsx",
+                                    "frontend/app/vendor/profile/page.tsx"
                                 ],
+                 "pricing":  [
+                                 "frontend/app/vendors/[vendorId]/page.tsx"
+                             ],
                  "postgis":  [
                                  "backend/pom.xml"
                              ],
@@ -122,6 +130,7 @@
                                            "frontend/app/register/page.tsx"
                                        ],
                  "customer":  [
+                                  "frontend/app/customer/page.tsx",
                                   "frontend/app/my-inquiries/page.tsx"
                               ],
                  "bootstrap":  [
@@ -146,6 +155,7 @@
                                         "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java"
                                     ],
                  "styling":  [
+                                 "frontend/app/globals.css",
                                  "frontend/lib/utils.ts"
                              ],
                  "leads":  [
@@ -156,9 +166,6 @@
                                  "frontend/app/layout.tsx",
                                  "frontend/components/VendorMap.tsx"
                              ],
-                 "images":  [
-                                "frontend/app/vendor/portfolio/page.tsx"
-                            ],
                  "nextjs":  [
                                 "frontend/components/VendorNav.tsx",
                                 "frontend/package.json"
@@ -207,6 +214,9 @@
                  "seeder":  [
                                 "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
                             ],
+                 "explore-vendors":  [
+                                         "frontend/app/explore-vendors/page.tsx"
+                                     ],
                  "detail":  [
                                 "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java",
                                 "frontend/app/my-inquiries/[id]/page.tsx",
@@ -219,25 +229,12 @@
                                      "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java",
                                      "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java"
                                  ],
-                 "ui":  [
-                            "frontend/components/ui/badge.tsx",
-                            "frontend/components/ui/button.tsx",
-                            "frontend/components/ui/card.tsx",
-                            "frontend/components/ui/input.tsx",
-                            "frontend/components/ui/map.tsx",
-                            "frontend/components/ui/skeleton.tsx",
-                            "frontend/lib/utils.ts"
-                        ],
                  "skeleton":  [
                                   "frontend/components/ui/skeleton.tsx"
                               ],
                  "button":  [
                                 "frontend/components/ui/button.tsx"
                             ],
-                 "bookings":  [
-                                  "frontend/app/my-inquiries/page.tsx",
-                                  "frontend/app/vendor/bookings/page.tsx"
-                              ],
                  "layout":  [
                                 "frontend/app/layout.tsx",
                                 "frontend/components/ui/card.tsx"
@@ -246,6 +243,7 @@
                               "frontend/components/ui/card.tsx"
                           ],
                  "dashboard":  [
+                                   "frontend/app/customer/page.tsx",
                                    "frontend/app/vendor/page.tsx"
                                ],
                  "geo":  [
@@ -269,14 +267,19 @@
                                      "backend/pom.xml",
                                      "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
                                  ],
-                 "vendors":  [
-                                 "backend/src/main/java/com/eventpulse/common/DataSeeder.java",
-                                 "frontend/services/api.ts"
-                             ],
+                 "bookings":  [
+                                  "frontend/app/customer/page.tsx",
+                                  "frontend/app/my-inquiries/page.tsx",
+                                  "frontend/app/vendor/bookings/page.tsx",
+                                  "frontend/app/vendor/page.tsx"
+                              ],
                  "api":  [
                              "frontend/services/api.ts",
                              "frontend/services/authService.ts"
                          ],
+                 "inbox":  [
+                               "frontend/app/vendor/bookings/page.tsx"
+                           ],
                  "form":  [
                               "frontend/app/register/page.tsx",
                               "frontend/components/LocationPicker.tsx",
@@ -288,15 +291,15 @@
                                     "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java",
                                     "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java",
                                     "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java",
-                                    "frontend/app/vendor/portfolio/page.tsx",
-                                    "frontend/app/vendor/profile/page.tsx"
+                                    "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
                                 ],
                  "routing":  [
                                  "frontend/app/login/page.tsx",
                                  "frontend/app/register/page.tsx"
                              ],
                  "marketplace":  [
-                                     "frontend/app/page.tsx"
+                                     "frontend/app/page.tsx",
+                                     "frontend/app/explore-vendors/page.tsx"
                                  ],
                  "category":  [
                                   "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
@@ -329,7 +332,8 @@
                                   ],
                  "controller":  [
                                     "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
-                                    "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                    "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
                                 ],
                  "crud":  [
                               "frontend/app/vendor/portfolio/page.tsx"
@@ -337,15 +341,20 @@
                  "register":  [
                                   "frontend/app/register/page.tsx"
                               ],
-                 "pricing":  [
-                                 "frontend/app/vendor/profile/page.tsx",
-                                 "frontend/app/vendors/[vendorId]/page.tsx"
-                             ],
+                 "ui":  [
+                            "frontend/components/ui/badge.tsx",
+                            "frontend/components/ui/button.tsx",
+                            "frontend/components/ui/card.tsx",
+                            "frontend/components/ui/input.tsx",
+                            "frontend/components/ui/map.tsx",
+                            "frontend/components/ui/skeleton.tsx",
+                            "frontend/components/VendorMap.tsx",
+                            "frontend/lib/utils.ts"
+                        ],
                  "accept-decline":  [
                                         "frontend/app/vendor/bookings/[id]/page.tsx"
                                     ],
                  "haversine":  [
-                                   "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java",
                                    "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
                                ],
                  "location":  [
@@ -369,6 +378,7 @@
                                   "frontend/components/ui/map.tsx"
                               ],
                  "design-system":  [
+                                       "frontend/app/globals.css",
                                        "frontend/components/ui/badge.tsx",
                                        "frontend/components/ui/button.tsx",
                                        "frontend/components/ui/input.tsx"
@@ -388,12 +398,12 @@
                               "backend/src/main/java/com/eventpulse/user/entity/Role.java"
                           ],
                  "profile":  [
-                                 "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java",
                                  "frontend/app/vendor/profile/page.tsx",
                                  "frontend/app/vendors/[vendorId]/page.tsx"
                              ],
                  "form-validation":  [
-                                         "frontend/app/book/[vendorId]/page.tsx"
+                                         "frontend/app/book/[vendorId]/page.tsx",
+                                         "frontend/app/vendor/profile/page.tsx"
                                      ],
                  "native-query":  [
                                       "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java",
@@ -431,6 +441,9 @@
                              "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java",
                              "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
                          ],
+                 "logout":  [
+                                "frontend/hooks/useAuth.ts"
+                            ],
                  "login":  [
                                "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
                                "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
@@ -470,8 +483,12 @@
                                 "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
                             ],
                  "vendor":  [
+                                "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java",
+                                "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java",
                                 "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java",
                                 "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java",
+                                "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java",
+                                "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java",
                                 "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java",
                                 "frontend/app/book/[vendorId]/page.tsx",
                                 "frontend/app/vendor/bookings/[id]/page.tsx",
@@ -484,7 +501,10 @@
                             ],
                  "vendor-portal":  [
                                        "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
-                                   ]
+                                   ],
+                 "frontend":  [
+                                  "frontend/app/explore-vendors/page.tsx"
+                              ]
              },
     "symbols":  {
                     "next":  [
@@ -496,9 +516,9 @@
                     "VendorMapProps":  [
                                            "frontend/components/VendorMap.tsx"
                                        ],
-                    "VendorProfileRepository.findByCategory":  [
-                                                                   "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
-                                                               ],
+                    "searchNearestVendors":  [
+                                                 "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                             ],
                     "passwordEncoder":  [
                                             "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
                                             "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
@@ -506,19 +526,25 @@
                     "PortfolioItemDto.sortOrder":  [
                                                        "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java"
                                                    ],
+                    "ExploreVendorsPage":  [
+                                               "frontend/app/explore-vendors/page.tsx"
+                                           ],
                     "EventMarketplaceApplication.main":  [
                                                              "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
                                                          ],
-                    "VendorServiceImpl.getVendorDetail":  [
-                                                              "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
-                                                          ],
+                    "recent":  [
+                                   "frontend/app/customer/page.tsx",
+                                   "frontend/app/vendor/page.tsx"
+                               ],
+                    "Geist_Mono":  [
+                                       "frontend/app/layout.tsx"
+                                   ],
                     "VendorProfile.category":  [
                                                    "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
                                                ],
-                    "useMap":  [
-                                   "frontend/components/LocationPicker.tsx",
-                                   "frontend/components/ui/map.tsx"
-                               ],
+                    "AUTH_EVENT":  [
+                                       "frontend/hooks/useAuth.ts"
+                                   ],
                     "AuthResponse":  [
                                          "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java"
                                      ],
@@ -537,6 +563,9 @@
                     "InquiryServiceImpl.createInquiry":  [
                                                              "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
                                                          ],
+                    "Label":  [
+                                  "frontend/components/ui/input.tsx"
+                              ],
                     "password":  [
                                      "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
                                      "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java"
@@ -556,9 +585,6 @@
                     "MarkerTooltip":  [
                                           "frontend/components/ui/map.tsx"
                                       ],
-                    "Geist_Mono":  [
-                                       "frontend/app/layout.tsx"
-                                   ],
                     "handleSubmit":  [
                                          "frontend/app/login/page.tsx",
                                          "frontend/app/register/page.tsx"
@@ -590,31 +616,18 @@
                     "PortfolioItem.vendor":  [
                                                  "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java"
                                              ],
-                    "handleUseMyLocation":  [
-                                                "frontend/app/vendor/profile/page.tsx"
-                                            ],
                     "VendorProfileUpdateRequest.serviceRadiusKm":  [
                                                                        "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
                                                                    ],
                     "Button":  [
                                    "frontend/components/ui/button.tsx"
                                ],
-                    "Map":  [
-                                "frontend/components/ui/map.tsx"
-                            ],
                     "InquiryDetailContent":  [
                                                  "frontend/app/my-inquiries/[id]/page.tsx"
                                              ],
-                    "/api/vendor-portal/profile":  [
-                                                       "frontend/app/vendor/portfolio/page.tsx",
-                                                       "frontend/app/vendor/profile/page.tsx"
-                                                   ],
                     "VendorDashboardPage":  [
                                                 "frontend/app/vendor/page.tsx"
                                             ],
-                    "VendorDiscoveryController.getAllVendors":  [
-                                                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
-                                                                ],
                     "getVendorProfile":  [
                                              "frontend/services/api.ts"
                                          ],
@@ -637,9 +650,6 @@
                     "PATCH /api/vendor-portal/availability":  [
                                                                   "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
                                                               ],
-                    "tailwindcss":  [
-                                        "frontend/package.json"
-                                    ],
                     "updateInquiryStatus":  [
                                                 "frontend/app/vendor/bookings/[id]/page.tsx",
                                                 "frontend/app/vendor/bookings/page.tsx",
@@ -651,15 +661,18 @@
                     "register":  [
                                      "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
                                      "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
-                                     "frontend/app/register/page.tsx",
-                                     "frontend/hooks/useAuth.ts"
+                                     "frontend/app/register/page.tsx"
                                  ],
                     "handleQuickLogin":  [
                                              "frontend/app/login/page.tsx"
                                          ],
-                    "VendorProfileRepository.findByUserId":  [
-                                                                 "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
-                                                             ],
+                    "DetailRow":  [
+                                      "frontend/app/my-inquiries/[id]/page.tsx",
+                                      "frontend/app/vendor/bookings/[id]/page.tsx"
+                                  ],
+                    "BookingDetailContent":  [
+                                                 "frontend/app/vendor/bookings/[id]/page.tsx"
+                                             ],
                     "AuthRequest":  [
                                         "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java"
                                     ],
@@ -681,9 +694,6 @@
                     "InquiryService.getInquiryById":  [
                                                           "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
                                                       ],
-                    "VendorPortalController.updateMyProfile":  [
-                                                                   "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
-                                                               ],
                     "useAuth":  [
                                     "frontend/app/book/[vendorId]/page.tsx",
                                     "frontend/app/login/page.tsx",
@@ -691,7 +701,6 @@
                                     "frontend/app/my-inquiries/page.tsx",
                                     "frontend/app/page.tsx",
                                     "frontend/app/register/page.tsx",
-                                    "frontend/app/vendor/portfolio/page.tsx",
                                     "frontend/hooks/useAuth.ts"
                                 ],
                     "getVendorInbox":  [
@@ -702,18 +711,15 @@
                     "viewport":  [
                                      "frontend/app/layout.tsx"
                                  ],
-                    "Input":  [
-                                  "frontend/components/ui/input.tsx"
-                              ],
                     "User.email":  [
                                        "backend/src/main/java/com/eventpulse/user/entity/User.java"
                                    ],
                     "InquiryService.updateInquiryStatus":  [
                                                                "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
                                                            ],
-                    "Label":  [
-                                  "frontend/components/ui/input.tsx"
-                              ],
+                    "findByUserId":  [
+                                         "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                     ],
                     "VendorCategory.CATERER":  [
                                                    "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
                                                ],
@@ -726,15 +732,6 @@
                     "JWT_SECRET":  [
                                        "backend/src/main/resources/application.yml"
                                    ],
-                    "STATUS_MAP":  [
-                                       "frontend/app/my-inquiries/[id]/page.tsx",
-                                       "frontend/app/my-inquiries/page.tsx",
-                                       "frontend/app/vendor/bookings/page.tsx",
-                                       "frontend/app/vendor/page.tsx"
-                                   ],
-                    "formatCreatedAt":  [
-                                            "frontend/app/vendor/bookings/page.tsx"
-                                        ],
                     "InquiryRepository.findByVendorIdOrderByCreatedAtDesc":  [
                                                                                  "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java"
                                                                              ],
@@ -748,9 +745,6 @@
                     "leaflet":  [
                                     "frontend/package.json"
                                 ],
-                    "VendorPortalController.getMyProfile":  [
-                                                                "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
-                                                            ],
                     "copyPhone":  [
                                       "frontend/app/my-inquiries/[id]/page.tsx"
                                   ],
@@ -770,18 +764,18 @@
                                              "frontend/app/book/[vendorId]/page.tsx",
                                              "frontend/app/vendors/[vendorId]/page.tsx"
                                          ],
-                    "VendorDiscoveryController.searchVendors":  [
-                                                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
-                                                                ],
+                    "API_BASE":  [
+                                     "frontend/services/api.ts"
+                                 ],
                     "isTokenValid":  [
                                          "backend/src/main/java/com/eventpulse/config/JwtService.java"
                                      ],
                     "MarkerContent":  [
                                           "frontend/components/ui/map.tsx"
                                       ],
-                    "VendorServiceImpl.calculateDistance":  [
-                                                                "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
-                                                            ],
+                    "loginApi":  [
+                                     "frontend/services/authService.ts"
+                                 ],
                     "VendorCardDto.distanceKm":  [
                                                      "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
                                                  ],
@@ -791,21 +785,18 @@
                     "CardDescription":  [
                                             "frontend/components/ui/card.tsx"
                                         ],
-                    "leaflet.css":  [
-                                        "frontend/app/layout.tsx"
+                    "404 handler":  [
+                                        "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
                                     ],
-                    "VendorDiscoveryController.countNearby":  [
-                                                                  "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
-                                                              ],
                     "DB_HOST":  [
                                     "backend/src/main/resources/application.yml"
                                 ],
                     "CORS_ALLOWED_ORIGINS":  [
                                                  "backend/src/main/resources/application.yml"
                                              ],
-                    "/api/vendor-portal/portfolio":  [
-                                                         "frontend/app/vendor/portfolio/page.tsx"
-                                                     ],
+                    "Select":  [
+                                   "frontend/components/ui/input.tsx"
+                               ],
                     "Badge":  [
                                   "frontend/app/my-inquiries/page.tsx",
                                   "frontend/app/vendors/[vendorId]/page.tsx",
@@ -814,6 +805,9 @@
                     "Geist":  [
                                   "frontend/app/layout.tsx"
                               ],
+                    "showCountBadge":  [
+                                           "frontend/components/VendorMap.tsx"
+                                       ],
                     "JwtAuthenticationFilter":  [
                                                     "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java"
                                                 ],
@@ -835,9 +829,6 @@
                     "InquiryResponse.vendorNotes":  [
                                                         "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java"
                                                     ],
-                    "VendorServiceImpl.searchNearestVendors":  [
-                                                                   "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
-                                                               ],
                     "lucide-react":  [
                                          "frontend/package.json"
                                      ],
@@ -849,8 +840,7 @@
                                           ],
                     "login":  [
                                   "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
-                                  "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
-                                  "frontend/hooks/useAuth.ts"
+                                  "backend/src/main/java/com/eventpulse/auth/service/AuthService.java"
                               ],
                     "globals.css":  [
                                         "frontend/app/layout.tsx"
@@ -858,9 +848,9 @@
                     "VendorProfile.businessName":  [
                                                        "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
                                                    ],
-                    "handleStatus":  [
-                                         "frontend/app/vendor/bookings/page.tsx"
-                                     ],
+                    "PUT /api/vendor-portal/profile":  [
+                                                           "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                       ],
                     "VendorCategory.DJ":  [
                                               "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
                                           ],
@@ -882,22 +872,18 @@
                     "InquiryResponse.vendorBusinessName":  [
                                                                "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java"
                                                            ],
-                    "loginApi":  [
-                                     "frontend/services/authService.ts"
-                                 ],
                     "getMeApi":  [
                                      "frontend/services/authService.ts"
                                  ],
-                    "useSearchParams":  [
-                                            "frontend/app/book/[vendorId]/page.tsx",
-                                            "frontend/app/vendors/[vendorId]/page.tsx"
-                                        ],
+                    "Map":  [
+                                "frontend/components/ui/map.tsx"
+                            ],
                     "LoginPage":  [
                                       "frontend/app/login/page.tsx"
                                   ],
-                    "registerApi":  [
-                                        "frontend/services/authService.ts"
-                                    ],
+                    "updateVendorProfile":  [
+                                                "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                            ],
                     "isValidSession":  [
                                            "frontend/hooks/useAuth.ts"
                                        ],
@@ -914,15 +900,21 @@
                     "handleAction":  [
                                          "frontend/app/vendor/bookings/[id]/page.tsx"
                                      ],
+                    "leaflet.css":  [
+                                        "frontend/app/layout.tsx"
+                                    ],
                     "tryConsume":  [
                                        "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java"
                                    ],
                     "CategoryCountProjection.getCount":  [
                                                              "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java"
                                                          ],
-                    "FILTERS":  [
-                                    "frontend/app/vendor/bookings/page.tsx"
-                                ],
+                    "useMarker":  [
+                                      "frontend/components/ui/map.tsx"
+                                  ],
+                    "countNearbyByCategory":  [
+                                                  "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                              ],
                     "VendorCardDto.category":  [
                                                    "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
                                                ],
@@ -932,16 +924,18 @@
                     "VendorService.toggleAvailability":  [
                                                              "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
                                                          ],
+                    "typescript":  [
+                                       "frontend/package.json"
+                                   ],
                     "PortfolioItem.imageUrl":  [
                                                    "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java"
                                                ],
+                    "MyInquiriesPage":  [
+                                            "frontend/app/my-inquiries/page.tsx"
+                                        ],
                     "VendorBookingsPage":  [
                                                "frontend/app/vendor/bookings/page.tsx"
                                            ],
-                    "formatEventDate":  [
-                                            "frontend/app/vendor/bookings/page.tsx",
-                                            "frontend/app/vendor/page.tsx"
-                                        ],
                     "Role.VENDOR":  [
                                         "backend/src/main/java/com/eventpulse/user/entity/Role.java"
                                     ],
@@ -969,12 +963,12 @@
                     "AuthResponse.userId":  [
                                                 "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java"
                                             ],
-                    "API_BASE":  [
-                                     "frontend/services/api.ts"
-                                 ],
-                    "VendorServiceImpl.countNearby":  [
-                                                          "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
-                                                      ],
+                    "--color-inverse":  [
+                                            "frontend/app/globals.css"
+                                        ],
+                    "toggleVendorAvailability":  [
+                                                     "frontend/app/vendor/page.tsx"
+                                                 ],
                     "DataSeeder.createVendor":  [
                                                     "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
                                                 ],
@@ -982,17 +976,14 @@
                                                               "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
                                                           ],
                     "getVendorDetail":  [
+                                            "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java",
                                             "frontend/app/book/[vendorId]/page.tsx",
                                             "frontend/app/vendors/[vendorId]/page.tsx"
                                         ],
-                    "VendorPortalController.addPortfolioItem":  [
-                                                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
-                                                                ],
                     "status":  [
                                    "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
                                ],
                     "getMyProfile":  [
-                                         "frontend/app/vendor/page.tsx",
                                          "frontend/app/vendor/portfolio/page.tsx",
                                          "frontend/app/vendor/profile/page.tsx",
                                          "frontend/services/api.ts"
@@ -1003,6 +994,9 @@
                     "VendorBookingDetailPage":  [
                                                     "frontend/app/vendor/bookings/[id]/page.tsx"
                                                 ],
+                    "--shadow-card":  [
+                                          "frontend/app/globals.css"
+                                      ],
                     "VendorDistanceProjection.getId":  [
                                                            "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
                                                        ],
@@ -1015,10 +1009,10 @@
                     "PortfolioItemDto.imageUrl":  [
                                                       "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java"
                                                   ],
-                    "VendorNav":  [
-                                      "frontend/app/vendor/page.tsx",
-                                      "frontend/components/VendorNav.tsx"
-                                  ],
+                    "useMap":  [
+                                   "frontend/components/LocationPicker.tsx",
+                                   "frontend/components/ui/map.tsx"
+                               ],
                     "Navbar":  [
                                    "frontend/app/my-inquiries/[id]/page.tsx",
                                    "frontend/app/my-inquiries/page.tsx",
@@ -1031,12 +1025,12 @@
                     "category":  [
                                      "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java"
                                  ],
+                    "@theme":  [
+                                   "frontend/app/globals.css"
+                               ],
                     "InquiryServiceImpl.mapToResponse":  [
                                                              "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
                                                          ],
-                    "GET /api/vendors/all":  [
-                                                 "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
-                                             ],
                     "UserSession":  [
                                         "frontend/services/authService.ts"
                                     ],
@@ -1046,9 +1040,6 @@
                     "ButtonVariant":  [
                                           "frontend/components/ui/button.tsx"
                                       ],
-                    "useMarker":  [
-                                      "frontend/components/ui/map.tsx"
-                                  ],
                     "Card":  [
                                  "frontend/app/vendors/[vendorId]/page.tsx",
                                  "frontend/components/ui/card.tsx"
@@ -1072,12 +1063,9 @@
                     "handleValidation":  [
                                              "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java"
                                          ],
-                    "/api/inquiries":  [
-                                           "frontend/app/book/[vendorId]/page.tsx"
-                                       ],
-                    "onSelectVendor":  [
-                                           "frontend/components/VendorMap.tsx"
-                                       ],
+                    "calculateDistance":  [
+                                              "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                          ],
                     "ButtonProps":  [
                                         "frontend/components/ui/button.tsx"
                                     ],
@@ -1090,9 +1078,6 @@
                     "java.version:21":  [
                                             "backend/pom.xml"
                                         ],
-                    "toForm":  [
-                                   "frontend/app/vendor/profile/page.tsx"
-                               ],
                     "InquiryRequest.eventDate":  [
                                                      "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java"
                                                  ],
@@ -1104,7 +1089,8 @@
                                        ],
                     "ApiResponse":  [
                                         "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java",
-                                        "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                        "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                                        "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
                                     ],
                     "GET /api/vendors/search":  [
                                                     "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
@@ -1140,9 +1126,9 @@
                     "fetchVendorsData":  [
                                              "frontend/app/page.tsx"
                                          ],
-                    "STORAGE_KEY":  [
-                                        "frontend/hooks/useAuth.ts"
-                                    ],
+                    "getVendorProfileForUser":  [
+                                                    "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                                ],
                     "VendorDetailDto.distanceKm":  [
                                                        "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java"
                                                    ],
@@ -1152,27 +1138,31 @@
                     "InquiryServiceImpl.updateInquiryStatus":  [
                                                                    "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
                                                                ],
-                    "MyInquiriesPage":  [
-                                            "frontend/app/my-inquiries/page.tsx"
-                                        ],
+                    "/api/inquiries":  [
+                                           "frontend/app/book/[vendorId]/page.tsx"
+                                       ],
                     "InquiryService.getVendorInquiries":  [
                                                               "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
                                                           ],
-                    "VendorPortalController.toggleAvailability":  [
-                                                                      "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
-                                                                  ],
+                    "STATUS_MAP":  [
+                                       "frontend/app/my-inquiries/[id]/page.tsx",
+                                       "frontend/app/my-inquiries/page.tsx",
+                                       "frontend/app/vendor/bookings/page.tsx",
+                                       "frontend/app/vendor/page.tsx"
+                                   ],
                     "VendorService.addPortfolioItem":  [
                                                            "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
                                                        ],
+                    "readStoredSession":  [
+                                              "frontend/hooks/useAuth.ts"
+                                          ],
                     "UserRepository.existsByEmail":  [
                                                          "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java"
                                                      ],
                     "@PreAuthorize":  [
-                                          "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                          "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                                          "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
                                       ],
-                    "VendorDiscoveryController.getVendorDetail":  [
-                                                                      "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
-                                                                  ],
                     "NearbyCountSummaryDto.total":  [
                                                         "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java"
                                                     ],
@@ -1211,12 +1201,15 @@
                     "PortfolioItemDto.id":  [
                                                 "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java"
                                             ],
+                    "VendorNav":  [
+                                      "frontend/components/VendorNav.tsx"
+                                  ],
                     "ApiResponse.timestamp":  [
                                                   "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java"
                                               ],
-                    "VendorPortalController.deletePortfolioItem":  [
-                                                                       "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
-                                                                   ],
+                    "VendorService.searchNearestVendors":  [
+                                                               "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                                                           ],
                     "InquiryServiceImpl.isValidTransition":  [
                                                                  "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
                                                              ],
@@ -1229,15 +1222,15 @@
                     "@Size":  [
                                   "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
                               ],
+                    "upcoming":  [
+                                     "frontend/app/customer/page.tsx"
+                                 ],
                     "Field":  [
                                   "frontend/components/ui/input.tsx"
                               ],
-                    "EMPTY_FORM":  [
-                                       "frontend/app/vendor/portfolio/page.tsx"
-                                   ],
-                    "NEXT_PUBLIC_API_URL":  [
-                                                "frontend/services/api.ts"
-                                            ],
+                    "toggleAvailability":  [
+                                               "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                           ],
                     "SpringApplication.run":  [
                                                   "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
                                               ],
@@ -1247,30 +1240,24 @@
                     "UserRepository.findByEmail":  [
                                                        "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java"
                                                    ],
-                    "Select":  [
-                                   "frontend/components/ui/input.tsx"
-                               ],
                     "LocationPickerValue":  [
                                                 "frontend/components/LocationPicker.tsx"
                                             ],
-                    "BookingDetailContent":  [
-                                                 "frontend/app/vendor/bookings/[id]/page.tsx"
-                                             ],
+                    "addPortfolioItem":  [
+                                             "frontend/app/vendor/portfolio/page.tsx"
+                                         ],
                     "spring-boot-starter-data-jpa":  [
                                                          "backend/pom.xml"
                                                      ],
                     "VendorDistanceProjection.getCategory":  [
                                                                  "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
                                                              ],
-                    "toggleVendorAvailability":  [
-                                                     "frontend/app/vendor/page.tsx"
-                                                 ],
+                    "counts":  [
+                                   "frontend/app/vendor/page.tsx"
+                               ],
                     "InquiryRequest.vendorId":  [
                                                     "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java"
                                                 ],
-                    "LocationPickerProps":  [
-                                                "frontend/components/LocationPicker.tsx"
-                                            ],
                     "useRouter":  [
                                       "frontend/app/my-inquiries/page.tsx",
                                       "frontend/app/register/page.tsx"
@@ -1300,18 +1287,18 @@
                     "GET /vendor-inbox":  [
                                               "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
                                           ],
-                    "VendorServiceImpl.updateVendorProfile":  [
-                                                                  "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
-                                                              ],
+                    "FILTERS":  [
+                                    "frontend/app/vendor/bookings/page.tsx"
+                                ],
                     "/api/auth/register":  [
                                                "frontend/app/register/page.tsx"
                                            ],
                     "handleDetectLocation":  [
                                                  "frontend/app/page.tsx"
                                              ],
-                    "typescript":  [
-                                       "frontend/package.json"
-                                   ],
+                    "originLabel":  [
+                                        "frontend/components/VendorMap.tsx"
+                                    ],
                     "filteredVendors":  [
                                             "frontend/app/page.tsx"
                                         ],
@@ -1327,9 +1314,9 @@
                     "Spinner":  [
                                     "frontend/components/ui/skeleton.tsx"
                                 ],
-                    "handleToggleAvailability":  [
-                                                     "frontend/app/vendor/page.tsx"
-                                                 ],
+                    "tailwindcss":  [
+                                        "frontend/package.json"
+                                    ],
                     "InquiryStatus":  [
                                           "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
                                       ],
@@ -1342,11 +1329,11 @@
                     "VendorCategory.MAKEUP_ARTIST":  [
                                                          "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
                                                      ],
-                    "searchNearestVendors":  [
-                                                 "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
-                                             ],
                     "VendorCategory.VENUE":  [
                                                  "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                             ],
+                    "GET /api/vendors/:id":  [
+                                                 "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
                                              ],
                     "VendorDetailDto.postalCode":  [
                                                        "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java"
@@ -1354,9 +1341,9 @@
                     "Skeleton":  [
                                      "frontend/components/ui/skeleton.tsx"
                                  ],
-                    "VendorProfileRepository.countNearbyByCategory":  [
-                                                                          "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
-                                                                      ],
+                    "Input":  [
+                                  "frontend/components/ui/input.tsx"
+                              ],
                     "extractUsername":  [
                                             "backend/src/main/java/com/eventpulse/config/JwtService.java"
                                         ],
@@ -1366,9 +1353,13 @@
                     "securityFilterChain":  [
                                                 "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
                                             ],
-                    "GET /api/vendors/{id}":  [
-                                                  "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
-                                              ],
+                    "useSearchParams":  [
+                                            "frontend/app/book/[vendorId]/page.tsx",
+                                            "frontend/app/vendors/[vendorId]/page.tsx"
+                                        ],
+                    "registerApi":  [
+                                        "frontend/services/authService.ts"
+                                    ],
                     "JWT_EXPIRATION_MS":  [
                                               "backend/src/main/resources/application.yml"
                                           ],
@@ -1378,9 +1369,9 @@
                     "VendorDistanceProjection.getBusinessName":  [
                                                                      "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
                                                                  ],
-                    "addPortfolioItem":  [
-                                             "frontend/app/vendor/portfolio/page.tsx"
-                                         ],
+                    "LocationPickerProps":  [
+                                                "frontend/components/LocationPicker.tsx"
+                                            ],
                     "VENDOR_CATEGORIES":  [
                                               "frontend/app/register/page.tsx"
                                           ],
@@ -1388,28 +1379,28 @@
                                              "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
                                              "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java"
                                          ],
-                    "VendorServiceImpl.toggleAvailability":  [
-                                                                 "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
-                                                             ],
                     "InquiryServiceImpl.isContactVisible":  [
                                                                 "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
                                                             ],
                     "getCustomerInquiries":  [
+                                                 "frontend/app/customer/page.tsx",
                                                  "frontend/app/my-inquiries/page.tsx"
                                              ],
                     "SecurityConfig":  [
                                            "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
                                        ],
+                    "sortedItems":  [
+                                        "frontend/app/vendor/portfolio/page.tsx"
+                                    ],
                     "VendorProfileUpdateRequest.category":  [
                                                                 "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
                                                             ],
                     "Role.ADMIN":  [
                                        "backend/src/main/java/com/eventpulse/user/entity/Role.java"
                                    ],
-                    "DetailRow":  [
-                                      "frontend/app/my-inquiries/[id]/page.tsx",
-                                      "frontend/app/vendor/bookings/[id]/page.tsx"
-                                  ],
+                    "CustomerHomePage":  [
+                                             "frontend/app/customer/page.tsx"
+                                         ],
                     "getMe":  [
                                   "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
                                   "backend/src/main/java/com/eventpulse/auth/service/AuthService.java"
@@ -1446,13 +1437,19 @@
                     "InquiryRequest.message":  [
                                                    "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java"
                                                ],
+                    "haversine":  [
+                                      "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                  ],
+                    "NEXT_PUBLIC_API_URL":  [
+                                                "frontend/services/api.ts"
+                                            ],
                     "VendorProfile.updateCoordinates":  [
                                                             "backend/src/main/java/com/eventpulse/common/DataSeeder.java",
                                                             "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
                                                         ],
-                    "VendorService.searchNearestVendors":  [
-                                                               "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
-                                                           ],
+                    "--radius-md":  [
+                                        "frontend/app/globals.css"
+                                    ],
                     "VendorService.countNearby":  [
                                                       "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
                                                   ],
@@ -1466,6 +1463,16 @@
     "docs":  {
                  "decisions.md":  [
                                       "Decisions (ADRs) â€” EventPulse",
+                                      "2026-10-09 â€” Zalopay retheme done at token layer, no page rewrites",
+                                      "2026-10-09 â€” Logout made reload-bulletproof; concurrent editor detected",
+                                      "2026-10-09 â€” Dedicated /customer home dashboard instead of bare alias",
+                                      "2026-10-09 â€” Marketplace logout now routes to /login; dead-code sweep, no page removed",
+                                      "2026-10-09 â€” E2E review fixed 12 small inconsistencies, no redesign",
+                                      "2026-10-09 â€” Portfolio add/delete validated and ownership-correct, still URL-based",
+                                      "2026-10-09 â€” Vendor profile update validated in service, controller gains safe 400 envelope",
+                                      "2026-10-09 â€” Vendor booking detail completed frontend-only, backend rules untouched",
+                                      "2026-10-09 â€” Vendor inbox rows navigate to detail page, no backend change",
+                                      "2026-10-09 â€” Vendor dashboard computed client-side, no new backend API",
                                       "2026-10-08 â€” Booking hardening kept controller-thin: local exception handlers + CUSTOMER-scoped my-inquiries",
                                       "2026-10-08 â€” Secure login: keep Bearer, harden in place (no cookie rewrite)",
                                       "2026-10-08 â€” Agent memory lives in `.agents/memory/`, hash-tracked",
@@ -1480,6 +1487,9 @@
                                   ],
                  "bugs.md":  [
                                  "Bugs â€” EventPulse",
+                                 "2026-10-09 â€” Unclamped acos() 500s discovery when vendor sits on search center",
+                                 "2026-10-09 â€” Map origin pin wiped by clearLayers order",
+                                 "2026-10-09 â€” Manifest re-sync flagged MODIFIED right after syncing",
                                  "2026-10-08 â€” Register email check bypassed normalization + echoed PII; missing-token returned 403",
                                  "2026-10-08 â€” `check-memory.ps1` counted 763 files (node_modules leak)",
                                  "2026-10-08 â€” `check-memory.ps1` syntax error on PowerShell 5.1",

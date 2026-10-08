@@ -2,8 +2,8 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertCircle, CheckCircle2, Images, Plus, RefreshCw } from "lucide-react";
-import VendorNav from "@/components/VendorNav";
+import { AlertCircle, CheckCircle2, Images, Plus, RefreshCw, LogOut } from "lucide-react";
+import { VendorTopNav, VendorTabs } from "@/components/VendorNav";
 import { useAuth } from "@/hooks/useAuth";
 import { getMyProfile, addPortfolioItem, deletePortfolioItem } from "@/services/api";
 import { Button } from "@/components/ui/button";
@@ -36,7 +36,7 @@ function errorMessage(err: unknown, fallback: string): string {
 
 export default function VendorPortfolioPage() {
   const router = useRouter();
-  const { token, isAuthenticated, isVendor, isLoading: authLoading } = useAuth();
+  const { token, isAuthenticated, isVendor, isLoading: authLoading, logout } = useAuth();
 
   const [items, setItems] = useState<PortfolioItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -89,7 +89,12 @@ export default function VendorPortfolioPage() {
 
   const urlValid =
     form.imageUrl.trim() === "" || /^https?:\/\/\S+$/i.test(form.imageUrl.trim());
-  const isValid = form.imageUrl.trim() !== "" && form.title.trim() !== "" && urlValid;
+  const rawSort = form.sortOrder.trim();
+  const sortNum = rawSort === "" ? items.length : Number(rawSort);
+  const sortValid =
+    rawSort === "" || (Number.isInteger(sortNum) && sortNum >= 0);
+  const isValid =
+    form.imageUrl.trim() !== "" && form.title.trim() !== "" && urlValid && sortValid;
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,7 +108,7 @@ export default function VendorPortfolioPage() {
           imageUrl: form.imageUrl.trim(),
           title: form.title.trim(),
           description: form.description.trim(),
-          sortOrder: form.sortOrder.trim() === "" ? items.length : Number(form.sortOrder),
+          sortOrder: sortNum,
         },
         token,
       );
@@ -140,16 +145,34 @@ export default function VendorPortfolioPage() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <main className="mx-auto w-full max-w-5xl overflow-x-hidden px-6 py-12 space-y-8">
-        <header className="space-y-4">
-          <div className="min-w-0">
-            <h1 className="text-2xl font-semibold tracking-tight">Portfolio</h1>
-            <p className="text-sm text-muted">
-              Show customers photos of your work before they reach out
-            </p>
+    <div className="min-h-screen flex flex-col bg-background text-foreground antialiased">
+      <VendorTopNav />
+      <main className="mx-auto w-full max-w-5xl overflow-x-hidden px-4 py-8 sm:px-6 sm:py-10 space-y-8 flex-1">
+        <header className="space-y-5 border-b border-hairline pb-6">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0 space-y-1">
+              <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Portfolio Showcase</h1>
+              <p className="text-xs text-muted">
+                Display high-quality photos of your work, equipment, and events to attract more clients.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  logout("/login");
+                }}
+                className="gap-1.5 text-xs text-muted hover:text-danger hover:bg-danger/10"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+                <span>Log Out</span>
+              </Button>
+            </div>
           </div>
-          <VendorNav />
+          <div className="pt-2">
+            <VendorTabs />
+          </div>
         </header>
 
         {deleteError && (
@@ -176,14 +199,27 @@ export default function VendorPortfolioPage() {
             ))}
           </div>
         ) : loadError ? (
-          <Card className="p-12 text-center">
-            <div className="mx-auto flex flex-col items-center gap-3">
-              <AlertCircle className="h-6 w-6 text-muted" aria-hidden="true" />
-              <h3 className="text-base font-medium tracking-tight">Portfolio unavailable</h3>
-              <p className="max-w-md text-sm text-muted">{loadError}</p>
-              <Button variant="secondary" onClick={handleRetry}>
-                <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
+          <Card className="mx-auto max-w-lg p-8 sm:p-10 text-center shadow-card border-hairline space-y-5">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-danger/10 text-danger shadow-hairline">
+              <AlertCircle className="h-7 w-7" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold tracking-tight">Portfolio Unavailable</h3>
+              <p className="max-w-md text-xs text-muted leading-relaxed mx-auto">{loadError}</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 pt-2">
+              <Button onClick={handleRetry} className="w-full sm:w-auto text-xs gap-1.5">
+                <RefreshCw className="h-3.5 w-3.5" />
                 Try Again
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  logout("/login?redirect=/vendor/portfolio");
+                }}
+                className="w-full sm:w-auto text-xs"
+              >
+                Log In Again
               </Button>
             </div>
           </Card>
@@ -320,10 +356,18 @@ export default function VendorPortfolioPage() {
                   name="sortOrder"
                   type="number"
                   inputMode="numeric"
+                  min={0}
+                  step={1}
                   placeholder={String(items.length)}
                   value={form.sortOrder}
                   onChange={(e) => setField("sortOrder", e.target.value)}
+                  aria-invalid={!sortValid || undefined}
                 />
+                {!sortValid && (
+                  <p className="text-xs text-danger">
+                    Sort order must be 0 or greater.
+                  </p>
+                )}
               </div>
 
               <div className="space-y-1.5 sm:col-span-2">

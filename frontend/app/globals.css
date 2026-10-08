@@ -1,24 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Vercel palette ─────────────────────────────── */
+  /* ── Zalopay palette ────────────────────────────── */
   --color-background: #ffffff;
-  --color-foreground: #171717;
-  --color-muted: #666666;
-  --color-subtle: #a1a1a1;
-  --color-hairline: #eaeaea;
-  --color-surface: #fafafa;
-  --color-surface-hover: #f2f2f2;
-  --color-inverse: #171717;
-  --color-inverse-hover: #383838;
+  --color-foreground: #001f3e; /* deep-navy text */
+  --color-muted: #66798b; /* secondary text */
+  --color-subtle: #99a5b2; /* disabled / faint text */
+  --color-hairline: #e6e9ec; /* dividers */
+  --color-surface: #f2f4f5; /* subtle surface */
+  --color-surface-hover: #e6f0ff; /* light blue surface */
+  --color-inverse: #0068ff; /* brand blue action surfaces */
+  --color-inverse-hover: #0053cc; /* hover blue */
 
-  --color-blue: #0070f3;
-  --color-purple: #7928ca;
-  --color-pink: #eb367f;
-  --color-success: #059669;
-  --color-warning: #d97706;
-  --color-danger: #e5484d;
-  --color-focus: hsla(212, 100%, 48%, 1);
+  --color-blue: #0068ff; /* ZaloPay brand blue */
+  --color-purple: #6356e4; /* indigo accent */
+  --color-pink: #e83e8c;
+  --color-success: #03ca77; /* payment-confirm green */
+  --color-warning: #faa828; /* accent orange */
+  --color-danger: #e31748; /* brand red */
+  --color-focus: #0068ff;
+
+  /* ── Radii (Zalopay scale) ──────────────────────── */
+  --radius-sm: 0.2rem; /* small chips */
+  --radius-md: 0.25rem; /* default buttons, inputs, cards */
+  --radius-lg: 0.5rem; /* medium cards */
 
   /* ── Type ───────────────────────────────────────── */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
@@ -26,16 +31,17 @@
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo,
     monospace;
 
-  /* ── Shadow-as-border stack ─────────────────────── */
-  --shadow-hairline: 0 0 0 1px rgba(0, 0, 0, 0.08);
-  --shadow-hairline-strong: 0 0 0 1px rgba(0, 0, 0, 0.16);
-  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 0 0 1px rgba(0, 0, 0, 0.1),
-    0 6px 16px rgba(0, 0, 0, 0.08);
-  --shadow-elevated: 0 0 0 1px rgba(0, 0, 0, 0.06),
-    0 12px 32px rgba(0, 0, 0, 0.12);
-  --shadow-button: 0 1px 2px rgba(0, 0, 0, 0.08);
-  --shadow-focus-ring: 0 0 0 1px #0070f3, 0 0 0 4px rgba(0, 112, 243, 0.14);
+  /* ── Brand-tinted shadow stack ──────────────────── */
+  --shadow-hairline: 0 0 0 1px rgba(0, 31, 62, 0.08);
+  --shadow-hairline-strong: 0 0 0 1px rgba(0, 31, 62, 0.16);
+  --shadow-card: 0 0 0 1px rgba(0, 31, 62, 0.08),
+    0 2px 4px rgba(0, 31, 62, 0.04);
+  --shadow-card-hover: 0 0 0 1px rgba(0, 31, 62, 0.1),
+    0 6px 16px rgba(0, 31, 62, 0.08);
+  --shadow-elevated: 0 0 0 1px rgba(0, 31, 62, 0.06),
+    0 12px 32px rgba(0, 31, 62, 0.12);
+  --shadow-button: 0 1px 2px rgba(0, 31, 62, 0.1);
+  --shadow-focus-ring: 0 0 0 0.2rem rgba(0, 104, 255, 0.25);
 }
 
 @layer base {
@@ -57,13 +63,14 @@
   }
 
   ::selection {
-    background-color: #0070f3;
+    background-color: #0068ff;
     color: #ffffff;
   }
 
   :focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
+    box-shadow: 0 0 0 0.2rem rgba(0, 104, 255, 0.25);
   }
 
   h1,
@@ -83,9 +90,9 @@
 .skeleton {
   background-image: linear-gradient(
     90deg,
-    #f2f2f2 0%,
-    #eaeaea 50%,
-    #f2f2f2 100%
+    #e6e9ec 0%,
+    #f2f4f5 50%,
+    #e6e9ec 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
@@ -104,21 +111,22 @@
 .leaflet-container {
   height: 100%;
   width: 100%;
-  background: #fafafa !important;
+  background: #f2f4f5 !important;
   border-radius: 12px;
   font-family: var(--font-sans);
   font-size: 13px;
 }
 
 .leaflet-container a {
-  color: #0070f3;
+  color: #0068ff;
 }
 
 .leaflet-popup-content-wrapper {
   background: #ffffff !important;
-  color: #171717 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  color: #001f3e !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 0 1px rgba(0, 31, 62, 0.08),
+    0 8px 24px rgba(0, 31, 62, 0.12) !important;
 }
 
 .leaflet-popup-tip {
@@ -133,9 +141,10 @@
 .leaflet-bar,
 .leaflet-control-zoom a {
   background: #ffffff !important;
-  color: #171717 !important;
+  color: #001f3e !important;
   border-radius: 8px !important;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 0 0 1px rgba(0, 31, 62, 0.08),
+    0 2px 6px rgba(0, 31, 62, 0.08) !important;
   border: none !important;
 }
 
@@ -148,11 +157,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.16);
+  background: rgba(0, 31, 62, 0.16);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 31, 62, 0.3);
 }
 
 /* ── Reduced motion ───────────────────────────────── */

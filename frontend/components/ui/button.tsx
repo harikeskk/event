@@ -13,13 +13,13 @@ export type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-inverse text-white shadow-button hover:bg-inverse-hover active:bg-black",
+    "bg-inverse text-white shadow-button hover:bg-inverse-hover active:bg-[#003e99]",
   secondary:
     "bg-white text-foreground shadow-hairline hover:bg-surface hover:shadow-hairline-strong active:bg-surface-hover",
   ghost:
     "bg-transparent text-muted hover:bg-surface-hover hover:text-foreground",
   danger:
-    "bg-danger text-white shadow-button hover:bg-[#d63b41] active:bg-[#c63036]",
+    "bg-danger text-white shadow-button hover:bg-[#b61230] active:bg-[#880e24]",
   link: "bg-transparent text-blue px-0 h-auto underline-offset-4 hover:underline shadow-none",
 };
 

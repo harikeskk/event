@@ -1,15 +1,14 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Sparkles,
   LogOut,
   Store,
   LayoutDashboard,
   CalendarCheck,
-  User,
-  Images,
   LogIn,
   UserPlus,
 } from "lucide-react";
@@ -19,19 +18,23 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const TABS = [
-  { href: "/vendor", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/vendor/bookings", label: "Bookings", icon: CalendarCheck },
-  { href: "/vendor/profile", label: "Profile", icon: User },
-  { href: "/vendor/portfolio", label: "Portfolio", icon: Images },
+  { href: "/explore-vendors", label: "Explore Vendors", icon: Store },
+  { href: "/my-inquiries", label: "My Inquiries", icon: CalendarCheck },
 ];
 
+export interface CustomerNavProps {
+  subtitle?: string;
+}
+
 /**
- * Top application bar for all Vendor Portal pages.
- * Displays EventPulse brand, Marketplace link, current user profile,
- * and a prominent, functional Log Out button.
+ * Top application bar for Customer Portal pages (/explore-vendors, /my-inquiries, etc.).
+ * Displays EventPulse brand, quick portal links, active user profile pill,
+ * and a functional Log Out button.
  */
-export function VendorTopNav() {
-  const { user, isAuthenticated, logout } = useAuth();
+export function CustomerTopNav({ subtitle }: CustomerNavProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const { user, isAuthenticated, isVendor, logout } = useAuth();
 
   const handleLogout = () => {
     logout("/login");
@@ -44,7 +47,7 @@ export function VendorTopNav() {
         .slice(0, 2)
         .join("")
         .toUpperCase()
-    : "V";
+    : "C";
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-hairline bg-background/90 backdrop-blur-md">
@@ -52,7 +55,7 @@ export function VendorTopNav() {
         {/* Brand & Portal Badge */}
         <div className="flex items-center gap-3">
           <Link
-            href="/"
+            href={isAuthenticated ? (isVendor ? "/vendor" : "/explore-vendors") : "/explore-vendors"}
             className="flex items-center gap-2 group transition-opacity hover:opacity-85"
             title="EventPulse Home"
           >
@@ -69,16 +72,34 @@ export function VendorTopNav() {
           </span>
 
           <Badge variant="neutral" className="text-[11px] font-medium tracking-wide">
-            Vendor Portal
+            Customer Portal
           </Badge>
 
-          <Link
-            href="/"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground transition-colors ml-2 py-1 px-2 rounded-md hover:bg-surface"
-          >
-            <Store className="h-3.5 w-3.5" />
-            <span>Marketplace</span>
-          </Link>
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 ml-3" aria-label="Customer portal">
+            {TABS.map((tab) => {
+              const Icon = tab.icon;
+              const active =
+                tab.href === "/explore-vendors"
+                  ? pathname === "/explore-vendors"
+                  : pathname === tab.href || pathname.startsWith(tab.href + "/");
+              return (
+                <Link
+                  key={tab.href}
+                  href={tab.href}
+                  className={cn(
+                    "inline-flex items-center gap-1.5 text-xs py-1 px-2.5 rounded-md transition-colors",
+                    active
+                      ? "bg-surface font-semibold text-foreground shadow-hairline"
+                      : "text-muted hover:text-foreground hover:bg-surface/50"
+                  )}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  <span>{tab.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
         </div>
 
         {/* User Account & Auth Controls */}
@@ -86,25 +107,29 @@ export function VendorTopNav() {
           {isAuthenticated ? (
             <>
               {/* User Identity Pill */}
-              <div className="flex items-center gap-2 rounded-lg border border-hairline bg-surface/70 px-2.5 py-1 text-xs shadow-hairline">
+              <Link
+                href="/explore-vendors"
+                className="flex items-center gap-2 rounded-lg border border-hairline bg-surface/70 px-2.5 py-1 text-xs shadow-hairline hover:bg-surface transition-colors"
+                title="Customer Portal"
+              >
                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-inverse text-[10px] font-bold text-white">
                   {initials}
                 </div>
                 <div className="hidden sm:block text-left">
                   <p className="font-medium text-foreground leading-tight truncate max-w-[130px]">
-                    {user?.fullName || "Vendor"}
+                    {user?.fullName || "Customer"}
                   </p>
-                  <p className="text-[10px] text-muted leading-none">Vendor</p>
+                  <p className="text-[10px] text-muted leading-none">Customer</p>
                 </div>
-              </div>
+              </Link>
 
-              {/* Prominent Log Out Button */}
+              {/* Log Out Button */}
               <Button
                 variant="secondary"
                 size="sm"
                 onClick={handleLogout}
                 className="gap-1.5 text-xs font-medium text-muted hover:text-foreground hover:bg-danger/10 hover:border-danger/30 hover:text-danger transition-colors cursor-pointer"
-                title="Log out of your vendor account"
+                title="Log out of your customer account"
               >
                 <LogOut className="h-3.5 w-3.5" />
                 <span>Log Out</span>
@@ -112,7 +137,7 @@ export function VendorTopNav() {
             </>
           ) : (
             <div className="flex items-center gap-2">
-              <Link href="/login?redirect=/vendor">
+              <Link href="/login?redirect=/explore-vendors">
                 <Button variant="secondary" size="sm" className="gap-1.5 text-xs">
                   <LogIn className="h-3.5 w-3.5" />
                   Log In
@@ -132,47 +157,6 @@ export function VendorTopNav() {
   );
 }
 
-/**
- * Segmented Tab Navigation for Vendor Portal sections.
- */
-export function VendorTabs() {
-  const pathname = usePathname();
-
-  return (
-    <nav
-      className="inline-flex flex-wrap items-center gap-1 rounded-lg border border-hairline bg-surface/80 p-1 shadow-hairline"
-      aria-label="Vendor portal sections"
-    >
-      {TABS.map((tab) => {
-        const Icon = tab.icon;
-        const active =
-          tab.href === "/vendor"
-            ? pathname === "/vendor"
-            : pathname.startsWith(tab.href);
-        return (
-          <Link
-            key={tab.href}
-            href={tab.href}
-            aria-current={active ? "page" : undefined}
-            className={cn(
-              "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-[background-color,color,box-shadow] duration-150",
-              active
-                ? "bg-white text-foreground shadow-card"
-                : "text-muted hover:text-foreground hover:bg-surface-hover"
-            )}
-          >
-            <Icon className="h-3.5 w-3.5 shrink-0" />
-            <span>{tab.label}</span>
-          </Link>
-        );
-      })}
-    </nav>
-  );
-}
-
-/**
- * Default export keeps backwards compatibility for existing imports of `<VendorNav />`.
- */
-export default function VendorNav() {
-  return <VendorTabs />;
+export default function CustomerNav(props: CustomerNavProps) {
+  return <CustomerTopNav {...props} />;
 }

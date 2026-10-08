@@ -40,9 +40,11 @@ public interface VendorProfileRepository extends JpaRepository<VendorProfile, UU
             v.service_radius_km AS serviceRadiusKm,
             ROUND(CAST(
                 (6371 * acos(
-                    cos(radians(:lat)) * cos(radians(v.latitude)) *
-                    cos(radians(v.longitude) - radians(:lng)) +
-                    sin(radians(:lat)) * sin(radians(v.latitude))
+                    LEAST(1, GREATEST(-1,
+                        cos(radians(:lat)) * cos(radians(v.latitude)) *
+                        cos(radians(v.longitude) - radians(:lng)) +
+                        sin(radians(:lat)) * sin(radians(v.latitude))
+                    ))
                 )) AS numeric), 2
             ) AS distanceKm
         FROM vendor_profiles v
@@ -52,9 +54,11 @@ public interface VendorProfileRepository extends JpaRepository<VendorProfile, UU
           AND (:category IS NULL OR v.category = :category)
           AND (
             6371 * acos(
-                cos(radians(:lat)) * cos(radians(v.latitude)) *
-                cos(radians(v.longitude) - radians(:lng)) +
-                sin(radians(:lat)) * sin(radians(v.latitude))
+                LEAST(1, GREATEST(-1,
+                    cos(radians(:lat)) * cos(radians(v.latitude)) *
+                    cos(radians(v.longitude) - radians(:lng)) +
+                    sin(radians(:lat)) * sin(radians(v.latitude))
+                ))
             )
           ) <= :radiusKm
         ORDER BY distanceKm ASC
@@ -76,9 +80,11 @@ public interface VendorProfileRepository extends JpaRepository<VendorProfile, UU
           AND v.longitude IS NOT NULL
           AND (
             6371 * acos(
-                cos(radians(:lat)) * cos(radians(v.latitude)) *
-                cos(radians(v.longitude) - radians(:lng)) +
-                sin(radians(:lat)) * sin(radians(v.latitude))
+                LEAST(1, GREATEST(-1,
+                    cos(radians(:lat)) * cos(radians(v.latitude)) *
+                    cos(radians(v.longitude) - radians(:lng)) +
+                    sin(radians(:lat)) * sin(radians(v.latitude))
+                ))
             )
           ) <= :radiusKm
         GROUP BY v.category

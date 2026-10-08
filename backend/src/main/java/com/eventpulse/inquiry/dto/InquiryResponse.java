@@ -22,6 +22,9 @@ public class InquiryResponse {
     private String vendorBusinessName;
     private String vendorCategory;
     private String vendorCoverImageUrl;
+    private String vendorCity;
+    private String vendorAddress;
+    private Boolean vendorIsAvailable;
     private String vendorContactEmail;
     private String vendorContactPhone;
     private String eventType;

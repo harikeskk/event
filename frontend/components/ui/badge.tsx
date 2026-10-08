@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 export type BadgeVariant = "neutral" | "success" | "warning" | "danger" | "info";
 
 const variantClasses: Record<BadgeVariant, string> = {
-  neutral: "bg-surface text-muted",
-  success: "bg-[#ecfdf5] text-[#067647]",
-  warning: "bg-[#fffaeb] text-[#b54708]",
-  danger: "bg-[#fef3f2] text-[#b42318]",
-  info: "bg-[#eff8ff] text-[#175cd3]",
+  neutral: "bg-[#f2f4f5] text-[#334c65]",
+  success: "bg-[#cdf4e4] text-[#015130]",
+  warning: "bg-[#feeed4] text-[#644310]",
+  danger: "bg-[#f9d1d8] text-[#5b0918]",
+  info: "bg-[#ddf0fd] text-[#224861]",
 };
 
 export function Badge({

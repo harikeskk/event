@@ -9,7 +9,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-xl bg-white shadow-card",
+        "rounded-lg bg-white shadow-card",
         hover &&
           "transition-[box-shadow] duration-200 ease-out hover:shadow-card-hover",
         className,

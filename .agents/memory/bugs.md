@@ -3,6 +3,24 @@
 > Resolved bugs only. Format: symptoms → root cause → exact fix → prevention.
 > Append newest first. Keep each entry under ~12 lines.
 
+## 2026-10-09 — Unclamped acos() 500s discovery when vendor sits on search center
+- Symptoms: `GET /api/vendors/search` (and count-nearby) returned 500 when a vendor's coords coincided with the query center — Postgres `acos(1.000000002)` errors on float overshoot.
+- Root cause: bare `acos(cos…+sin…)` in 3 native-query spots in `VendorProfileRepository.java`.
+- Fix: wrapped all three with `LEAST(1, GREATEST(-1, …))`; verified `mvn compile`.
+- Prevention: any trig/SQL domain function on computed floats must be clamped; add an exact-center seed vendor + search test if a test suite appears.
+
+## 2026-10-09 — Map origin pin wiped by clearLayers order
+- Symptoms: customer "Search Origin" dot never visible on marketplace map (only radius circle survived).
+- Root cause: `VendorMap.tsx` added the user marker to markersLayer, then called `clearLayers()` before adding vendor pins.
+- Fix: clear first, then add origin pin + vendor pins; popups now also preserve `?lat&lng`; added `originLabel`/`showCountBadge` props for the detail-page coverage view.
+- Prevention: layer-mutating effects must establish clear→add order; re-check after any marker-layer refactor.
+
+## 2026-10-09 — Manifest re-sync flagged MODIFIED right after syncing
+- Symptoms: python manifest update printed success, but the next read-only `check-memory.ps1` still listed the file as MODIFIED.
+- Root cause: the sync script wrote hashes in a form the checker did not match on the follow-up comparison pass (checker canonical form is lowercase hex, .NET `x2` style).
+- Fix: re-synced with lowercase `hashlib.sha256(...).hexdigest()` for both `analyzedHash`/`currentHash`, then verified with a read-only check (69 UNCHANGED).
+- Prevention: when updating `manifest.json` from python, always write lowercase hex hashes, `status=analyzed`, fresh `size`, and immediately re-run the read-only checker to confirm clean.
+
 ## 2026-10-08 — Register email check bypassed normalization + echoed PII; missing-token returned 403
 - Symptoms: `existsByEmail(raw)` vs save `lowercase.trim` allowed `Foo@x.com`/`foo@x.com` duplicates; duplicate error echoed the email; unauthenticated API calls got 403 not 401.
 - Root cause: `AuthService.register` normalized only at build time; duplicate message interpolated request email; `SecurityConfig` had no authentication entry point (default deny → 403).

@@ -7,7 +7,6 @@ import com.eventpulse.config.JwtService;
 import com.eventpulse.user.entity.Role;
 import com.eventpulse.user.entity.User;
 import com.eventpulse.user.repository.UserRepository;
-import com.eventpulse.vendor.entity.VendorCategory;
 import com.eventpulse.vendor.entity.VendorProfile;
 import com.eventpulse.vendor.repository.VendorProfileRepository;
 import lombok.RequiredArgsConstructor;
@@ -64,28 +63,52 @@ public class AuthService {
 
         UUID vendorId = null;
         if (role == Role.VENDOR) {
-            VendorCategory category = request.getCategory() != null ? request.getCategory() : VendorCategory.DJ;
-            String businessName = (request.getBusinessName() != null && !request.getBusinessName().isBlank())
-                    ? request.getBusinessName()
-                    : request.getFullName() + " Services";
+            if (request.getBusinessName() == null || request.getBusinessName().trim().isEmpty()) {
+                throw new IllegalArgumentException("Business name is required for vendor registration");
+            }
+            if (request.getCategory() == null) {
+                throw new IllegalArgumentException("Valid category is required for vendor registration");
+            }
+            if (request.getStartingPrice() == null || request.getStartingPrice().compareTo(BigDecimal.ZERO) <= 0) {
+                throw new IllegalArgumentException("Starting price must be a positive number");
+            }
+            if (request.getServiceRadiusKm() == null || request.getServiceRadiusKm() <= 0 || request.getServiceRadiusKm() > 500) {
+                throw new IllegalArgumentException("Service radius must be between 1 and 500 km");
+            }
+            if (request.getLatitude() == null || request.getLongitude() == null ||
+                    request.getLatitude() < -90.0 || request.getLatitude() > 90.0 ||
+                    request.getLongitude() < -180.0 || request.getLongitude() > 180.0) {
+                throw new IllegalArgumentException("Valid latitude (-90 to 90) and longitude (-180 to 180) are required");
+            }
+            if (request.getPhone() == null || request.getPhone().trim().isEmpty()) {
+                throw new IllegalArgumentException("Phone number is required for vendor registration");
+            }
+            if (request.getCity() == null || request.getCity().trim().isEmpty()) {
+                throw new IllegalArgumentException("City is required for vendor registration");
+            }
+
+            String priceUnit = (request.getPriceUnit() != null && !request.getPriceUnit().trim().isEmpty())
+                    ? request.getPriceUnit().trim()
+                    : "per event";
 
             VendorProfile profile = VendorProfile.builder()
                     .user(user)
-                    .businessName(businessName)
-                    .category(category)
-                    .description(request.getDescription() != null ? request.getDescription() : "Professional " + category + " service provider.")
-                    .addressLine(request.getAddressLine())
-                    .city(request.getCity())
-                    .state(request.getState())
-                    .postalCode(request.getPostalCode())
-                    .serviceRadiusKm(request.getServiceRadiusKm() != null ? request.getServiceRadiusKm() : 25)
-                    .startingPrice(request.getStartingPrice() != null ? request.getStartingPrice() : BigDecimal.valueOf(500))
+                    .businessName(request.getBusinessName().trim())
+                    .category(request.getCategory())
+                    .description(request.getDescription() != null ? request.getDescription().trim() : "")
+                    .addressLine(request.getAddressLine() != null ? request.getAddressLine().trim() : null)
+                    .city(request.getCity().trim())
+                    .state(request.getState() != null ? request.getState().trim() : null)
+                    .postalCode(request.getPostalCode() != null ? request.getPostalCode().trim() : null)
+                    .serviceRadiusKm(request.getServiceRadiusKm())
+                    .startingPrice(request.getStartingPrice())
+                    .priceUnit(priceUnit)
                     .coverImageUrl(request.getCoverImageUrl())
-                    .contactPhone(request.getPhone())
-                    .contactEmail(request.getEmail())
+                    .contactPhone(request.getPhone().trim())
+                    .contactEmail(normalizedEmail)
                     .isAvailable(true)
                     .ratingAvg(5.0)
-                    .reviewCount(1)
+                    .reviewCount(0)
                     .build();
 
             profile.updateCoordinates(request.getLatitude(), request.getLongitude());

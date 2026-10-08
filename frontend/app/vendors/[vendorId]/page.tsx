@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState, useCallback, useMemo } from "react";
+import { Suspense, useEffect, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useParams, useSearchParams } from "next/navigation";
@@ -284,7 +284,9 @@ function VendorDetailContent() {
     );
   }
 
-  const isAvailable = vendor.isAvailable !== false;
+  // Treat missing availability as unavailable: the backend rejects bookings
+  // unless isAvailable is explicitly true (409 otherwise).
+  const isAvailable = vendor.isAvailable === true;
   const startingPriceFormatted = formatPrice(vendor.startingPrice);
   const fullAddress = [vendor.addressLine, vendor.city, vendor.state].filter(Boolean).join(", ");
   const categoryEmoji = (vendor.category && CATEGORY_EMOJIS[vendor.category]) || "✨";
@@ -513,6 +515,8 @@ function VendorDetailContent() {
                       radiusKm={vendor.serviceRadiusKm || 25}
                       selectedVendorId={vendor.id}
                       onSelectVendor={() => {}}
+                      originLabel="Business Location"
+                      showCountBadge={false}
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-surface text-xs text-muted">
@@ -638,7 +642,7 @@ function VendorDetailContent() {
               <p className="text-[11px]">
                 Explore other categories or contact multiple event vendors in your area.
               </p>
-              <Link href="/" className="inline-block pt-1 text-xs font-semibold text-foreground hover:underline">
+              <Link href="/explore-vendors" className="inline-block pt-1 text-xs font-semibold text-foreground hover:underline">
                 Explore More Vendors &rarr;
               </Link>
             </Card>

@@ -3,8 +3,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { AlertCircle, CheckCircle2, Navigation, RefreshCw } from "lucide-react";
-import VendorNav from "@/components/VendorNav";
+import { AlertCircle, CheckCircle2, Navigation, RefreshCw, LogOut } from "lucide-react";
+import { VendorTopNav, VendorTabs } from "@/components/VendorNav";
 import { useAuth } from "@/hooks/useAuth";
 import { getMyProfile, updateMyProfile } from "@/services/api";
 import { Button } from "@/components/ui/button";
@@ -121,7 +121,7 @@ function errorMessage(err: unknown, fallback: string): string {
 
 export default function VendorProfilePage() {
   const router = useRouter();
-  const { token, isAuthenticated, isVendor, isLoading: authLoading } = useAuth();
+  const { token, isAuthenticated, isVendor, isLoading: authLoading, logout } = useAuth();
 
   const [profile, setProfile] = useState<VendorProfile | null>(null);
   const [form, setForm] = useState<ProfileForm>(EMPTY_FORM);
@@ -199,20 +199,31 @@ export default function VendorProfilePage() {
   const emailValid =
     form.contactEmail.trim() === "" ||
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.contactEmail.trim());
+  const phoneValid =
+    form.contactPhone.trim() === "" ||
+    /^\+?[0-9\s\-()]{7,20}$/.test(form.contactPhone.trim());
   const coverValid =
     form.coverImageUrl.trim() === "" || /^https?:\/\/\S+$/i.test(form.coverImageUrl.trim());
+  const priceNum = Number(form.startingPrice.trim());
   const priceValid =
-    form.startingPrice.trim() === "" || Number.isFinite(Number(form.startingPrice.trim()));
+    form.startingPrice.trim() === "" ||
+    (Number.isFinite(priceNum) && priceNum > 0);
+  const radiusNum = Number(form.serviceRadiusKm.trim());
   const radiusValid =
     form.serviceRadiusKm.trim() === "" ||
-    Number.isFinite(Number(form.serviceRadiusKm.trim()));
+    (Number.isInteger(radiusNum) && radiusNum >= 1 && radiusNum <= 500);
+  const coordsValid =
+    (form.latitude === null || (form.latitude >= -90 && form.latitude <= 90)) &&
+    (form.longitude === null || (form.longitude >= -180 && form.longitude <= 180));
   const isValid =
     form.businessName.trim() !== "" &&
     form.category !== "" &&
     emailValid &&
+    phoneValid &&
     coverValid &&
     priceValid &&
-    radiusValid;
+    radiusValid &&
+    coordsValid;
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -292,23 +303,39 @@ export default function VendorProfilePage() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <main className="mx-auto w-full max-w-3xl overflow-x-hidden px-6 py-12 space-y-8">
-        <header className="space-y-4">
+    <div className="min-h-screen flex flex-col bg-background text-foreground antialiased">
+      <VendorTopNav />
+      <main className="mx-auto w-full max-w-4xl overflow-x-hidden px-4 py-8 sm:px-6 sm:py-10 space-y-8 flex-1">
+        <header className="space-y-5 border-b border-hairline pb-6">
           <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h1 className="text-2xl font-semibold tracking-tight">Profile</h1>
-              <p className="text-sm text-muted">
-                Manage how customers find and contact your business
+            <div className="min-w-0 space-y-1">
+              <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Business Profile</h1>
+              <p className="text-xs text-muted">
+                Manage how customers find, discover, and contact your business in the marketplace.
               </p>
             </div>
-            {profile && (
-              <Badge variant={profile.isAvailable ? "success" : "neutral"} dot>
-                {profile.isAvailable ? "Available" : "Unavailable"}
-              </Badge>
-            )}
+            <div className="flex items-center gap-2">
+              {profile && (
+                <Badge variant={profile.isAvailable ? "success" : "danger"} dot>
+                  {profile.isAvailable ? "Open for Bookings" : "Fully Booked"}
+                </Badge>
+              )}
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  logout("/login");
+                }}
+                className="gap-1.5 text-xs text-muted hover:text-danger hover:bg-danger/10"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+                <span>Log Out</span>
+              </Button>
+            </div>
           </div>
-          <VendorNav />
+          <div className="pt-2">
+            <VendorTabs />
+          </div>
         </header>
 
         {isLoading ? (
@@ -335,14 +362,27 @@ export default function VendorProfilePage() {
             </div>
           </Card>
         ) : loadError ? (
-          <Card className="p-12 text-center">
-            <div className="mx-auto flex flex-col items-center gap-3">
-              <AlertCircle className="h-6 w-6 text-muted" aria-hidden="true" />
-              <h3 className="text-base font-medium tracking-tight">Profile unavailable</h3>
-              <p className="max-w-md text-sm text-muted">{loadError}</p>
-              <Button variant="secondary" onClick={handleRetry}>
-                <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
+          <Card className="mx-auto max-w-lg p-8 sm:p-10 text-center shadow-card border-hairline space-y-5">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-danger/10 text-danger shadow-hairline">
+              <AlertCircle className="h-7 w-7" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold tracking-tight">Profile Unavailable</h3>
+              <p className="max-w-md text-xs text-muted leading-relaxed mx-auto">{loadError}</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 pt-2">
+              <Button onClick={handleRetry} className="w-full sm:w-auto text-xs gap-1.5">
+                <RefreshCw className="h-3.5 w-3.5" />
                 Try Again
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  logout("/login?redirect=/vendor/profile");
+                }}
+                className="w-full sm:w-auto text-xs"
+              >
+                Log In Again
               </Button>
             </div>
           </Card>
@@ -407,17 +447,20 @@ export default function VendorProfilePage() {
                   type: "number",
                   inputMode: "decimal",
                   placeholder: "15000",
+                  error: priceValid ? null : "Starting price must be greater than 0.",
                 })}
                 {field("priceUnit", "Price Unit", { placeholder: "per event" })}
                 {field("serviceRadiusKm", "Service Radius (km)", {
                   type: "number",
                   inputMode: "numeric",
                   placeholder: "25",
+                  error: radiusValid ? null : "Service radius must be a whole number between 1 and 500 km.",
                 })}
                 {field("contactPhone", "Contact Phone", {
                   type: "tel",
                   inputMode: "tel",
                   placeholder: "+91 98765 43210",
+                  error: phoneValid ? null : "Enter a valid phone number (7–20 digits).",
                 })}
                 {field("contactEmail", "Contact Email", {
                   type: "email",
@@ -454,6 +497,11 @@ export default function VendorProfilePage() {
                 />
 
                 {geoError && <p className="text-xs text-danger">{geoError}</p>}
+                {!coordsValid && (
+                  <p className="text-xs text-danger">
+                    Coordinates must be valid: latitude −90 to 90, longitude −180 to 180.
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-wrap items-center justify-between gap-4 border-t border-hairline pt-6">

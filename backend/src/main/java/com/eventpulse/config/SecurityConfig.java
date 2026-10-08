@@ -62,13 +62,15 @@ public class SecurityConfig {
                             response.setStatus(401);
                             response.setContentType("application/json");
                             response.getWriter().write(
-                                    "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":null}");
+                                    "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":null,\"timestamp\":\""
+                                            + java.time.Instant.now() + "\"}");
                         })
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
                             response.setStatus(403);
                             response.setContentType("application/json");
                             response.getWriter().write(
-                                    "{\"success\":false,\"message\":\"Access denied\",\"data\":null}");
+                                    "{\"success\":false,\"message\":\"Access denied\",\"data\":null,\"timestamp\":\""
+                                            + java.time.Instant.now() + "\"}");
                         }))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

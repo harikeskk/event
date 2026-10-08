@@ -33,8 +33,8 @@ interface VendorInquiry {
   guestCount: number | null;
   budget: number | string | null;
   customerName: string;
-  customerEmail: string;
-  customerPhone: string;
+  customerEmail: string | null;
+  customerPhone: string | null;
   message: string;
   status: string;
   vendorNotes: string | null;
@@ -292,24 +292,32 @@ function BookingDetailContent() {
                   icon={Mail}
                   label="Email"
                   value={
-                    <a
-                      href={`mailto:${inquiry.customerEmail}`}
-                      className="text-blue transition-colors duration-150 hover:underline"
-                    >
-                      {inquiry.customerEmail}
-                    </a>
+                    inquiry.customerEmail ? (
+                      <a
+                        href={`mailto:${inquiry.customerEmail}`}
+                        className="text-blue transition-colors duration-150 hover:underline"
+                      >
+                        {inquiry.customerEmail}
+                      </a>
+                    ) : (
+                      <span className="font-normal text-muted">Not provided</span>
+                    )
                   }
                 />
                 <DetailRow
                   icon={Phone}
                   label="Phone"
                   value={
-                    <a
-                      href={`tel:${inquiry.customerPhone}`}
-                      className="transition-colors duration-150 hover:text-blue"
-                    >
-                      {inquiry.customerPhone}
-                    </a>
+                    inquiry.customerPhone ? (
+                      <a
+                        href={`tel:${inquiry.customerPhone}`}
+                        className="transition-colors duration-150 hover:text-blue"
+                      >
+                        {inquiry.customerPhone}
+                      </a>
+                    ) : (
+                      <span className="font-normal text-muted">Not provided</span>
+                    )
                   }
                 />
               </div>
@@ -352,7 +360,7 @@ function BookingDetailContent() {
                   setNotes(e.target.value);
                   setNotesFeedback(null);
                 }}
-                placeholder="Add a note for this booking…"
+                placeholder="Write response to customer…"
                 aria-label="Vendor notes"
               />
               <div className="flex flex-wrap items-center gap-3">
@@ -393,7 +401,7 @@ function BookingDetailContent() {
                     loading={actionPending}
                     onClick={() => handleAction("ACCEPTED", "Accepted via dashboard")}
                   >
-                    Accept Request
+                    Accept Booking
                   </Button>
                   <Button
                     variant="ghost"
@@ -401,25 +409,65 @@ function BookingDetailContent() {
                     loading={actionPending}
                     onClick={() => handleAction("DECLINED", "Declined — unavailable")}
                   >
-                    Decline Request
+                    Decline Booking
                   </Button>
                 </div>
               )}
 
               {inquiry.status === "ACCEPTED" && (
-                <Button
-                  className="w-full"
-                  loading={actionPending}
-                  onClick={() => handleAction("COMPLETED", "Completed via dashboard")}
-                >
-                  Mark Completed
-                </Button>
+                <div className="space-y-3">
+                  <p
+                    role="status"
+                    className="rounded-md border border-success/30 bg-emerald-50 px-3 py-2 text-sm font-medium text-success"
+                  >
+                    🟢 Booking Accepted
+                  </p>
+                  <div className="space-y-2">
+                    {inquiry.customerPhone && (
+                      <a href={`tel:${inquiry.customerPhone}`} className="block">
+                        <Button className="w-full" variant="secondary">
+                          <Phone className="h-4 w-4" aria-hidden="true" />
+                          Call Customer
+                        </Button>
+                      </a>
+                    )}
+                    {inquiry.customerEmail && (
+                      <a href={`mailto:${inquiry.customerEmail}`} className="block">
+                        <Button className="w-full" variant="secondary">
+                          <Mail className="h-4 w-4" aria-hidden="true" />
+                          Email Customer
+                        </Button>
+                      </a>
+                    )}
+                  </div>
+                  <Button
+                    className="w-full"
+                    loading={actionPending}
+                    onClick={() => handleAction("COMPLETED", "Completed via dashboard")}
+                  >
+                    Mark Completed
+                  </Button>
+                </div>
               )}
 
               {inquiry.status === "DECLINED" && (
-                <p className="rounded-md bg-surface px-3 py-2 text-sm text-muted">
-                  You declined this request. No further action is needed.
-                </p>
+                <div className="space-y-2">
+                  <p
+                    role="status"
+                    className="rounded-md border border-danger/30 bg-red-50 px-3 py-2 text-sm font-medium text-danger"
+                  >
+                    🔴 Booking Declined
+                  </p>
+                  {inquiry.vendorNotes ? (
+                    <p className="rounded-md bg-surface px-3 py-2 text-sm italic text-muted">
+                      &ldquo;{inquiry.vendorNotes}&rdquo;
+                    </p>
+                  ) : (
+                    <p className="rounded-md bg-surface px-3 py-2 text-sm text-muted">
+                      You declined this request. No further action is needed.
+                    </p>
+                  )}
+                </div>
               )}
 
               {inquiry.status === "COMPLETED" && (

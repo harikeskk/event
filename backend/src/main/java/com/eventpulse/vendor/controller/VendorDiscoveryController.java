@@ -6,6 +6,7 @@ import com.eventpulse.vendor.dto.VendorCardDto;
 import com.eventpulse.vendor.dto.VendorDetailDto;
 import com.eventpulse.vendor.service.VendorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,7 +57,8 @@ public class VendorDiscoveryController {
             detail.setContactEmail(null);
             return ResponseEntity.ok(ApiResponse.success("Vendor profile fetched", detail));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error("Vendor not found"));
         }
     }
 
@@ -68,5 +70,11 @@ public class VendorDiscoveryController {
             v.setContactEmail(null);
         });
         return ResponseEntity.ok(ApiResponse.success("All vendors", results));
+    }
+
+    @ExceptionHandler(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ApiResponse<Void>> handleTypeMismatch(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.error("Vendor not found"));
     }
 }

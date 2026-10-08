@@ -241,7 +241,9 @@ function BookVendorContent() {
   }
 
   const isValid = Object.keys(errors).length === 0;
-  const isAvailable = vendor ? vendor.isAvailable !== false : true;
+  // Treat missing availability as unavailable: the backend rejects bookings
+  // unless isAvailable is explicitly true (409 otherwise).
+  const isAvailable = vendor ? vendor.isAvailable === true : true;
   const show = (key: FieldKey) => (touched[key] ? errors[key] : undefined);
 
   const handleChange = (
@@ -472,7 +474,7 @@ function BookVendorContent() {
               You are currently signed in with a Vendor account ({user?.fullName}). Customer service requests must be submitted with a Customer account.
             </p>
             <div className="pt-2 flex justify-center gap-3">
-              <Button variant="secondary" onClick={logout}>
+              <Button variant="secondary" onClick={() => logout("/login")}>
                 Log Out &amp; Switch Account
               </Button>
               <Link href="/vendor">

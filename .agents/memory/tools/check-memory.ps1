@@ -35,7 +35,7 @@ $Tracked = @(
   'backend\src\main\resources\application*.yml',
   'backend\src\main\resources\application*.properties',
   'backend\pom.xml',
-  'frontend\app\*.ts', 'frontend\app\*.tsx',
+  'frontend\app\*.ts', 'frontend\app\*.tsx', 'frontend\app\*.css',
   'frontend\components\*.ts', 'frontend\components\*.tsx',
   'frontend\services\*.ts', 'frontend\services\*.tsx',
   'frontend\hooks\*.ts', 'frontend\hooks\*.tsx',

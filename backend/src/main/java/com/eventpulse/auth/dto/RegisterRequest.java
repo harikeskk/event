@@ -47,6 +47,7 @@ public class RegisterRequest {
     private Double longitude;
     private Integer serviceRadiusKm;
     private BigDecimal startingPrice;
+    private String priceUnit;
     private String description;
     private String coverImageUrl;
 }

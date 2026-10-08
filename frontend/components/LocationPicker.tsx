@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import type { MapMouseEvent } from "maplibre-gl";
 import { Map, MapMarker, useMap } from "@/components/ui/map";
 import { Button } from "@/components/ui/button";

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export interface VendorMapProps {
   vendors: any[];
@@ -8,6 +8,8 @@ export interface VendorMapProps {
   radiusKm: number;
   selectedVendorId: string | null;
   onSelectVendor: (vendor: any) => void;
+  originLabel?: string;
+  showCountBadge?: boolean;
 }
 
 export default function VendorMap({
@@ -16,6 +18,8 @@ export default function VendorMap({
   radiusKm,
   selectedVendorId,
   onSelectVendor,
+  originLabel = "Search Origin",
+  showCountBadge = true,
 }: VendorMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -66,6 +70,10 @@ export default function VendorMap({
         dashArray: "6, 8",
       }).addTo(map);
 
+      // Clear previous markers first so the origin pin below survives
+      markersLayerRef.current.clearLayers();
+      vendorMarkersMapRef.current.clear();
+
       // Customer marker
       const userIcon = L.divIcon({
         className: "custom-user-marker",
@@ -90,11 +98,7 @@ export default function VendorMap({
 
       L.marker([customerLocation.lat, customerLocation.lng], { icon: userIcon, zIndexOffset: 1000 })
         .addTo(markersLayerRef.current)
-        .bindPopup(`<div style="font-weight:600;font-size:12px;color:#171717;">Search Origin</div>`);
-
-      // Clear previous vendor markers
-      markersLayerRef.current.clearLayers();
-      vendorMarkersMapRef.current.clear();
+        .bindPopup(`<div style="font-weight:600;font-size:12px;color:#171717;">${originLabel}</div>`);
 
       // Category icon emojis
       const getCategoryBadge = (cat: string) => {
@@ -113,7 +117,7 @@ export default function VendorMap({
 
       // Add clean pin markers
       vendors.forEach((vendor) => {
-        if (!vendor.latitude || !vendor.longitude) return;
+        if (vendor.latitude == null || vendor.longitude == null) return;
 
         const isSelected = selectedVendorId === vendor.id;
         const emoji = getCategoryBadge(vendor.category);
@@ -206,11 +210,11 @@ export default function VendorMap({
               <span style="font-size:13px; font-weight:700; color:#171717; font-variant-numeric:tabular-nums;">${priceFormatted || "Price on request"}</span>
             </div>
             <div style="display:flex; gap:6px;">
-              <a href="/vendors/${vendor.id}" style="flex:1; text-align:center; padding:6px 8px; background:#f4f4f5; color:#171717; border-radius:6px; text-decoration:none; font-size:11px; font-weight:600; border:1px solid #e4e4e7;">
+              <a href="/vendors/${vendor.id}?lat=${customerLocation.lat}&lng=${customerLocation.lng}" style="flex:1; text-align:center; padding:6px 8px; background:#f4f4f5; color:#171717; border-radius:6px; text-decoration:none; font-size:11px; font-weight:600; border:1px solid #e4e4e7;">
                 View Details
               </a>
               ${vendor.isAvailable !== false ? `
-              <a href="/book/${vendor.id}" style="flex:1; text-align:center; padding:6px 8px; background:#171717; color:#ffffff; border-radius:6px; text-decoration:none; font-size:11px; font-weight:600;">
+              <a href="/book/${vendor.id}?lat=${customerLocation.lat}&lng=${customerLocation.lng}" style="flex:1; text-align:center; padding:6px 8px; background:#171717; color:#ffffff; border-radius:6px; text-decoration:none; font-size:11px; font-weight:600;">
                 Book Service
               </a>` : ""}
             </div>
@@ -227,9 +231,10 @@ export default function VendorMap({
       }
 
       // Fit map bounds to encompass all vendors & user if no vendor specifically selected
-      if (!selectedVendorId && vendors.length > 0) {
+      const located = vendors.filter((v) => v.latitude != null && v.longitude != null);
+      if (!selectedVendorId && located.length > 0) {
         const bounds = L.latLngBounds(
-          vendors.map((v) => [v.latitude, v.longitude] as [number, number])
+          located.map((v) => [v.latitude, v.longitude] as [number, number])
         );
         bounds.extend([customerLocation.lat, customerLocation.lng]);
         map.fitBounds(bounds, { padding: [50, 50], maxZoom: 14 });
@@ -252,7 +257,7 @@ export default function VendorMap({
         <span className="tabular-nums font-medium text-foreground">
           {vendors.length} {vendors.length === 1 ? "vendor" : "vendors"}
         </span>
-        <span className="text-muted">within {radiusKm} km</span>
+        {showCountBadge && <span className="text-muted">within {radiusKm} km</span>}
       </div>
     </div>
   );

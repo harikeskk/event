@@ -144,6 +144,31 @@ public class VendorServiceImpl implements VendorService {
         VendorProfile profile = vendorProfileRepository.findByUserId(user.getId())
                 .orElseThrow(() -> new IllegalArgumentException("No vendor profile found for this user"));
 
+        if (request.getStartingPrice() != null
+                && request.getStartingPrice().compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Starting price must be a positive number");
+        }
+        if (request.getServiceRadiusKm() != null
+                && (request.getServiceRadiusKm() < 1 || request.getServiceRadiusKm() > 500)) {
+            throw new IllegalArgumentException("Service radius must be between 1 and 500 km");
+        }
+        if (request.getLatitude() != null
+                && (request.getLatitude() < -90.0 || request.getLatitude() > 90.0)) {
+            throw new IllegalArgumentException("Latitude must be between -90 and 90");
+        }
+        if (request.getLongitude() != null
+                && (request.getLongitude() < -180.0 || request.getLongitude() > 180.0)) {
+            throw new IllegalArgumentException("Longitude must be between -180 and 180");
+        }
+        if (request.getContactEmail() != null && !request.getContactEmail().trim().isEmpty()
+                && !request.getContactEmail().trim().matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")) {
+            throw new IllegalArgumentException("Valid contact email is required");
+        }
+        if (request.getContactPhone() != null && !request.getContactPhone().trim().isEmpty()
+                && !request.getContactPhone().trim().matches("^\\+?[0-9\\s\\-()]{7,20}$")) {
+            throw new IllegalArgumentException("Valid contact phone number is required");
+        }
+
         profile.setBusinessName(request.getBusinessName());
         profile.setCategory(request.getCategory());
         profile.setDescription(request.getDescription());
@@ -194,6 +219,16 @@ public class VendorServiceImpl implements VendorService {
         VendorProfile profile = vendorProfileRepository.findByUserId(user.getId())
                 .orElseThrow(() -> new IllegalArgumentException("No vendor profile found"));
 
+        if (itemDto.getImageUrl() == null || itemDto.getImageUrl().trim().isEmpty()) {
+            throw new IllegalArgumentException("Image URL is required");
+        }
+        if (!itemDto.getImageUrl().trim().matches("^(?i)https?://\\S+$")) {
+            throw new IllegalArgumentException("Image URL must start with http:// or https://");
+        }
+        if (itemDto.getTitle() == null || itemDto.getTitle().trim().isEmpty()) {
+            throw new IllegalArgumentException("Title is required");
+        }
+
         PortfolioItem item = PortfolioItem.builder()
                 .vendor(profile)
                 .imageUrl(itemDto.getImageUrl())
@@ -218,7 +253,8 @@ public class VendorServiceImpl implements VendorService {
         PortfolioItem item = portfolioItemRepository.findById(itemId)
                 .orElseThrow(() -> new IllegalArgumentException("Item not found: " + itemId));
         if (!item.getVendor().getUser().getId().equals(user.getId())) {
-            throw new IllegalArgumentException("Unauthorized to delete this item");
+            throw new org.springframework.security.access.AccessDeniedException(
+                    "You do not have access to this portfolio item");
         }
         portfolioItemRepository.delete(item);
     }
@@ -247,7 +283,7 @@ public class VendorServiceImpl implements VendorService {
                         .contactEmail(v.getContactEmail())
                         .isAvailable(v.getIsAvailable())
                         .serviceRadiusKm(v.getServiceRadiusKm())
-                        .distanceKm(0.0)
+                        .distanceKm(null)
                         .build()
                 ).collect(Collectors.toList());
     }
