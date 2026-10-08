@@ -2,6 +2,11 @@
 
 > Append newest first. Format: context → options → decision → consequences.
 
+## 2026-10-09 — Seeder made idempotent + 14 Tamil Nadu vendors added
+- Context: user wanted vendors in Madurai/Chennai/Trichy/Dindigul and more, but the seeder early-returned on any non-empty DB, so new seeds would never reach their existing database; existing seeds also lacked MAKEUP_ARTIST entirely.
+- Decision: replaced the all-or-nothing guard with per-email `existsByEmail` skips (customer + every vendor), and added 14 vendors with real city coords: Chennai x3, Madurai x2, Trichy x2, Dindigul x2, Coimbatore x2, Salem x2, Tirunelveli x1 — all 8 categories now represented. Restarting the backend inserts only the missing rows; existing users/inquiries untouched.
+- Consequences: one backend restart seeds the new cities; safe to restart any number of times (no duplicates, no startup crash on email conflict).
+
 ## 2026-10-09 — Zalopay retheme done at token layer, no page rewrites
 - Context: user supplied Zalopay DESIGN.md and asked for its feel on all pages. App is Tailwind v4 (CSS-first @theme) with all surfaces on semantic tokens, so a token remap rethemes every page at once.
 - Decision: remapped `globals.css` @theme to Zalopay tokens (deep-navy #001f3e text, cool blue-gray neutrals, brand-blue #0068ff inverse actions, #03ca77/#e31748/#faa828 semantics, 4px radii scale, navy-tinted shadows, blue focus/selection, Leaflet accents); Badge variants to Zalopay alert tints; Button primary pressed-blue + danger red ramp; Card to 8px; fixed 4 hand-rolled `active:bg-black` press states. Left untouched: hardcoded emerald/amber/rose accents (harmonious), Geist font stack, co-editor files (MarketplaceView, CustomerNav, explore-vendors). Added `frontend/app/*.css` to memory tracker so the theme file is hash-tracked.

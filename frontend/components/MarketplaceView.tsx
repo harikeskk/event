@@ -75,6 +75,12 @@ const PRESET_LOCATIONS = [
   { name: "Delhi NCR (Connaught Place)", lat: 28.6304, lng: 77.2177 },
   { name: "Hyderabad (Hitec City)", lat: 17.4435, lng: 78.3772 },
   { name: "Chennai (T. Nagar)", lat: 13.0418, lng: 80.2341 },
+  { name: "Madurai (Meenakshi Temple)", lat: 9.9195, lng: 78.1193 },
+  { name: "Trichy (Main Guard Gate)", lat: 10.7905, lng: 78.7047 },
+  { name: "Dindigul", lat: 10.3673, lng: 77.9803 },
+  { name: "Coimbatore (RS Puram)", lat: 11.0168, lng: 77.9558 },
+  { name: "Salem (Fairlands)", lat: 11.67, lng: 78.13 },
+  { name: "Tirunelveli", lat: 8.7139, lng: 77.7567 },
 ];
 
 export interface MarketplaceViewProps {
@@ -84,7 +90,7 @@ export interface MarketplaceViewProps {
 export default function MarketplaceView({
   isCustomerPortal = false,
 }: MarketplaceViewProps) {
-  const { user, token, isAuthenticated, isVendor } = useAuth();
+  const { token, isVendor } = useAuth();
 
   // Location & Radius filters
   const [customerLoc, setCustomerLoc] = useState({ lat: 12.9716, lng: 77.5946 });
@@ -599,57 +605,7 @@ export default function MarketplaceView({
           })}
         </div>
 
-        {/* 4. RESULTS HEADER & RESPONSIVE TOGGLES */}
-        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-1 text-muted">
-          <div className="flex items-center gap-2 text-sm tabular-nums">
-            <p>
-              <span className="font-semibold text-foreground">
-                {filteredVendors.length}{" "}
-                {filteredVendors.length === 1 ? "Vendor" : "Vendors"}
-              </span>{" "}
-              within {radiusKm} km of {locationName}
-            </p>
-            <span className="text-hairline">•</span>
-            <span className="text-xs text-muted">Sorted nearest to farthest</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Badge variant="success">
-              <CheckCircle className="h-3.5 w-3.5" aria-hidden="true" />
-              Verified Event Pros
-            </Badge>
-
-            {/* Mobile View Toggle Buttons */}
-            <div className="flex items-center rounded-md bg-surface p-0.5 shadow-hairline lg:hidden">
-              <button
-                type="button"
-                onClick={() => setMobileView("list")}
-                className={cn(
-                  "flex items-center gap-1 rounded-[5px] px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer",
-                  mobileView === "list"
-                    ? "bg-white text-foreground shadow-card"
-                    : "text-muted hover:text-foreground"
-                )}
-              >
-                <ListIcon className="h-3.5 w-3.5" />
-                List
-              </button>
-              <button
-                type="button"
-                onClick={() => setMobileView("map")}
-                className={cn(
-                  "flex items-center gap-1 rounded-[5px] px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer",
-                  mobileView === "map"
-                    ? "bg-white text-foreground shadow-card"
-                    : "text-muted hover:text-foreground"
-                )}
-              >
-                <MapIcon className="h-3.5 w-3.5" />
-                Map
-              </button>
-            </div>
-          </div>
-        </div>
+        {/* Results context lives in the floating panel header below. */}
 
         {/* API Error State */}
         {apiError && (
@@ -668,50 +624,84 @@ export default function MarketplaceView({
           </Card>
         )}
 
-        {/* 5. SPLIT SCREEN: VENDOR CARDS LIST (LEFT) / INTERACTIVE MAP (RIGHT) */}
-        <div className="grid min-h-[620px] flex-1 grid-cols-1 gap-6 lg:grid-cols-12">
-          {/* LEFT SIDE: VENDOR CARDS LIST */}
+        {/* 5. FULLSCREEN MAP STAGE with floating results panel (Google-Maps style) */}
+        <div className="relative left-1/2 h-[calc(100vh-120px)] min-h-[560px] w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden bg-surface">
+          {/* FLOATING RESULTS PANEL: bottom sheet on mobile, left rail on desktop */}
           <div
             className={cn(
-              "flex flex-col gap-4 lg:col-span-7",
+              "absolute bottom-3 left-3 right-3 z-[1000] flex max-h-[48%] flex-col overflow-hidden rounded-2xl border border-hairline bg-white shadow-elevated",
+              "lg:bottom-5 lg:left-5 lg:right-auto lg:top-5 lg:max-h-none lg:w-[400px]",
               mobileView === "map" ? "hidden lg:flex" : "flex"
             )}
           >
+            {/* Panel header: result context + verified + mobile toggle */}
+            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-hairline px-4 py-3">
+              <p className="min-w-0 truncate text-sm tabular-nums">
+                <span className="font-semibold text-foreground">
+                  {filteredVendors.length}{" "}
+                  {filteredVendors.length === 1 ? "Vendor" : "Vendors"}
+                </span>{" "}
+                <span className="text-muted">near {locationName}</span>
+              </p>
+              <div className="flex shrink-0 items-center gap-2">
+                <Badge variant="success" className="hidden text-[10px] sm:inline-flex">
+                  <CheckCircle className="h-3 w-3" aria-hidden="true" />
+                  Verified
+                </Badge>
+                <div className="flex items-center rounded-md bg-surface p-0.5 shadow-hairline lg:hidden">
+                  <button
+                    type="button"
+                    onClick={() => setMobileView("list")}
+                    className={cn(
+                      "flex items-center gap-1 rounded-[5px] px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer",
+                      mobileView === "list"
+                        ? "bg-white text-foreground shadow-card"
+                        : "text-muted hover:text-foreground"
+                    )}
+                  >
+                    <ListIcon className="h-3.5 w-3.5" />
+                    List
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMobileView("map")}
+                    className={cn(
+                      "flex items-center gap-1 rounded-[5px] px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer",
+                      mobileView === "map"
+                        ? "bg-white text-foreground shadow-card"
+                        : "text-muted hover:text-foreground"
+                    )}
+                  >
+                    <MapIcon className="h-3.5 w-3.5" />
+                    Map
+                  </button>
+                </div>
+              </div>
+            </div>
             {isLoading ? (
               <>
                 <p
                   role="status"
-                  className="px-1 text-xs text-muted flex items-center gap-2"
+                  className="px-4 pt-4 text-xs text-muted flex items-center gap-2"
                 >
                   <Spinner />
                   Querying PostGIS spatial engine within {radiusKm} km…
                 </p>
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <Card key={i} className="flex flex-col gap-4 p-4 sm:flex-row">
-                    <Skeleton className="h-40 w-full shrink-0 sm:w-48 rounded-lg" />
-                    <div className="flex flex-1 flex-col justify-between gap-3">
-                      <div className="space-y-2">
-                        <Skeleton className="h-5 w-2/3" />
-                        <Skeleton className="h-3.5 w-full" />
-                        <Skeleton className="h-3.5 w-4/5" />
-                        <div className="flex gap-2 pt-1">
-                          <Skeleton className="h-5 w-24 rounded-full" />
-                          <Skeleton className="h-5 w-20 rounded-full" />
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between gap-3 border-t border-hairline pt-3">
-                        <Skeleton className="h-6 w-24" />
-                        <div className="flex gap-2">
-                          <Skeleton className="h-8 w-20 rounded-md" />
-                          <Skeleton className="h-8 w-24 rounded-md" />
-                        </div>
+                <div className="min-h-0 flex-1 divide-y divide-hairline overflow-y-auto pb-2">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="flex gap-3.5 p-4">
+                      <Skeleton className="h-24 w-24 shrink-0 rounded-xl" />
+                      <div className="flex-1 space-y-2 py-1">
+                        <Skeleton className="h-4 w-2/3" />
+                        <Skeleton className="h-3 w-full" />
+                        <Skeleton className="h-3 w-1/2" />
                       </div>
                     </div>
-                  </Card>
-                ))}
+                  ))}
+                </div>
               </>
             ) : filteredVendors.length === 0 ? (
-              <Card className="flex flex-col items-center justify-center p-12 text-center my-auto">
+              <Card className="m-4 flex flex-col items-center justify-center p-8 text-center">
                 <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-surface shadow-hairline">
                   <MapPin className="h-6 w-6 text-muted" aria-hidden="true" />
                 </span>
@@ -743,7 +733,8 @@ export default function MarketplaceView({
                 </div>
               </Card>
             ) : (
-              filteredVendors.map((vendor) => {
+              <div className="min-h-0 flex-1 divide-y divide-hairline overflow-y-auto">
+              {filteredVendors.map((vendor) => {
                 const categoryDef = CATEGORIES.find(
                   (cat) => cat.id === vendor.category
                 );
@@ -756,46 +747,38 @@ export default function MarketplaceView({
                   : null;
 
                 return (
-                  <Card
+                  <article
                     key={vendor.id}
-                    className={cn(
-                      "p-4 transition-all duration-150 hover:shadow-card-hover",
-                      isSelected && "ring-2 ring-foreground"
-                    )}
                     onMouseEnter={() => setSelectedVendorId(vendor.id)}
+                    className={cn(
+                      "group flex cursor-pointer gap-3.5 p-4 transition-colors hover:bg-surface/70",
+                      isSelected && "bg-[#e6f0ff]/70"
+                    )}
                   >
-                    <div className="flex flex-col gap-4 sm:flex-row">
-                      {/* Vendor Cover Image */}
-                      <div className="relative h-44 w-full shrink-0 overflow-hidden rounded-lg bg-surface sm:h-auto sm:w-48">
+                    <div className="flex gap-3.5">
+                      {/* Thumb */}
+                      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-surface">
                         {vendor.coverImageUrl ? (
                           <img
                             src={vendor.coverImageUrl}
                             alt={vendor.businessName}
-                            className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                         ) : (
-                          <div className="flex h-full min-h-[140px] w-full items-center justify-center bg-surface">
-                            <Store className="h-8 w-8 text-subtle" />
+                          <div className="flex h-full w-full items-center justify-center">
+                            <Store className="h-7 w-7 text-subtle" aria-hidden="true" />
                           </div>
                         )}
-                        <span className="absolute left-2 top-2 rounded-full bg-white/90 backdrop-blur px-2 py-0.5 text-[11px] font-semibold text-foreground shadow-sm">
-                          {categoryDef?.emoji} {categoryLabel}
-                        </span>
                       </div>
 
-                      {/* Vendor Card Information */}
-                      <div className="flex min-w-0 flex-1 flex-col justify-between gap-3">
-                        <div className="space-y-2">
-                          {/* Business Name and Rating */}
-                          <div className="flex items-start justify-between gap-2">
-                            <Link
-                              href={`/vendors/${vendor.id}?lat=${customerLoc.lat}&lng=${customerLoc.lng}`}
-                              className="min-w-0 truncate text-base font-semibold tracking-tight text-foreground hover:underline"
-                            >
-                              {vendor.businessName}
-                            </Link>
-
-                            <span className="flex shrink-0 items-center gap-1 text-xs font-medium tabular-nums text-foreground bg-surface px-2 py-0.5 rounded shadow-hairline">
+                      {/* Info */}
+                      <div className="flex min-w-0 flex-1 flex-col justify-between gap-1.5 py-0.5">
+                        <div className="min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="truncate text-[11px] font-semibold uppercase tracking-wide text-muted">
+                              {categoryDef?.emoji} {categoryLabel}
+                            </span>
+                            <span className="flex shrink-0 items-center gap-1 text-xs font-semibold tabular-nums text-foreground">
                               <Star
                                 className="h-3 w-3 fill-warning text-warning"
                                 aria-hidden="true"
@@ -803,99 +786,105 @@ export default function MarketplaceView({
                               {vendor.ratingAvg
                                 ? Number(vendor.ratingAvg).toFixed(1)
                                 : "5.0"}
-                              <span className="text-muted">
+                              <span className="font-normal text-muted">
                                 ({vendor.reviewCount || 0})
                               </span>
                             </span>
                           </div>
-
-                          {/* Description */}
-                          <p className="line-clamp-2 text-xs leading-5 text-muted">
-                            {vendor.description ||
-                              "Verified event talent offering professional services for celebrations and corporate gatherings."}
+                          <Link
+                            href={`/vendors/${vendor.id}?lat=${customerLoc.lat}&lng=${customerLoc.lng}`}
+                            className="mt-0.5 block truncate text-[15px] font-semibold tracking-tight text-foreground hover:underline"
+                          >
+                            {vendor.businessName}
+                          </Link>
+                          <p className="mt-0.5 flex items-center gap-1 text-xs tabular-nums text-muted">
+                            <MapPin
+                              className="h-3 w-3 shrink-0"
+                              aria-hidden="true"
+                            />
+                            {vendor.distanceKm != null
+                              ? `${vendor.distanceKm} km away`
+                              : "Nearby"}
+                            {vendor.city ? ` • ${vendor.city}` : ""}
                           </p>
-
-                          {/* Location, Distance, and Availability Badges */}
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted pt-0.5">
-                            <span className="flex items-center gap-1 font-semibold text-foreground tabular-nums">
-                              <MapPin
-                                className="h-3.5 w-3.5 text-muted"
-                                aria-hidden="true"
-                              />
-                              {vendor.distanceKm != null
-                                ? `${vendor.distanceKm} km away`
-                                : "Nearby"}
-                            </span>
-
-                            {vendor.city && (
-                              <span className="truncate max-w-[160px]">
-                                • {vendor.city}
-                              </span>
-                            )}
-
-                            <Badge
-                              variant={isAvailable ? "success" : "warning"}
-                              dot
-                              className="text-[11px]"
-                            >
-                              {isAvailable ? "Open for Bookings" : "Fully Booked"}
-                            </Badge>
-                          </div>
                         </div>
 
-                        {/* Price & Action Buttons */}
-                        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-hairline pt-3 mt-1">
-                          <div className="space-y-0.5">
-                            <span className="block text-[11px] text-muted">
-                              Starting price
-                            </span>
-                            <span className="block text-sm font-bold text-foreground tabular-nums">
-                              {priceFormatted || "Price on request"}
-                              {vendor.priceUnit && (
-                                <span className="text-xs font-normal text-muted ml-1">
-                                  {vendor.priceUnit}
-                                </span>
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="flex items-center gap-1.5 text-[11px] font-medium">
+                            <span
+                              aria-hidden="true"
+                              className={cn(
+                                "size-1.5 shrink-0 rounded-full",
+                                isAvailable ? "bg-success" : "bg-warning"
                               )}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            <Link
-                              href={`/vendors/${vendor.id}?lat=${customerLoc.lat}&lng=${customerLoc.lng}`}
+                            />
+                            <span
+                              className={
+                                isAvailable ? "text-success" : "text-muted"
+                              }
                             >
-                              <Button variant="secondary" size="sm">
-                                View Details
-                              </Button>
-                            </Link>
+                              {isAvailable
+                                ? "Open for Bookings"
+                                : "Fully Booked"}
+                            </span>
+                          </span>
+                          <span className="truncate text-sm font-bold tabular-nums text-foreground">
+                            {priceFormatted || "Price on request"}
+                            {vendor.priceUnit && (
+                              <span className="ml-1 text-[11px] font-normal text-muted">
+                                {vendor.priceUnit}
+                              </span>
+                            )}
+                          </span>
+                        </div>
 
-                            {isAvailable ? (
-                              <Link href={`/book/${vendor.id}`}>
-                                <Button size="sm">Book Service</Button>
-                              </Link>
-                            ) : (
+                        <div className="flex items-center gap-2 pt-0.5">
+                          <Link
+                            href={`/vendors/${vendor.id}?lat=${customerLoc.lat}&lng=${customerLoc.lng}`}
+                          >
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-7 px-2.5 text-[11px]"
+                            >
+                              View Details
+                            </Button>
+                          </Link>
+
+                          {isAvailable ? (
+                            <Link href={`/book/${vendor.id}`}>
                               <Button
                                 size="sm"
-                                disabled
-                                variant="secondary"
-                                title="Vendor is fully booked"
+                                className="h-7 px-2.5 text-[11px]"
                               >
-                                Unavailable
+                                Book Service
                               </Button>
-                            )}
-                          </div>
+                            </Link>
+                          ) : (
+                            <Button
+                              size="sm"
+                              disabled
+                              variant="secondary"
+                              className="h-7 px-2.5 text-[11px]"
+                              title="Vendor is fully booked"
+                            >
+                              Unavailable
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </div>
-                  </Card>
+                  </article>
                 );
-              })
+              })}
+              </div>
             )}
           </div>
 
-          {/* RIGHT SIDE: LEAFLET OPENSTREETMAP */}
+          {/* FULL-BLEED MAP */}
           <div
             className={cn(
-              "sticky top-20 h-[640px] rounded-xl overflow-hidden shadow-hairline lg:col-span-5 lg:block",
+              "absolute inset-0",
               mobileView === "list" ? "hidden lg:block" : "block"
             )}
           >
@@ -905,6 +894,7 @@ export default function MarketplaceView({
               radiusKm={radiusKm}
               selectedVendorId={selectedVendorId}
               onSelectVendor={handleSelectVendorOnMap}
+              square
             />
           </div>
         </div>

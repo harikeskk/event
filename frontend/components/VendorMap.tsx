@@ -10,6 +10,7 @@ export interface VendorMapProps {
   onSelectVendor: (vendor: any) => void;
   originLabel?: string;
   showCountBadge?: boolean;
+  square?: boolean;
 }
 
 export default function VendorMap({
@@ -20,6 +21,7 @@ export default function VendorMap({
   onSelectVendor,
   originLabel = "Search Origin",
   showCountBadge = true,
+  square = false,
 }: VendorMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -247,7 +249,11 @@ export default function VendorMap({
   }, [vendors, customerLocation, radiusKm, selectedVendorId, onSelectVendor]);
 
   return (
-    <div className="relative h-full min-h-[420px] w-full overflow-hidden rounded-xl bg-surface shadow-hairline">
+    <div
+      className={`relative h-full min-h-[420px] w-full overflow-hidden bg-surface shadow-hairline ${
+        square ? "rounded-none map-square" : "rounded-xl"
+      }`}
+    >
       <div ref={mapContainerRef} className="relative z-0 h-full w-full" />
       <div className="absolute right-3 top-3 z-[1000] flex items-center gap-2 rounded-full bg-white/95 backdrop-blur px-3 py-1.5 text-xs text-muted shadow-card border border-hairline">
         <span

@@ -138,6 +138,11 @@
   margin: 12px 14px !important;
 }
 
+/* Edge-to-edge map mode (explore page): square tiles */
+.map-square .leaflet-container {
+  border-radius: 0 !important;
+}
+
 .leaflet-bar,
 .leaflet-control-zoom a {
   background: #ffffff !important;
