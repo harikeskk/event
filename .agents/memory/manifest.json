@@ -1,0 +1,1527 @@
+﻿{
+    "version":  1,
+    "generatedAt":  "2026-10-08",
+    "lastChecked":  "2026-10-08",
+    "analyzedCount":  71,
+    "files":  [
+                  {
+                      "path":  "backend/pom.xml",
+                      "status":  "analyzed",
+                      "analyzedHash":  "15c80426d9aa8ba72a91f5c25fafdce9426329883a9c6f0fcdfea10629fc3f26",
+                      "currentHash":  "15c80426d9aa8ba72a91f5c25fafdce9426329883a9c6f0fcdfea10629fc3f26",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  4166,
+                      "summary":  "Maven build for event-marketplace-api 0.0.1-SNAPSHOT on Spring Boot 3.3.4, Java 21. Declares web, validation, data-jpa, security, PostgreSQL runtime, hibernate-spatial plus jts-core 1.19.0 for PostGIS, jjwt-api/impl/jackson 0.12.6, Lombok, starter-test and security-test. Used by Maven/Spring Boot plugin to build runnable API jar.",
+                      "symbols":  [
+                                      "spring-boot-starter-parent:3.3.4",
+                                      "java.version:21",
+                                      "jjwt.version:0.12.6",
+                                      "jts-core:1.19.0",
+                                      "spring-boot-starter-web",
+                                      "spring-boot-starter-data-jpa",
+                                      "hibernate-spatial",
+                                      "spring-boot-starter-security"
+                                  ],
+                      "tags":  [
+                                   "maven",
+                                   "spring-boot",
+                                   "postgres",
+                                   "postgis",
+                                   "jwt"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "54b4efe12b6c8047ed2812d43bf051648871b2ddce7fff35749f99cb781c40d5",
+                      "currentHash":  "54b4efe12b6c8047ed2812d43bf051648871b2ddce7fff35749f99cb781c40d5",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  4450,
+                      "summary":  "Auth REST controller (thin, no business logic): POST register (201, 409 duplicate, 400 validation, 429 rate-limit), POST login (200, 401 generic, 429), GET me via @AuthenticationPrincipal (401 unauthenticated), POST logout stateless success. Handlers wrap validation and rate-limit errors in ApiResponse envelope; no stack traces leak.",
+                      "symbols":  [
+                                      "AuthController",
+                                      "register",
+                                      "login",
+                                      "getMe",
+                                      "logout",
+                                      "handleValidation",
+                                      "handleRateLimit"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "controller",
+                                   "rest",
+                                   "endpoints",
+                                   "login"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "53c9cae4919209083d90236db8f4da5c99b09096e289420c980ce8d1a0bc68e5",
+                      "currentHash":  "53c9cae4919209083d90236db8f4da5c99b09096e289420c980ce8d1a0bc68e5",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  571,
+                      "summary":  "Login DTO: email @Email @NotBlank @Size max 254, password @NotBlank @Size max 72 (BCrypt 72-byte limit). Password is never trimmed or modified server-side; validation failures map to 400 via controller handler.",
+                      "symbols":  [
+                                      "AuthRequest",
+                                      "email",
+                                      "password"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "dto",
+                                   "validation",
+                                   "login"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "4803ba73aa7d74d00a4d71c6d30b67d20febd196fbf478292ca7f6834f6c4795",
+                      "currentHash":  "4803ba73aa7d74d00a4d71c6d30b67d20febd196fbf478292ca7f6834f6c4795",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  449,
+                      "summary":  "Auth result DTO with token, userId UUID, email, fullName, Role role, vendorId UUID. Lombok @Data/@Builder. Returned by AuthService register/login/getMe and serialized inside ApiResponse by AuthController.",
+                      "symbols":  [
+                                      "AuthResponse",
+                                      "AuthResponse.token",
+                                      "AuthResponse.userId",
+                                      "AuthResponse.role",
+                                      "AuthResponse.vendorId"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "auth",
+                                   "jwt",
+                                   "response"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "0a070c7d178dc4027caf839143eb7b290522395bd5fc6c76a5e80c41a01fb813",
+                      "currentHash":  "0a070c7d178dc4027caf839143eb7b290522395bd5fc6c76a5e80c41a01fb813",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1439,
+                      "summary":  "Registration DTO: email max 254, password 6-72 chars, fullName max 100, phone max 20; role CUSTOMER/VENDOR and optional vendor fields (businessName, category, address, geo, pricing). Service rejects ADMIN roles.",
+                      "symbols":  [
+                                      "RegisterRequest",
+                                      "email",
+                                      "password",
+                                      "role",
+                                      "category"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "dto",
+                                   "validation",
+                                   "registration"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "865105fe4d9a65dc61c4ba8d9f6c56f8f36ccb182a15cf7d6388055f00fc65a2",
+                      "currentHash":  "865105fe4d9a65dc61c4ba8d9f6c56f8f36ccb182a15cf7d6388055f00fc65a2",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  6576,
+                      "summary":  "Auth business logic: normalizes email (lowercase/trim) for lookup, exists-check and save; BCrypt encode on register and matches on login; duplicate email throws IllegalStateException without echo (409, plus TOCTOU DataIntegrityViolation catch); login failures generic 401; IP+email sliding-window rate limit throws 429; issues JWT with vendorId resolution; getMe returns safe profile without token.",
+                      "symbols":  [
+                                      "AuthService",
+                                      "register",
+                                      "login",
+                                      "getMe",
+                                      "passwordEncoder",
+                                      "loginRateLimiter"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "service",
+                                   "registration",
+                                   "jwt"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java",
+                      "status":  "analyzed",
+                      "currentHash":  "8bd5e19024d9555cc00ad3dcfee374176c51032939ab3f0a3c6c05987fe553b2",
+                      "size":  2863,
+                      "summary":  "In-memory sliding-window rate limiter @Component for auth endpoints keyed by client IP + normalized email (X-Forwarded-For aware). Configurable max-attempts (default 10) and window-ms (default 5 min) via app.auth.rate-limit; ConcurrentHashMap with per-key deque pruning; never blocks on IP-resolution failure.",
+                      "symbols":  [
+                                      "LoginRateLimiter",
+                                      "tryConsume",
+                                      "resolveClientIp"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "service",
+                                   "security"
+                               ],
+                      "analyzedHash":  "8bd5e19024d9555cc00ad3dcfee374176c51032939ab3f0a3c6c05987fe553b2",
+                      "analyzedAt":  "2026-10-08"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/common/DataSeeder.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "930fec8fb45f15d2f943de07a0d2ba9abb8e70a28fd8ac198cbe21b228a91af5",
+                      "currentHash":  "930fec8fb45f15d2f943de07a0d2ba9abb8e70a28fd8ac198cbe21b228a91af5",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  12023,
+                      "summary":  "CommandLineRunner Component that skips if userRepository.count\u003e0, else seeds customer@example.com/password123 Sarah Jenkins and 7 Bangalore vendors (DJ, PHOTOGRAPHER, CATERER, DECORATOR, VENUE, SOUND_LIGHTING, EMCEE) with coordinates, prices, ratings and PortfolioItems. Runs automatically on Spring Boot startup.",
+                      "symbols":  [
+                                      "DataSeeder.run",
+                                      "DataSeeder.createVendor",
+                                      "CommandLineRunner",
+                                      "customer@example.com",
+                                      "VendorCategory",
+                                      "PortfolioItem",
+                                      "VendorProfile.updateCoordinates"
+                                  ],
+                      "tags":  [
+                                   "seeder",
+                                   "bootstrap",
+                                   "vendors",
+                                   "postgres"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "1771c024638ee62867eccd5d6b5c4bc6228963f56a9425a216c4879e32bb5904",
+                      "currentHash":  "1771c024638ee62867eccd5d6b5c4bc6228963f56a9425a216c4879e32bb5904",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1070,
+                      "summary":  "Generic envelope with success boolean, message, data T, timestamp Instant default now. Static helpers success(message,data), success(data), error(message). Used by all controllers for uniform JSON responses.",
+                      "symbols":  [
+                                      "ApiResponse",
+                                      "ApiResponse.success",
+                                      "ApiResponse.error",
+                                      "ApiResponse.timestamp"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "wrapper",
+                                   "response",
+                                   "generic"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "f13a74133c113e3f51124e52b38dbf66be8e28a754a1080fe17f8d8b9aa8c5dc",
+                      "currentHash":  "f13a74133c113e3f51124e52b38dbf66be8e28a754a1080fe17f8d8b9aa8c5dc",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  3240,
+                      "summary":  "OncePerRequestFilter Bearer parser: skips non-Bearer chains, extracts sub email, reloads User from DB, validates signature+expiry, rebuilds ROLE_ authority from DB (ignores token role claim), sets User entity as principal; failures logged at debug with exception type only, never the token.",
+                      "symbols":  [
+                                      "JwtAuthenticationFilter",
+                                      "doFilterInternal",
+                                      "jwtService"
+                                  ],
+                      "tags":  [
+                                   "security",
+                                   "authentication",
+                                   "filter"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/config/JwtService.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "fa7c60fd3c2a18d71a9627315ff3f9200bd1e49af1fa69ed52ee2594777e2df4",
+                      "currentHash":  "fa7c60fd3c2a18d71a9627315ff3f9200bd1e49af1fa69ed52ee2594777e2df4",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  3735,
+                      "summary":  "JWT issuer/verifier (JJWT 0.12.6): secret from env only with ephemeral random dev fallback and 256-bit Base64 validation (no committed default); configurable 8h expiry; minimal claims userId and role with sub=email (fullName removed); parser verifyWith enforces signature; expiry checked on validation.",
+                      "symbols":  [
+                                      "JwtService",
+                                      "generateToken",
+                                      "isTokenValid",
+                                      "extractUsername",
+                                      "validateSecret"
+                                  ],
+                      "tags":  [
+                                   "security",
+                                   "jwt",
+                                   "claims"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/config/SecurityConfig.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "f5a09c6aeb27706f81dd99ca783a24727d901d8fd0f1b8963e3cf3bbec2409db",
+                      "currentHash":  "f5a09c6aeb27706f81dd99ca783a24727d901d8fd0f1b8963e3cf3bbec2409db",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  5584,
+                      "summary":  "Stateless security: explicit public POST login/register and GET vendors only, rest authenticated; JSON 401 entry point and 403 denied handler; CORS allowlist from app.cors.allowed-origins with credentials and maxAge; headers CSP default-self, deny frame, content-type options, strict referrer, HSTS; CSRF disabled and documented as Bearer-only; BCrypt strength 12.",
+                      "symbols":  [
+                                      "SecurityConfig",
+                                      "securityFilterChain",
+                                      "corsConfigurationSource",
+                                      "passwordEncoder",
+                                      "authenticationManager"
+                                  ],
+                      "tags":  [
+                                   "security",
+                                   "config",
+                                   "cors",
+                                   "stateless"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "81ba29ab12f0d04d33e94dfcd866e1fc00b81af4e2100210f654dc9b2fe840a9",
+                      "currentHash":  "81ba29ab12f0d04d33e94dfcd866e1fc00b81af4e2100210f654dc9b2fe840a9",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  338,
+                      "summary":  "Spring Boot entrypoint annotated @SpringBootApplication in package com.eventpulse enabling component scan for auth, config, common and JPA. Main method calls SpringApplication.run. Triggers DataSeeder and filter chain at startup.",
+                      "symbols":  [
+                                      "EventMarketplaceApplication.main",
+                                      "@SpringBootApplication",
+                                      "SpringApplication.run"
+                                  ],
+                      "tags":  [
+                                   "bootstrap",
+                                   "spring-boot",
+                                   "entrypoint"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "ee8f442c46d2001d1859ea3efce0e4dfde2ab358ac4990e52d8c8590af1483f2",
+                      "currentHash":  "ee8f442c46d2001d1859ea3efce0e4dfde2ab358ac4990e52d8c8590af1483f2",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  5477,
+                      "summary":  "REST controller for /api/inquiries, thin HTTP layer delegating to InquiryService (no business logic, never touches repositories). POST requires CUSTOMER role with JWT principal identity (no spoofable customerId), @Valid InquiryRequest, returns 201 with Booking request sent successfully. GET /my-inquiries restricted to CUSTOMER; GET /{id} ownership enforced in service; vendor inbox/status require VENDOR. Local handlers map validation failures to 400, AccessDeniedException to generic 403, ResponseStatusException to its status — all in ApiResponse envelope, no stack traces.",
+                      "symbols":  [
+                                      "POST /api/inquiries",
+                                      "GET /my-inquiries",
+                                      "GET /vendor-inbox",
+                                      "PATCH /{id}/status",
+                                      "@PreAuthorize",
+                                      "ApiResponse",
+                                      "201 CREATED",
+                                      "403 handler"
+                                  ],
+                      "tags":  [
+                                   "booking",
+                                   "inquiry",
+                                   "controller",
+                                   "rest",
+                                   "auth"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "0113c2b86136ebf7b003b6d37f5292e58ff64bd363eee31425477600480b6598",
+                      "currentHash":  "0113c2b86136ebf7b003b6d37f5292e58ff64bd363eee31425477600480b6598",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  859,
+                      "summary":  "Validated create-booking DTO for POST /api/inquiries. Requires vendorId UUID, eventType NotBlank, eventDate NotNull FutureOrPresent, customerName/Email NotBlank, message NotBlank. Optional guestCount, budget, customerPhone. Defaults to User fullName/email/phone in service if null.",
+                      "symbols":  [
+                                      "InquiryRequest.vendorId",
+                                      "InquiryRequest.eventType",
+                                      "InquiryRequest.eventDate",
+                                      "InquiryRequest.message"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "validation",
+                                   "booking"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "88a145ee10f5983483528070bc998d4953699818afd789a2bd4afd0eb52d8467",
+                      "currentHash":  "88a145ee10f5983483528070bc998d4953699818afd789a2bd4afd0eb52d8467",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1015,
+                      "summary":  "Read DTO for inquiries. Contains id, customerId, vendorId, vendorBusinessName/category/coverImage/contactEmail/phone (contact gated to ACCEPTED/COMPLETED), eventType/date/guestCount/budget, customerName/email/phone, message, status, vendorNotes, createdAt. Built by InquiryServiceImpl.mapToResponse.",
+                      "symbols":  [
+                                      "InquiryResponse.vendorBusinessName",
+                                      "InquiryResponse.status",
+                                      "InquiryResponse.vendorNotes"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "booking",
+                                   "response"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "f68fa6f87f57e892576c16e1ad4edc59b3ea9e0de12584f396aa342d1a719ec3",
+                      "currentHash":  "f68fa6f87f57e892576c16e1ad4edc59b3ea9e0de12584f396aa342d1a719ec3",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  516,
+                      "summary":  "DTO for PATCH /api/inquiries/{id}/status: status @NotNull (PENDING to ACCEPTED/DECLINED, ACCEPTED to COMPLETED transitions enforced in InquiryServiceImpl, violations map to 409); vendorNotes @Size max 2000. Validated via @Valid in controller; safe generic error envelope on failure.",
+                      "symbols":  [
+                                      "status",
+                                      "vendorNotes",
+                                      "@NotNull",
+                                      "@Size",
+                                      "InquiryStatus"
+                                  ],
+                      "tags":  [
+                                   "booking",
+                                   "dto",
+                                   "validation",
+                                   "inquiry"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "9497132a792218fac2eb479b78822422842d934cfcf903013fe0b8c220c778b6",
+                      "currentHash":  "9497132a792218fac2eb479b78822422842d934cfcf903013fe0b8c220c778b6",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1508,
+                      "summary":  "JPA @Entity inquiries with UUID id, lazy ManyToOne User customer and VendorProfile vendor both not null, eventType/eventDate required, guestCount, budget, customerName/email/phone snapshots, message length 2000, status enum default PENDING, vendorNotes, createdAt/updatedAt timestamps.",
+                      "symbols":  [
+                                      "Inquiry.customer",
+                                      "Inquiry.vendor",
+                                      "Inquiry.status",
+                                      "Inquiry.eventDate"
+                                  ],
+                      "tags":  [
+                                   "jpa",
+                                   "entity",
+                                   "booking"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "bbd16a95ec9d3db33c00b2a99183a41b418c595f557d3ec3deb3a8a196e45b7f",
+                      "currentHash":  "bbd16a95ec9d3db33c00b2a99183a41b418c595f557d3ec3deb3a8a196e45b7f",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  125,
+                      "summary":  "Four-state booking lifecycle enum persisted as STRING in Inquiry.status. Values PENDING, ACCEPTED, DECLINED, COMPLETED. Transitions enforced in InquiryServiceImpl.isValidTransition: PENDING to ACCEPTED/DECLINED, ACCEPTED to COMPLETED only.",
+                      "symbols":  [
+                                      "InquiryStatus.PENDING",
+                                      "InquiryStatus.ACCEPTED",
+                                      "InquiryStatus.DECLINED",
+                                      "InquiryStatus.COMPLETED"
+                                  ],
+                      "tags":  [
+                                   "enum",
+                                   "lifecycle",
+                                   "booking"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "6a712c0b1f695291002a880e1308edf952fca1d10e1204c759bacdceb32a43de",
+                      "currentHash":  "6a712c0b1f695291002a880e1308edf952fca1d10e1204c759bacdceb32a43de",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  632,
+                      "summary":  "JpaRepository\u003cInquiry,UUID\u003e with derived ordered queries findByCustomerIdOrderByCreatedAtDesc, findByVendorIdOrderByCreatedAtDesc, findByVendorIdAndStatusOrderByCreatedAtDesc. Used for customer history and vendor inbox feeds sorted newest first.",
+                      "symbols":  [
+                                      "InquiryRepository.findByCustomerIdOrderByCreatedAtDesc",
+                                      "InquiryRepository.findByVendorIdOrderByCreatedAtDesc",
+                                      "InquiryRepository.findByVendorIdAndStatusOrderByCreatedAtDesc"
+                                  ],
+                      "tags":  [
+                                   "repository",
+                                   "jpa",
+                                   "booking"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "62c46835eb8cadae04b8f31e0ee08589a6bb9c7d9ec5b520206f8899b8963b20",
+                      "currentHash":  "62c46835eb8cadae04b8f31e0ee08589a6bb9c7d9ec5b520206f8899b8963b20",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  6974,
+                      "summary":  "@Service @Transactional logic: createInquiry 404s missing vendor and rejects unavailable vendors, getInquiryById enforces customer-or-vendor ownership, updateInquiryStatus enforces vendor ownership plus isValidTransition state machine, mapToResponse hides vendor contact via isContactVisible unless ACCEPTED/COMPLETED.",
+                      "symbols":  [
+                                      "InquiryServiceImpl.createInquiry",
+                                      "InquiryServiceImpl.getInquiryById",
+                                      "InquiryServiceImpl.updateInquiryStatus",
+                                      "InquiryServiceImpl.isValidTransition",
+                                      "InquiryServiceImpl.isContactVisible",
+                                      "InquiryServiceImpl.mapToResponse"
+                                  ],
+                      "tags":  [
+                                   "service",
+                                   "booking",
+                                   "auth",
+                                   "state-machine"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "d6860b79ffe5cbe09cd62136ccc22d15cb448ef8b40935d02be999a771e7aafb",
+                      "currentHash":  "d6860b79ffe5cbe09cd62136ccc22d15cb448ef8b40935d02be999a771e7aafb",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  706,
+                      "summary":  "Interface with 5 methods: createInquiry, getCustomerInquiries, getInquiryById, getVendorInquiries, updateInquiryStatus. Implemented by InquiryServiceImpl and called by InquiryController for customer and vendor flows.",
+                      "symbols":  [
+                                      "InquiryService.createInquiry",
+                                      "InquiryService.getCustomerInquiries",
+                                      "InquiryService.getInquiryById",
+                                      "InquiryService.getVendorInquiries",
+                                      "InquiryService.updateInquiryStatus"
+                                  ],
+                      "tags":  [
+                                   "service",
+                                   "interface",
+                                   "booking"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/user/entity/Role.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "099d0a8c621d6f1bc88c16bc1b3049f06866ebd5a9230404620d4a54d891e964",
+                      "currentHash":  "099d0a8c621d6f1bc88c16bc1b3049f06866ebd5a9230404620d4a54d891e964",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  94,
+                      "summary":  "Three-value role enum persisted as STRING in User.role default CUSTOMER. Values CUSTOMER, VENDOR, ADMIN. Drives @PreAuthorize hasRole checks in VendorPortalController and InquiryController and inquiry ownership logic.",
+                      "symbols":  [
+                                      "Role.CUSTOMER",
+                                      "Role.VENDOR",
+                                      "Role.ADMIN"
+                                  ],
+                      "tags":  [
+                                   "enum",
+                                   "auth",
+                                   "rbac"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/user/entity/User.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "290b3c658b664a09d120fc166650901129d45bc6849861cbfec2724464b775c4",
+                      "currentHash":  "290b3c658b664a09d120fc166650901129d45bc6849861cbfec2724464b775c4",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  918,
+                      "summary":  "JPA @Entity users with UUID id, unique email, password, fullName required, phone optional, Role enum default CUSTOMER, createdAt/updatedAt. Injected directly as @AuthenticationPrincipal in vendor and inquiry controllers; linked OneToOne from VendorProfile and ManyToOne from Inquiry.",
+                      "symbols":  [
+                                      "User.email",
+                                      "User.role",
+                                      "User.fullName",
+                                      "User.phone"
+                                  ],
+                      "tags":  [
+                                   "jpa",
+                                   "entity",
+                                   "auth"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "190c868c1eb18577f2e46c581cd5177fec25b991afd87f46c20de607147421b6",
+                      "currentHash":  "190c868c1eb18577f2e46c581cd5177fec25b991afd87f46c20de607147421b6",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  414,
+                      "summary":  "JpaRepository\u003cUser,UUID\u003e with findByEmail returning Optional and existsByEmail boolean. Supports authentication lookup and registration uniqueness checks for User entity.",
+                      "symbols":  [
+                                      "UserRepository.findByEmail",
+                                      "UserRepository.existsByEmail"
+                                  ],
+                      "tags":  [
+                                   "repository",
+                                   "jpa",
+                                   "auth"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "dc9fc79eafe9b4e39013c2248ae51f2d547426ef11ec2c770c361a0c2dbbefb6",
+                      "currentHash":  "dc9fc79eafe9b4e39013c2248ae51f2d547426ef11ec2c770c361a0c2dbbefb6",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  2945,
+                      "summary":  "Public read-only REST controller at /api/vendors delegating to VendorService. GET /search, /count-nearby, /{id} (404 on unknown id), /all fallback. Masks vendor contactPhone/contactEmail to null on all public responses. Wraps results in ApiResponse.",
+                      "symbols":  [
+                                      "VendorDiscoveryController.searchVendors",
+                                      "VendorDiscoveryController.countNearby",
+                                      "VendorDiscoveryController.getVendorDetail",
+                                      "VendorDiscoveryController.getAllVendors",
+                                      "GET /api/vendors/search",
+                                      "GET /api/vendors/count-nearby",
+                                      "GET /api/vendors/{id}",
+                                      "GET /api/vendors/all"
+                                  ],
+                      "tags":  [
+                                   "rest",
+                                   "discovery",
+                                   "geosearch",
+                                   "public-api"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "bea0d5be9262a7663f16d2945c67b0c1c1760076186eecbbe6c38a114987d915",
+                      "currentHash":  "bea0d5be9262a7663f16d2945c67b0c1c1760076186eecbbe6c38a114987d915",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  2652,
+                      "summary":  "Vendor self-service REST controller at /api/vendor-portal guarded by hasRole(\u0027VENDOR\u0027). Uses @AuthenticationPrincipal User. Exposes GET /profile, PUT /profile with @Valid VendorProfileUpdateRequest, PATCH /availability toggle, POST /portfolio and DELETE /portfolio/{itemId}. Delegates to VendorService. Called by vendor dashboard.",
+                      "symbols":  [
+                                      "VendorPortalController.getMyProfile",
+                                      "VendorPortalController.updateMyProfile",
+                                      "VendorPortalController.toggleAvailability",
+                                      "VendorPortalController.addPortfolioItem",
+                                      "VendorPortalController.deletePortfolioItem",
+                                      "GET /api/vendor-portal/profile",
+                                      "PATCH /api/vendor-portal/availability"
+                                  ],
+                      "tags":  [
+                                   "rest",
+                                   "vendor-portal",
+                                   "auth",
+                                   "profile"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "043407c5ba926d7ef362ae44be098dd85547dc9eb6127da028dfc6c3ba10cdf7",
+                      "currentHash":  "043407c5ba926d7ef362ae44be098dd85547dc9eb6127da028dfc6c3ba10cdf7",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  128,
+                      "summary":  "Spring Data interface projection for native GROUP BY category count query. Exposes getCategory String and getCount Long. Returned by VendorProfileRepository.countNearbyByCategory and aggregated into NearbyCountSummaryDto.byCategory in VendorServiceImpl.countNearby.",
+                      "symbols":  [
+                                      "CategoryCountProjection.getCategory",
+                                      "CategoryCountProjection.getCount"
+                                  ],
+                      "tags":  [
+                                   "projection",
+                                   "aggregation",
+                                   "geosearch"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "67b4d56c8fabca73a24f08855f86caed554345403ec09f6598cb73dfdcaaa361",
+                      "currentHash":  "67b4d56c8fabca73a24f08855f86caed554345403ec09f6598cb73dfdcaaa361",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  423,
+                      "summary":  "Lombok @Data @Builder response DTO for GET /api/vendors/count-nearby. Fields total long, radiusKm double, byCategory Map\u003cString,Long\u003e default empty. Built in VendorServiceImpl.countNearby with zero-filled entries for all VendorCategory values.",
+                      "symbols":  [
+                                      "NearbyCountSummaryDto.total",
+                                      "NearbyCountSummaryDto.radiusKm",
+                                      "NearbyCountSummaryDto.byCategory"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "aggregation",
+                                   "geosearch"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "95c7a6e3eb67d870f19f1e4ca760f5c41d991a1c150a7ed7787cb983abbbc39b",
+                      "currentHash":  "95c7a6e3eb67d870f19f1e4ca760f5c41d991a1c150a7ed7787cb983abbbc39b",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  398,
+                      "summary":  "Lombok @Data @Builder DTO for portfolio images. Fields id UUID, imageUrl, title, description, sortOrder Integer. Used as request/response in POST /api/vendor-portal/portfolio, embedded list in VendorDetailDto, and mapped from PortfolioItem entity.",
+                      "symbols":  [
+                                      "PortfolioItemDto.id",
+                                      "PortfolioItemDto.imageUrl",
+                                      "PortfolioItemDto.sortOrder"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "portfolio",
+                                   "vendor"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "21039f84b44dfe100e737d2c83d24cdd34b12b467c251b72bf0234d0464d4a10",
+                      "currentHash":  "21039f84b44dfe100e737d2c83d24cdd34b12b467c251b72bf0234d0464d4a10",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  874,
+                      "summary":  "Lombok list-card DTO for search results. Fields id, businessName, category, description, addressLine, city, state, latitude, longitude, startingPrice, priceUnit, ratingAvg, reviewCount, coverImageUrl, contactPhone/Email, isAvailable, serviceRadiusKm, distanceKm. Built from VendorDistanceProjection or VendorProfile.",
+                      "symbols":  [
+                                      "VendorCardDto.businessName",
+                                      "VendorCardDto.category",
+                                      "VendorCardDto.distanceKm",
+                                      "VendorCardDto.ratingAvg"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "search",
+                                   "listing"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "4f138d378a2652a00eef7279a5c172cf88cb18cbf82b42f8f28b74b5932b66b2",
+                      "currentHash":  "4f138d378a2652a00eef7279a5c172cf88cb18cbf82b42f8f28b74b5932b66b2",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1050,
+                      "summary":  "Lombok detail DTO for GET /api/vendors/{id} and portal profile. Extends VendorCardDto fields plus postalCode and portfolioItems List\u003cPortfolioItemDto\u003e default empty. Built in VendorServiceImpl.getVendorDetail with Java Haversine distance rounding and sortOrder-sorted portfolio.",
+                      "symbols":  [
+                                      "VendorDetailDto.postalCode",
+                                      "VendorDetailDto.portfolioItems",
+                                      "VendorDetailDto.distanceKm"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "detail",
+                                   "portfolio"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "be685a4441deef12184233e5376463811284efcc349150909753e671fa08effa",
+                      "currentHash":  "be685a4441deef12184233e5376463811284efcc349150909753e671fa08effa",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  667,
+                      "summary":  "Spring Data interface projection for native Haversine search query. Getters for id, businessName, category, description, addressLine, city, state, latitude, longitude, startingPrice, priceUnit, ratingAvg, reviewCount, coverImageUrl, contactPhone/Email, isAvailable, serviceRadiusKm, distanceKm. Maps snake_case aliases.",
+                      "symbols":  [
+                                      "VendorDistanceProjection.getId",
+                                      "VendorDistanceProjection.getBusinessName",
+                                      "VendorDistanceProjection.getDistanceKm",
+                                      "VendorDistanceProjection.getCategory"
+                                  ],
+                      "tags":  [
+                                   "projection",
+                                   "geosearch",
+                                   "native-query"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "5756597c6235cbd735f3029d5d0d99f42f3985fd1239921b72f1ccfa8fc635c5",
+                      "currentHash":  "5756597c6235cbd735f3029d5d0d99f42f3985fd1239921b72f1ccfa8fc635c5",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  966,
+                      "summary":  "Validated @Data @Builder request for PUT /api/vendor-portal/profile. Requires @NotBlank businessName and @NotNull VendorCategory category. Optional description, addressLine, city, state, postalCode, latitude, longitude, serviceRadiusKm, startingPrice, priceUnit, isAvailable, coverImageUrl, contactPhone/Email.",
+                      "symbols":  [
+                                      "VendorProfileUpdateRequest.businessName",
+                                      "VendorProfileUpdateRequest.category",
+                                      "VendorProfileUpdateRequest.serviceRadiusKm"
+                                  ],
+                      "tags":  [
+                                   "dto",
+                                   "validation",
+                                   "profile-update"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "a6e03464d8e2b9166017d37732d43c84ff6c7010ec2f93cfb782bae91c28c02b",
+                      "currentHash":  "a6e03464d8e2b9166017d37732d43c84ff6c7010ec2f93cfb782bae91c28c02b",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  717,
+                      "summary":  "JPA @Entity portfolio_items with UUID id, lazy @ManyToOne VendorProfile vendor join vendor_id not null @JsonIgnore, imageUrl not null length 1000, title, description, sortOrder default 0. Owned cascade ALL orphanRemoval from VendorProfile.",
+                      "symbols":  [
+                                      "PortfolioItem.id",
+                                      "PortfolioItem.vendor",
+                                      "PortfolioItem.imageUrl",
+                                      "PortfolioItem.sortOrder"
+                                  ],
+                      "tags":  [
+                                   "jpa",
+                                   "entity",
+                                   "portfolio"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "3f8a4bd072cbe1441730eefc743e5b121addedade899570afd0a794f5f1be5c7",
+                      "currentHash":  "3f8a4bd072cbe1441730eefc743e5b121addedade899570afd0a794f5f1be5c7",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  184,
+                      "summary":  "Enum of 8 vendor categories persisted as STRING in VendorProfile.category and queried as String filter in native search. Values DJ, PHOTOGRAPHER, CATERER, DECORATOR, VENUE, SOUND_LIGHTING, MAKEUP_ARTIST, EMCEE. Normalized uppercase in VendorServiceImpl search.",
+                      "symbols":  [
+                                      "VendorCategory.DJ",
+                                      "VendorCategory.PHOTOGRAPHER",
+                                      "VendorCategory.CATERER",
+                                      "VendorCategory.VENUE",
+                                      "VendorCategory.SOUND_LIGHTING",
+                                      "VendorCategory.MAKEUP_ARTIST",
+                                      "VendorCategory.EMCEE"
+                                  ],
+                      "tags":  [
+                                   "enum",
+                                   "category",
+                                   "domain"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "f5d702ac170bd0d31b308d780e5438ccc60776edd10a6d86a06ee1a7a8f08488",
+                      "currentHash":  "f5d702ac170bd0d31b308d780e5438ccc60776edd10a6d86a06ee1a7a8f08488",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  2271,
+                      "summary":  "JPA @Entity vendor_profiles with UUID id, lazy @OneToOne User user unique not null, businessName, VendorCategory enum, description 2000, addressLine/city/state/postalCode, latitude/longitude Double, serviceRadiusKm default 25, startingPrice, priceUnit default per event, isAvailable default true, ratingAvg default 4.8, reviewCount default 0, cover/contact fields, cascade portfolioItems, timestamps, updateCoordinates helper.",
+                      "symbols":  [
+                                      "VendorProfile.businessName",
+                                      "VendorProfile.category",
+                                      "VendorProfile.portfolioItems",
+                                      "VendorProfile.updateCoordinates"
+                                  ],
+                      "tags":  [
+                                   "jpa",
+                                   "entity",
+                                   "vendor",
+                                   "geo"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/repository/PortfolioItemRepository.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "77f1862a612fee570149566e6e0c064bd4ea20e9636bc1f92209dfb2c1032627",
+                      "currentHash":  "77f1862a612fee570149566e6e0c064bd4ea20e9636bc1f92209dfb2c1032627",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  428,
+                      "summary":  "Spring Data JpaRepository\u003cPortfolioItem,UUID\u003e with single derived query findByVendorIdOrderBySortOrderAsc for ordered portfolio fetch. Used indirectly via VendorProfile.portfolioItems; direct delete/fetch in VendorServiceImpl add/remove portfolio flows.",
+                      "symbols":  [
+                                      "PortfolioItemRepository.findByVendorIdOrderBySortOrderAsc"
+                                  ],
+                      "tags":  [
+                                   "repository",
+                                   "jpa",
+                                   "portfolio"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "95f2d6663d51abaf9b471289f1f4fc86f2bf00565e033b66955e36328cd89292",
+                      "currentHash":  "95f2d6663d51abaf9b471289f1f4fc86f2bf00565e033b66955e36328cd89292",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  3394,
+                      "summary":  "JpaRepository\u003cVendorProfile,UUID\u003e with findByUserId, findByCategory, plus two native queries using 6371*acos Haversine: searchNearestVendors(lat,lng,radiusKm,category) filtering is_available and non-null coords ordered by distanceKm returning VendorDistanceProjection, and countNearbyByCategory grouped counts returning CategoryCountProjection.",
+                      "symbols":  [
+                                      "VendorProfileRepository.findByUserId",
+                                      "VendorProfileRepository.countNearbyByCategory",
+                                      "VendorProfileRepository.findByCategory",
+                                      "searchNearestVendors"
+                                  ],
+                      "tags":  [
+                                   "repository",
+                                   "native-query",
+                                   "haversine",
+                                   "geosearch"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "bd2282be2d4e5576a96ae5bf590e1653b243f101b74b6cbe022225e49240d561",
+                      "currentHash":  "bd2282be2d4e5576a96ae5bf590e1653b243f101b74b6cbe022225e49240d561",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  11822,
+                      "summary":  "@Service @Transactional implementation mapping projections/entities to DTOs. Normalizes ALL/blank category to null, aggregates counts with zero-fill, computes Java Haversine calculateDistance for detail, sorts portfolio by sortOrder, enforces portfolio ownership on delete, filters available vendors in fallback with distance 0.0.",
+                      "symbols":  [
+                                      "VendorServiceImpl.searchNearestVendors",
+                                      "VendorServiceImpl.countNearby",
+                                      "VendorServiceImpl.getVendorDetail",
+                                      "VendorServiceImpl.updateVendorProfile",
+                                      "VendorServiceImpl.toggleAvailability",
+                                      "VendorServiceImpl.calculateDistance"
+                                  ],
+                      "tags":  [
+                                   "service",
+                                   "haversine",
+                                   "mapping",
+                                   "transactional"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java",
+                      "status":  "analyzed",
+                      "analyzedHash":  "567b47b37d0020e96275914f80bd4c2e83dd4eba9cf1b6156f709cd58091290b",
+                      "currentHash":  "567b47b37d0020e96275914f80bd4c2e83dd4eba9cf1b6156f709cd58091290b",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  841,
+                      "summary":  "Service interface defining 9 operations: searchNearestVendors, countNearby, getVendorDetail, getVendorProfileForUser, updateVendorProfile, toggleAvailability, addPortfolioItem, removePortfolioItem, getAllVendorsFallback. Implemented by VendorServiceImpl, called by VendorDiscoveryController and VendorPortalController.",
+                      "symbols":  [
+                                      "VendorService.searchNearestVendors",
+                                      "VendorService.countNearby",
+                                      "VendorService.getVendorDetail",
+                                      "VendorService.updateVendorProfile",
+                                      "VendorService.toggleAvailability",
+                                      "VendorService.addPortfolioItem"
+                                  ],
+                      "tags":  [
+                                   "service",
+                                   "interface",
+                                   "vendor"
+                               ]
+                  },
+                  {
+                      "path":  "backend/src/main/resources/application.yml",
+                      "status":  "analyzed",
+                      "analyzedHash":  "1a874406defc05653cf8fcaadebbeeb38fed8fdbe436b40312831a6dafa7ded4",
+                      "currentHash":  "1a874406defc05653cf8fcaadebbeeb38fed8fdbe436b40312831a6dafa7ded4",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1366,
+                      "summary":  "App config: server port, PostgreSQL datasource and ddl-auto update from env; app.jwt.secret requires JWT_SECRET with no committed default; 8h token expiry configurable; auth rate-limit attempts/window configurable; CORS origins env-configurable; Hibernate Postgres dialect.",
+                      "symbols":  [
+                                      "JWT_SECRET",
+                                      "JWT_EXPIRATION_MS",
+                                      "CORS_ALLOWED_ORIGINS",
+                                      "DB_HOST"
+                                  ],
+                      "tags":  [
+                                   "config",
+                                   "env",
+                                   "jwt",
+                                   "cors"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/book/[vendorId]/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "76d50ad8b6e485cf17cc7c7ed8efbe0da8eba286942aa5c529612b8244857f0c",
+                      "currentHash":  "76d50ad8b6e485cf17cc7c7ed8efbe0da8eba286942aa5c529612b8244857f0c",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  24541,
+                      "summary":  "Authenticated booking-request form for a vendor. Fetches vendor header via getVendorDetail GET /api/vendors/:id with optional lat/lng query, prefills customerName/email from useAuth, validates eventType, eventDate, guestCount, budget, message, then submitInquiry POST /api/inquiries. Handles not-found/error states, availability gate, and success card linking to /my-inquiries. Uses Navbar, Button, Input, Select, Textarea, Card, Badge.",
+                      "symbols":  [
+                                      "BookVendorContent",
+                                      "getVendorDetail",
+                                      "/api/vendors/:id",
+                                      "submitInquiry",
+                                      "/api/inquiries",
+                                      "useAuth",
+                                      "useParams",
+                                      "useSearchParams"
+                                  ],
+                      "tags":  [
+                                   "booking",
+                                   "inquiry",
+                                   "form-validation",
+                                   "auth-guard",
+                                   "vendor"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/layout.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "012c0bc4ce4a41f1bbf5db1681b0a04f692b6c4aa0a7d6f2028c052806ad2f64",
+                      "currentHash":  "012c0bc4ce4a41f1bbf5db1681b0a04f692b6c4aa0a7d6f2028c052806ad2f64",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1319,
+                      "summary":  "Root layout for all routes. Sets HTML lang, Geist sans/mono font variables, global metadata (EventPulse title/description), viewport themeColor, Leaflet 1.9.4 CSS link, and body shell with background/foreground styles rendering children. Purely static server component wrapper, no state or API calls.",
+                      "symbols":  [
+                                      "RootLayout",
+                                      "Geist",
+                                      "Geist_Mono",
+                                      "metadata",
+                                      "viewport",
+                                      "globals.css",
+                                      "leaflet.css"
+                                  ],
+                      "tags":  [
+                                   "layout",
+                                   "metadata",
+                                   "fonts",
+                                   "leaflet",
+                                   "shell"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/login/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "42028197942258b609315d5d8b84f2491b40f591b9491557cc98d4881f00ba8e",
+                      "currentHash":  "42028197942258b609315d5d8b84f2491b40f591b9491557cc98d4881f00ba8e",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  7291,
+                      "summary":  "Login screen with email and password fields, show/hide password toggle, loading button, alert error region, register link, and redirect-if-authenticated by role. Dev-only demo quick-login buttons (customer/vendor seed accounts) gated by SHOW_DEMO_LOGINS, hidden in production unless NEXT_PUBLIC_ENABLE_DEMO_LOGINS=true. No token or password logging.",
+                      "symbols":  [
+                                      "LoginPage",
+                                      "handleSubmit",
+                                      "handleQuickLogin",
+                                      "showPassword",
+                                      "SHOW_DEMO_LOGINS",
+                                      "useAuth"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "login",
+                                   "routing"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/my-inquiries/[id]/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "ae74bfd3d740f6594d1c565c7d78dfc25ed2b56d5d3859702e9167850c070bf8",
+                      "currentHash":  "ae74bfd3d740f6594d1c565c7d78dfc25ed2b56d5d3859702e9167850c070bf8",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  15198,
+                      "summary":  "Customer single inquiry detail with progress tracker. Auth-guarded, loads via getInquiryById GET /api/inquiries/:id. Shows vendorBusinessName, status badge, event details, customer request, vendorNotes, and vendor contact card revealing tel:/mailto: plus copy-phone only when accepted. Builds Submitted/Accepted/Completed steps. Uses Navbar, Card, Badge, Skeleton, DetailRow.",
+                      "symbols":  [
+                                      "InquiryDetailContent",
+                                      "getInquiryById",
+                                      "/api/inquiries/:id",
+                                      "useAuth",
+                                      "STATUS_MAP",
+                                      "DetailRow",
+                                      "Navbar",
+                                      "copyPhone"
+                                  ],
+                      "tags":  [
+                                   "inquiry",
+                                   "detail",
+                                   "status",
+                                   "contact-reveal",
+                                   "tracking"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/my-inquiries/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "d9815503d654d89789859c9592fc6372f2612ce2659d3ce6d7596ad2a19111b4",
+                      "currentHash":  "d9815503d654d89789859c9592fc6372f2612ce2659d3ce6d7596ad2a19111b4",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  9627,
+                      "summary":  "Customer inquiry list requiring login. Guards via useAuth and redirects to /login, fetches via getCustomerInquiries GET /api/inquiries/my-inquiries. Renders vendorBusinessName, category, eventType, eventDate, guestCount, budget, message with STATUS_MAP for PENDING/ACCEPTED/DECLINED/COMPLETED badges, tel: link only after accept, and details link to /my-inquiries/[id]. Uses Navbar, Card, Badge, Skeleton.",
+                      "symbols":  [
+                                      "MyInquiriesPage",
+                                      "getCustomerInquiries",
+                                      "/api/inquiries/my-inquiries",
+                                      "useAuth",
+                                      "STATUS_MAP",
+                                      "Navbar",
+                                      "Badge",
+                                      "useRouter"
+                                  ],
+                      "tags":  [
+                                   "customer",
+                                   "inquiries",
+                                   "status-tracking",
+                                   "auth-guard",
+                                   "bookings"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "cb2f8aa2b0e78c2fa7131c9af46bd84c757daed8eb37f74c203dcefd55512d4d",
+                      "currentHash":  "cb2f8aa2b0e78c2fa7131c9af46bd84c757daed8eb37f74c203dcefd55512d4d",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  35614,
+                      "summary":  "Marketplace explorer home: GPS detect plus preset/custom coordinates, 5-50km radius slider, category pills with live counts, text search, available-only filter, nearest-first vendor cards with skeletons and empty state, split list/map layout with mobile toggle, auth-aware header (login/register or portal links plus logout). Uses useAuth for display only; no credential handling.",
+                      "symbols":  [
+                                      "HomePage",
+                                      "fetchVendorsData",
+                                      "filteredVendors",
+                                      "handleDetectLocation",
+                                      "useAuth"
+                                  ],
+                      "tags":  [
+                                   "marketplace",
+                                   "geosearch",
+                                   "map"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/register/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "48725cdc4a70e3821816d806e8bb494bba4b511636608707d42d996b03612b15",
+                      "currentHash":  "48725cdc4a70e3821816d806e8bb494bba4b511636608707d42d996b03612b15",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  11666,
+                      "summary":  "Dual customer/vendor registration screen. Holds accountType CUSTOMER|VENDOR plus formData with fullName, email, password, phone and vendor businessName, category, city, startingPrice, serviceRadiusKm, description with default Bangalore lat/lng. Calls useAuth register() via POST /api/auth/register, redirects VENDOR to /vendor else /. Uses Navbar, Button, Input, Select, Textarea, Field, Card.",
+                      "symbols":  [
+                                      "RegisterPage",
+                                      "useAuth",
+                                      "register",
+                                      "/api/auth/register",
+                                      "useRouter",
+                                      "Navbar",
+                                      "VENDOR_CATEGORIES",
+                                      "handleSubmit"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "register",
+                                   "vendor-onboarding",
+                                   "form",
+                                   "routing"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/vendor/bookings/[id]/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "ccfa2ecbbb69734469d171a326585f1d1d3ca3b55786e6b379245b8d87c2b729",
+                      "currentHash":  "ccfa2ecbbb69734469d171a326585f1d1d3ca3b55786e6b379245b8d87c2b729",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  15843,
+                      "summary":  "Suspense-wrapped vendor booking detail. Cards: Customer (mailto:/tel: links + message), Event Details (type/date/guests/budget/received via DetailRow), Vendor Notes (saved through updateInquiryStatus with unchanged status, notesDirty-gated Save button). Status sidebar: PENDING shows Accept/Decline, ACCEPTED shows Mark Completed, DECLINED/COMPLETED show terminal messages; uses textarea notes or defaults like \u0027Accepted via dashboard\u0027. DetailSkeleton fallback, back-to-bookings error card.",
+                      "symbols":  [
+                                      "VendorBookingDetailPage",
+                                      "BookingDetailContent",
+                                      "getInquiryById",
+                                      "updateInquiryStatus",
+                                      "handleSaveNotes",
+                                      "handleAction",
+                                      "DetailRow",
+                                      "DetailSkeleton"
+                                  ],
+                      "tags":  [
+                                   "vendor",
+                                   "booking-detail",
+                                   "accept-decline",
+                                   "notes",
+                                   "contact"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/vendor/bookings/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "3fe6e27e748839c11e8bbb8da0aa5a846f8a9e3ba1ec28721cfbbeb20ac739d1",
+                      "currentHash":  "3fe6e27e748839c11e8bbb8da0aa5a846f8a9e3ba1ec28721cfbbeb20ac739d1",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  13068,
+                      "summary":  "Vendor bookings list with status filter pills (FILTERS ALL/PENDING/ACCEPTED/DECLINED/COMPLETED with live counts) â€” no search box. Loads via getVendorInbox; inline Accept/Decline on PENDING rows with optimistic update, snapshot rollback and per-row errors, default notes \u0027Accepted via dashboard\u0027/\u0027Declined â€” unavailable\u0027. STATUS_MAP badges, guest/budget/message meta, links to /vendor/bookings/[id]. Empty and per-filter empty states with retry.",
+                      "symbols":  [
+                                      "VendorBookingsPage",
+                                      "getVendorInbox",
+                                      "updateInquiryStatus",
+                                      "FILTERS",
+                                      "STATUS_MAP",
+                                      "handleStatus",
+                                      "formatEventDate",
+                                      "formatCreatedAt"
+                                  ],
+                      "tags":  [
+                                   "vendor",
+                                   "bookings",
+                                   "filtering",
+                                   "leads",
+                                   "optimistic"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/vendor/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "d47440085b7f4ddf0061fefdd765f84a4a80bdf1de0f3b4ddff5602006072163",
+                      "currentHash":  "d47440085b7f4ddf0061fefdd765f84a4a80bdf1de0f3b4ddff5602006072163",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  11210,
+                      "summary":  "Vendor dashboard hub. Loads profile + inbox in parallel (Promise.all getMyProfile/getVendorInbox). Optimistic availability toggle button (aria-pressed, \u0027Open for Bookings\u0027 vs \u0027Paused â€” Fully Booked\u0027) with server-truth sync and rollback on error. Stat cards (total/pending/accepted/completed), 5 most-recent leads with STATUS_MAP badges linking to /vendor/bookings/[id]. No inline accept/decline here. Category Badge, UTC formatEventDate, skeleton/error/retry states.",
+                      "symbols":  [
+                                      "VendorDashboardPage",
+                                      "getMyProfile",
+                                      "getVendorInbox",
+                                      "toggleVendorAvailability",
+                                      "handleToggleAvailability",
+                                      "STATUS_MAP",
+                                      "VendorNav",
+                                      "formatEventDate"
+                                  ],
+                      "tags":  [
+                                   "vendor",
+                                   "dashboard",
+                                   "leads",
+                                   "availability",
+                                   "optimistic"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/vendor/portfolio/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "81383bb6504fa1c9bdddb957dda25aa0ee9ce0804f86e1e4b97f398f11572226",
+                      "currentHash":  "81383bb6504fa1c9bdddb957dda25aa0ee9ce0804f86e1e4b97f398f11572226",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  13659,
+                      "summary":  "Vendor photo portfolio manager. Vendor-guarded, loads items via getMyProfile GET /api/vendor-portal/profile, adds via addPortfolioItem POST /api/vendor-portal/portfolio with URL-regex plus required-title validation and sortOrder defaulting to items.length, deletes via deletePortfolioItem DELETE /api/vendor-portal/portfolio/:itemId with two-step confirm then server reload. Grid sorted by sortOrder with image error-hiding; empty, error and retry states. Uses Navbar, VendorNav, Button, Card, Input, Textarea, Label, Skeleton.",
+                      "symbols":  [
+                                      "VendorPortfolioPage",
+                                      "getMyProfile",
+                                      "/api/vendor-portal/profile",
+                                      "addPortfolioItem",
+                                      "/api/vendor-portal/portfolio",
+                                      "deletePortfolioItem",
+                                      "useAuth",
+                                      "EMPTY_FORM"
+                                  ],
+                      "tags":  [
+                                   "vendor",
+                                   "portfolio",
+                                   "crud",
+                                   "images",
+                                   "validation"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/vendor/profile/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "6d8bbe7ce4d8e9357ac81b60b49575d03188a462b4382b22698daadb755a78ec",
+                      "currentHash":  "6d8bbe7ce4d8e9357ac81b60b49575d03188a462b4382b22698daadb755a78ec",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  17647,
+                      "summary":  "Vendor business profile editor. Vendor-guarded, loads via getMyProfile GET /api/vendor-portal/profile into typed ProfileForm via toForm(), saves via updateMyProfile PUT /api/vendor-portal/profile with businessName/category required plus email/URL/price/radius validation. Generic field() render helper, CATEGORIES const (8 values), geolocation Use-my-location with fallback error, LocationPicker (value/onChange API) via dynamic SSR-off import, availability shown as read-only Badge managed from Dashboard. Uses Navbar, VendorNav, Button, Card, Badge, Input, Select, Textarea.",
+                      "symbols":  [
+                                      "VendorProfilePage",
+                                      "getMyProfile",
+                                      "/api/vendor-portal/profile",
+                                      "updateMyProfile",
+                                      "LocationPicker",
+                                      "toForm",
+                                      "CATEGORIES",
+                                      "handleUseMyLocation"
+                                  ],
+                      "tags":  [
+                                   "vendor",
+                                   "profile",
+                                   "location",
+                                   "pricing",
+                                   "validation"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/app/vendors/[vendorId]/page.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "c333da0daf229979ce40d4e7d23c1ef94d98ea0194a4ce6d0f6779b63c07d798",
+                      "currentHash":  "c333da0daf229979ce40d4e7d23c1ef94d98ea0194a4ce6d0f6779b63c07d798",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  12825,
+                      "summary":  "Public vendor profile detail page. Reads vendorId param plus lat/lng search params, loads via getVendorDetail GET /api/vendors/:id, shows cover image, category, availability badge, address, distanceKm, ratingAvg, startingPrice, serviceRadiusKm, description, portfolioItems grid, and sticky Price Summary card with Send Booking Request link to /book/[vendorId]. Includes skeleton and not-found states. Uses Navbar, Badge, Card, Skeleton.",
+                      "symbols":  [
+                                      "VendorProfileContent",
+                                      "VendorProfilePage",
+                                      "getVendorDetail",
+                                      "/api/vendors/:id",
+                                      "Navbar",
+                                      "Badge",
+                                      "Card",
+                                      "useSearchParams"
+                                  ],
+                      "tags":  [
+                                   "vendor",
+                                   "profile",
+                                   "portfolio",
+                                   "pricing",
+                                   "detail"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/LocationPicker.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "4158334c25574d3743b967f5c023bbc808a4d3b4a827c06b953785fb21898ec1",
+                      "currentHash":  "4158334c25574d3743b967f5c023bbc808a4d3b4a827c06b953785fb21898ec1",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  2400,
+                      "summary":  "Client click-to-set location picker on the MapLibre wrapper. Props: value {lat,lng} (LocationPickerValue), onChange, optional className. Internal MapInteractions subscribes to map click events via useMap and renders a MapMarker pin; coordinate readout with Clear button resetting to null. Defaults center to Bangalore [77.5946,12.9716], zoom 14 when set. Imports cn from @/lib/utils. Consumed by vendor profile page via dynamic SSR-off import.",
+                      "symbols":  [
+                                      "LocationPicker",
+                                      "LocationPickerProps",
+                                      "LocationPickerValue",
+                                      "MapInteractions",
+                                      "useMap",
+                                      "MapMarker",
+                                      "onChange",
+                                      "cn"
+                                  ],
+                      "tags":  [
+                                   "map",
+                                   "location",
+                                   "maplibre",
+                                   "form"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/ui/badge.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "859d1a5b9c3a7146f1b183f8d43b3cb1b3f8cc3345c60926289de1d0e19f00e4",
+                      "currentHash":  "859d1a5b9c3a7146f1b183f8d43b3cb1b3f8cc3345c60926289de1d0e19f00e4",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1035,
+                      "summary":  "Small pill status label. Exports BadgeVariant (neutral|success|warning|danger|info) and Badge component with props variant, dot, className, children using cn and variantClasses hex styles. Consumed across vendor/inquiry UIs for status indicators.",
+                      "symbols":  [
+                                      "Badge",
+                                      "BadgeVariant",
+                                      "variantClasses",
+                                      "dot",
+                                      "cn"
+                                  ],
+                      "tags":  [
+                                   "ui",
+                                   "badge",
+                                   "design-system"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/ui/button.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "ef48a4cdce2df2c50823b3e552cb74cb1feee77ee91ef95e0c96346d913d4279",
+                      "currentHash":  "ef48a4cdce2df2c50823b3e552cb74cb1feee77ee91ef95e0c96346d913d4279",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1899,
+                      "summary":  "Shared button primitive with loading state. Exports ButtonVariant (primary|secondary|ghost|danger|link), ButtonSize (sm|md|lg), ButtonProps (variant,size,loading) and Button using Loader2 spinner, cn, variantClasses/sizeClasses. Consumed widely e.g. Navbar logout action.",
+                      "symbols":  [
+                                      "Button",
+                                      "ButtonProps",
+                                      "ButtonVariant",
+                                      "ButtonSize",
+                                      "loading",
+                                      "Loader2",
+                                      "cn"
+                                  ],
+                      "tags":  [
+                                   "ui",
+                                   "button",
+                                   "design-system"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/ui/card.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "7b37366d768b059a9e8303de506468d7066538584fae3b52a124f52ec823a247",
+                      "currentHash":  "7b37366d768b059a9e8303de506468d7066538584fae3b52a124f52ec823a247",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  868,
+                      "summary":  "Minimal white card containers. Exports Card with hover prop for shadow-card-hover, CardTitle (h3), CardDescription (p muted) all using cn. Consumed for panels and list items throughout frontend.",
+                      "symbols":  [
+                                      "Card",
+                                      "CardTitle",
+                                      "CardDescription",
+                                      "hover",
+                                      "cn"
+                                  ],
+                      "tags":  [
+                                   "ui",
+                                   "card",
+                                   "layout"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/ui/input.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "b2dcaf4dcf0d9c667e198740292bf3f1e908758e140bbc4aacad0dfb362f1ccc",
+                      "currentHash":  "b2dcaf4dcf0d9c667e198740292bf3f1e908758e140bbc4aacad0dfb362f1ccc",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1726,
+                      "summary":  "Styled form field primitives sharing fieldClasses. Exports Input, Textarea, Select, Label, Field (label, htmlFor, hint, children). Uses hairline shadow and focus-ring styles via cn. Consumed by login, register, inquiry and vendor profile forms.",
+                      "symbols":  [
+                                      "Input",
+                                      "Textarea",
+                                      "Select",
+                                      "Label",
+                                      "Field",
+                                      "fieldClasses",
+                                      "cn"
+                                  ],
+                      "tags":  [
+                                   "ui",
+                                   "form",
+                                   "input",
+                                   "design-system"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/ui/map.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "887fa76b60da2193798ac2447ccb6761f1d6c9faf256057a0cc9a82d328fc927",
+                      "currentHash":  "887fa76b60da2193798ac2447ccb6761f1d6c9faf256057a0cc9a82d328fc927",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  6848,
+                      "summary":  "MapLibre-GL React wrapper with OSM raster style. Exports Map (center,zoom,pitch,bearing,mapStyle,className,interactive), MapMarker (longitude,latitude,onClick), MarkerContent, MarkerTooltip, MarkerPopup, hooks useMap/useMarker and MapContext/MarkerContext via portals. DEFAULT_MAP_STYLE uses tile.openstreetmap.org. Consumed by LocationPicker.",
+                      "symbols":  [
+                                      "Map",
+                                      "MapMarker",
+                                      "MarkerContent",
+                                      "MarkerTooltip",
+                                      "MarkerPopup",
+                                      "useMap",
+                                      "useMarker",
+                                      "maplibre-gl"
+                                  ],
+                      "tags":  [
+                                   "map",
+                                   "maplibre",
+                                   "ui",
+                                   "geospatial"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/ui/skeleton.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "7164b79b3a3895f1ad5bbb7a6f04ba496d49e6ba774bba31d48ddf1f9c699653",
+                      "currentHash":  "7164b79b3a3895f1ad5bbb7a6f04ba496d49e6ba774bba31d48ddf1f9c699653",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  744,
+                      "summary":  "Loading placeholders. Exports Skeleton div with skeleton class and Spinner span with role=status, configurable label, CSS spin border. Consumed for loading states in lists and detail pages.",
+                      "symbols":  [
+                                      "Skeleton",
+                                      "Spinner",
+                                      "cn"
+                                  ],
+                      "tags":  [
+                                   "ui",
+                                   "loading",
+                                   "skeleton"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/VendorMap.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "1205f2741e31555625942a0a8773132a2ff5c4fbe89f6af382d729ca1f5ff37c",
+                      "currentHash":  "1205f2741e31555625942a0a8773132a2ff5c4fbe89f6af382d729ca1f5ff37c",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  10420,
+                      "summary":  "Leaflet vendor map (SSR-off): OSM tiles, customer origin marker with radius circle, emoji category pins with price pills, rich popups exposing only public vendor info, selection sync and fit-bounds. No auth or private contact data rendered.",
+                      "symbols":  [
+                                      "VendorMap",
+                                      "VendorMapProps",
+                                      "onSelectVendor"
+                                  ],
+                      "tags":  [
+                                   "map",
+                                   "geospatial",
+                                   "leaflet"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/components/VendorNav.tsx",
+                      "status":  "analyzed",
+                      "analyzedHash":  "8a34acd08e1e5e2872b8876db02650db1f2d995170d43e47c0ff5f484afd8fda",
+                      "currentHash":  "8a34acd08e1e5e2872b8876db02650db1f2d995170d43e47c0ff5f484afd8fda",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1249,
+                      "summary":  "Client tab bar for vendor portal. Default export VendorNav with TABS constant for /vendor, /vendor/bookings, /vendor/profile, /vendor/portfolio. Uses usePathname and cn to highlight active tab via exact or prefix match and aria-current. Consumed on vendor pages as secondary navigation.",
+                      "symbols":  [
+                                      "VendorNav",
+                                      "TABS",
+                                      "usePathname",
+                                      "cn"
+                                  ],
+                      "tags":  [
+                                   "navigation",
+                                   "vendor",
+                                   "tabs",
+                                   "nextjs"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/hooks/useAuth.ts",
+                      "status":  "analyzed",
+                      "analyzedHash":  "a95cb04befc9ff6d2c53d89250a65128ce85db3050a12de71975bcfd2963a7bf",
+                      "currentHash":  "a95cb04befc9ff6d2c53d89250a65128ce85db3050a12de71975bcfd2963a7bf",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  2074,
+                      "summary":  "Session hook over localStorage key eventpulse_user_session: validates stored shape (token, email, known role) on load and discards corrupt data; login/register persist session; logout calls backend logout best-effort then clears. Exposes token, isAuthenticated, isVendor/isCustomer flags.",
+                      "symbols":  [
+                                      "useAuth",
+                                      "login",
+                                      "register",
+                                      "logout",
+                                      "isValidSession",
+                                      "STORAGE_KEY"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "hook",
+                                   "session",
+                                   "react"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/lib/utils.ts",
+                      "status":  "analyzed",
+                      "analyzedHash":  "eba89b7508841ca7ed641ab538c2e638aa9699ad4190ef8eeb4adcd48418c0b1",
+                      "currentHash":  "eba89b7508841ca7ed641ab538c2e638aa9699ad4190ef8eeb4adcd48418c0b1",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  165,
+                      "summary":  "Shared cn() class-name merger (clsx + tailwind-merge), standard shadcn convention. Imported by LocationPicker, VendorNav, all ui/* primitives and several pages (12 importers). Only 6 lines; never inline or duplicate this helper.",
+                      "symbols":  [
+                                      "cn",
+                                      "clsx",
+                                      "tailwind-merge"
+                                  ],
+                      "tags":  [
+                                   "ui",
+                                   "utils",
+                                   "styling"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/package.json",
+                      "status":  "analyzed",
+                      "analyzedHash":  "df8142a00b7818813ed4feade902577c77c18813960e3711a882ff9e70cbfe5e",
+                      "currentHash":  "df8142a00b7818813ed4feade902577c77c18813960e3711a882ff9e70cbfe5e",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  740,
+                      "summary":  "Next.js frontend manifest name frontend 0.1.0 private with scripts dev/build/start/lint (next dev, next build, next start, eslint). Dependencies: next 16.4.0, react 19.3.0, react-dom 19.3.0, leaflet 1.9.4, maplibre-gl 6.13.0, lucide-react, clsx, tailwind-merge, Geist font; dev: tailwindcss 4, typescript 5, eslint 9.",
+                      "symbols":  [
+                                      "next",
+                                      "react",
+                                      "leaflet",
+                                      "maplibre-gl",
+                                      "lucide-react",
+                                      "tailwindcss",
+                                      "typescript"
+                                  ],
+                      "tags":  [
+                                   "config",
+                                   "nextjs",
+                                   "dependencies"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/services/api.ts",
+                      "status":  "analyzed",
+                      "analyzedHash":  "5e01a79477cc0005f83b65afb4f3970239b556ca787ea9d9acbfa6b33f277739",
+                      "currentHash":  "5e01a79477cc0005f83b65afb4f3970239b556ca787ea9d9acbfa6b33f277739",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  6513,
+                      "summary":  "Fetch wrappers with API_BASE from NEXT_PUBLIC_API_URL env (fallback http://localhost:8080/api). Every response unwraps the ApiResponse envelope (data.data); GETs use cache:no-store. Covers searchVendors, countNearby, getVendorDetail, loginUser, registerUser, submitInquiry, getCustomerInquiries, getInquiryById (explicit 404/403 errors), getVendorInbox, updateInquiryStatus(id,status,notes,token), toggleVendorAvailability, getMyProfile/updateMyProfile, add/deletePortfolioItem, plus getVendorProfile/updateVendorProfile aliases.",
+                      "symbols":  [
+                                      "API_BASE",
+                                      "NEXT_PUBLIC_API_URL",
+                                      "searchVendors",
+                                      "getVendorInbox",
+                                      "updateInquiryStatus",
+                                      "getMyProfile",
+                                      "submitInquiry",
+                                      "getVendorProfile"
+                                  ],
+                      "tags":  [
+                                   "api",
+                                   "fetch",
+                                   "vendors",
+                                   "inquiries",
+                                   "env"
+                               ]
+                  },
+                  {
+                      "path":  "frontend/services/authService.ts",
+                      "status":  "analyzed",
+                      "analyzedHash":  "e3414ea8d792cc56bf68a61b17926727c3033ac274615f51bd17dace9bfd258c",
+                      "currentHash":  "e3414ea8d792cc56bf68a61b17926727c3033ac274615f51bd17dace9bfd258c",
+                      "analyzedAt":  "2026-10-08",
+                      "size":  1716,
+                      "summary":  "Auth API client using NEXT_PUBLIC_API_URL with localhost fallback: loginApi, registerApi, getMeApi (Bearer, reattaches token) and best-effort logoutApi. Throws Error with server message; stores no secrets and logs nothing sensitive.",
+                      "symbols":  [
+                                      "loginApi",
+                                      "registerApi",
+                                      "getMeApi",
+                                      "logoutApi",
+                                      "UserSession"
+                                  ],
+                      "tags":  [
+                                   "auth",
+                                   "api",
+                                   "session"
+                               ]
+                  }
+              ]
+}

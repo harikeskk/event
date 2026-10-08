@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Vercel palette ─────────────────────────────── */
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-muted: #666666;
+  --color-subtle: #a1a1a1;
+  --color-hairline: #eaeaea;
+  --color-surface: #fafafa;
+  --color-surface-hover: #f2f2f2;
+  --color-inverse: #171717;
+  --color-inverse-hover: #383838;
+
+  --color-blue: #0070f3;
+  --color-purple: #7928ca;
+  --color-pink: #eb367f;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-danger: #e5484d;
+  --color-focus: hsla(212, 100%, 48%, 1);
+
+  /* ── Type ───────────────────────────────────────── */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo,
+    monospace;
+
+  /* ── Shadow-as-border stack ─────────────────────── */
+  --shadow-hairline: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --shadow-hairline-strong: 0 0 0 1px rgba(0, 0, 0, 0.16);
+  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(0, 0, 0, 0.12);
+  --shadow-button: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-focus-ring: 0 0 0 1px #0070f3, 0 0 0 4px rgba(0, 112, 243, 0.14);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "liga" 1;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #0070f3;
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ── Skeleton shimmer ─────────────────────────────── */
+.skeleton {
+  background-image: linear-gradient(
+    90deg,
+    #f2f2f2 0%,
+    #eaeaea 50%,
+    #f2f2f2 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Leaflet: light theme ─────────────────────────── */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: #fafafa !important;
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+.leaflet-container a {
+  color: #0070f3;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #171717 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+}
+
+.leaflet-bar,
+.leaflet-control-zoom a {
+  background: #ffffff !important;
+  color: #171717 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  border: none !important;
+}
+
+/* ── Scrollbars ───────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ── Reduced motion ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

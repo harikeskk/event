@@ -1,0 +1,1507 @@
+﻿{
+    "generatedAt":  "2026-10-08",
+    "trackedFiles":  69,
+    "tags":  {
+                 "status-tracking":  [
+                                         "frontend/app/my-inquiries/page.tsx"
+                                     ],
+                 "geosearch":  [
+                                   "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java",
+                                   "frontend/app/page.tsx"
+                               ],
+                 "map":  [
+                             "frontend/app/page.tsx",
+                             "frontend/components/LocationPicker.tsx",
+                             "frontend/components/ui/map.tsx",
+                             "frontend/components/VendorMap.tsx"
+                         ],
+                 "geospatial":  [
+                                    "frontend/components/ui/map.tsx",
+                                    "frontend/components/VendorMap.tsx"
+                                ],
+                 "status":  [
+                                "frontend/app/my-inquiries/[id]/page.tsx"
+                            ],
+                 "navigation":  [
+                                    "frontend/components/VendorNav.tsx"
+                                ],
+                 "mapping":  [
+                                 "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                             ],
+                 "utils":  [
+                               "frontend/lib/utils.ts"
+                           ],
+                 "interface":  [
+                                   "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                               ],
+                 "notes":  [
+                               "frontend/app/vendor/bookings/[id]/page.tsx"
+                           ],
+                 "filter":  [
+                                "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java"
+                            ],
+                 "fonts":  [
+                               "frontend/app/layout.tsx"
+                           ],
+                 "domain":  [
+                                "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                            ],
+                 "service":  [
+                                 "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                                 "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java",
+                                 "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java",
+                                 "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                             ],
+                 "contact":  [
+                                 "frontend/app/vendor/bookings/[id]/page.tsx"
+                             ],
+                 "transactional":  [
+                                       "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                   ],
+                 "entity":  [
+                                "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java",
+                                "backend/src/main/java/com/eventpulse/user/entity/User.java",
+                                "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java",
+                                "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
+                            ],
+                 "postgres":  [
+                                  "backend/pom.xml",
+                                  "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                              ],
+                 "security":  [
+                                  "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java",
+                                  "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java",
+                                  "backend/src/main/java/com/eventpulse/config/JwtService.java",
+                                  "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
+                              ],
+                 "tracking":  [
+                                  "frontend/app/my-inquiries/[id]/page.tsx"
+                              ],
+                 "env":  [
+                             "backend/src/main/resources/application.yml",
+                             "frontend/services/api.ts"
+                         ],
+                 "jwt":  [
+                             "backend/pom.xml",
+                             "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java",
+                             "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                             "backend/src/main/java/com/eventpulse/config/JwtService.java",
+                             "backend/src/main/resources/application.yml"
+                         ],
+                 "maven":  [
+                               "backend/pom.xml"
+                           ],
+                 "auth-guard":  [
+                                    "frontend/app/book/[vendorId]/page.tsx",
+                                    "frontend/app/my-inquiries/page.tsx"
+                                ],
+                 "optimistic":  [
+                                    "frontend/app/vendor/bookings/page.tsx",
+                                    "frontend/app/vendor/page.tsx"
+                                ],
+                 "postgis":  [
+                                 "backend/pom.xml"
+                             ],
+                 "inquiry":  [
+                                 "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java",
+                                 "frontend/app/book/[vendorId]/page.tsx",
+                                 "frontend/app/my-inquiries/[id]/page.tsx"
+                             ],
+                 "shell":  [
+                               "frontend/app/layout.tsx"
+                           ],
+                 "vendor-onboarding":  [
+                                           "frontend/app/register/page.tsx"
+                                       ],
+                 "customer":  [
+                                  "frontend/app/my-inquiries/page.tsx"
+                              ],
+                 "bootstrap":  [
+                                   "backend/src/main/java/com/eventpulse/common/DataSeeder.java",
+                                   "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
+                               ],
+                 "response":  [
+                                  "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java",
+                                  "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java",
+                                  "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java"
+                              ],
+                 "jpa":  [
+                             "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java",
+                             "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java",
+                             "backend/src/main/java/com/eventpulse/user/entity/User.java",
+                             "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java",
+                             "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java",
+                             "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java",
+                             "backend/src/main/java/com/eventpulse/vendor/repository/PortfolioItemRepository.java"
+                         ],
+                 "authentication":  [
+                                        "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java"
+                                    ],
+                 "styling":  [
+                                 "frontend/lib/utils.ts"
+                             ],
+                 "leads":  [
+                               "frontend/app/vendor/bookings/page.tsx",
+                               "frontend/app/vendor/page.tsx"
+                           ],
+                 "leaflet":  [
+                                 "frontend/app/layout.tsx",
+                                 "frontend/components/VendorMap.tsx"
+                             ],
+                 "images":  [
+                                "frontend/app/vendor/portfolio/page.tsx"
+                            ],
+                 "nextjs":  [
+                                "frontend/components/VendorNav.tsx",
+                                "frontend/package.json"
+                            ],
+                 "tabs":  [
+                              "frontend/components/VendorNav.tsx"
+                          ],
+                 "config":  [
+                                "backend/src/main/java/com/eventpulse/config/SecurityConfig.java",
+                                "backend/src/main/resources/application.yml",
+                                "frontend/package.json"
+                            ],
+                 "listing":  [
+                                 "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
+                             ],
+                 "auth":  [
+                              "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                              "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
+                              "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java",
+                              "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java",
+                              "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                              "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java",
+                              "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                              "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java",
+                              "backend/src/main/java/com/eventpulse/user/entity/Role.java",
+                              "backend/src/main/java/com/eventpulse/user/entity/User.java",
+                              "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java",
+                              "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java",
+                              "frontend/app/login/page.tsx",
+                              "frontend/app/register/page.tsx",
+                              "frontend/hooks/useAuth.ts",
+                              "frontend/services/authService.ts"
+                          ],
+                 "metadata":  [
+                                  "frontend/app/layout.tsx"
+                              ],
+                 "wrapper":  [
+                                 "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java"
+                             ],
+                 "loading":  [
+                                 "frontend/components/ui/skeleton.tsx"
+                             ],
+                 "generic":  [
+                                 "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java"
+                             ],
+                 "seeder":  [
+                                "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                            ],
+                 "detail":  [
+                                "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java",
+                                "frontend/app/my-inquiries/[id]/page.tsx",
+                                "frontend/app/vendors/[vendorId]/page.tsx"
+                            ],
+                 "hook":  [
+                              "frontend/hooks/useAuth.ts"
+                          ],
+                 "aggregation":  [
+                                     "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java",
+                                     "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java"
+                                 ],
+                 "ui":  [
+                            "frontend/components/ui/badge.tsx",
+                            "frontend/components/ui/button.tsx",
+                            "frontend/components/ui/card.tsx",
+                            "frontend/components/ui/input.tsx",
+                            "frontend/components/ui/map.tsx",
+                            "frontend/components/ui/skeleton.tsx",
+                            "frontend/lib/utils.ts"
+                        ],
+                 "skeleton":  [
+                                  "frontend/components/ui/skeleton.tsx"
+                              ],
+                 "button":  [
+                                "frontend/components/ui/button.tsx"
+                            ],
+                 "bookings":  [
+                                  "frontend/app/my-inquiries/page.tsx",
+                                  "frontend/app/vendor/bookings/page.tsx"
+                              ],
+                 "layout":  [
+                                "frontend/app/layout.tsx",
+                                "frontend/components/ui/card.tsx"
+                            ],
+                 "card":  [
+                              "frontend/components/ui/card.tsx"
+                          ],
+                 "dashboard":  [
+                                   "frontend/app/vendor/page.tsx"
+                               ],
+                 "geo":  [
+                             "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
+                         ],
+                 "enum":  [
+                              "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java",
+                              "backend/src/main/java/com/eventpulse/user/entity/Role.java",
+                              "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                          ],
+                 "claims":  [
+                                "backend/src/main/java/com/eventpulse/config/JwtService.java"
+                            ],
+                 "booking-detail":  [
+                                        "frontend/app/vendor/bookings/[id]/page.tsx"
+                                    ],
+                 "contact-reveal":  [
+                                        "frontend/app/my-inquiries/[id]/page.tsx"
+                                    ],
+                 "spring-boot":  [
+                                     "backend/pom.xml",
+                                     "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
+                                 ],
+                 "vendors":  [
+                                 "backend/src/main/java/com/eventpulse/common/DataSeeder.java",
+                                 "frontend/services/api.ts"
+                             ],
+                 "api":  [
+                             "frontend/services/api.ts",
+                             "frontend/services/authService.ts"
+                         ],
+                 "form":  [
+                              "frontend/app/register/page.tsx",
+                              "frontend/components/LocationPicker.tsx",
+                              "frontend/components/ui/input.tsx"
+                          ],
+                 "validation":  [
+                                    "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
+                                    "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java",
+                                    "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java",
+                                    "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java",
+                                    "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java",
+                                    "frontend/app/vendor/portfolio/page.tsx",
+                                    "frontend/app/vendor/profile/page.tsx"
+                                ],
+                 "routing":  [
+                                 "frontend/app/login/page.tsx",
+                                 "frontend/app/register/page.tsx"
+                             ],
+                 "marketplace":  [
+                                     "frontend/app/page.tsx"
+                                 ],
+                 "category":  [
+                                  "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                              ],
+                 "projection":  [
+                                    "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java",
+                                    "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
+                                ],
+                 "badge":  [
+                               "frontend/components/ui/badge.tsx"
+                           ],
+                 "state-machine":  [
+                                       "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
+                                   ],
+                 "dependencies":  [
+                                      "frontend/package.json"
+                                  ],
+                 "filtering":  [
+                                   "frontend/app/vendor/bookings/page.tsx"
+                               ],
+                 "stateless":  [
+                                   "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
+                               ],
+                 "entrypoint":  [
+                                    "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
+                                ],
+                 "registration":  [
+                                      "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java",
+                                      "backend/src/main/java/com/eventpulse/auth/service/AuthService.java"
+                                  ],
+                 "controller":  [
+                                    "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                                    "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                ],
+                 "crud":  [
+                              "frontend/app/vendor/portfolio/page.tsx"
+                          ],
+                 "register":  [
+                                  "frontend/app/register/page.tsx"
+                              ],
+                 "pricing":  [
+                                 "frontend/app/vendor/profile/page.tsx",
+                                 "frontend/app/vendors/[vendorId]/page.tsx"
+                             ],
+                 "accept-decline":  [
+                                        "frontend/app/vendor/bookings/[id]/page.tsx"
+                                    ],
+                 "haversine":  [
+                                   "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                               ],
+                 "location":  [
+                                  "frontend/app/vendor/profile/page.tsx",
+                                  "frontend/components/LocationPicker.tsx"
+                              ],
+                 "repository":  [
+                                    "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java",
+                                    "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java",
+                                    "backend/src/main/java/com/eventpulse/vendor/repository/PortfolioItemRepository.java",
+                                    "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                ],
+                 "profile-update":  [
+                                        "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
+                                    ],
+                 "lifecycle":  [
+                                   "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java"
+                               ],
+                 "maplibre":  [
+                                  "frontend/components/LocationPicker.tsx",
+                                  "frontend/components/ui/map.tsx"
+                              ],
+                 "design-system":  [
+                                       "frontend/components/ui/badge.tsx",
+                                       "frontend/components/ui/button.tsx",
+                                       "frontend/components/ui/input.tsx"
+                                   ],
+                 "session":  [
+                                 "frontend/hooks/useAuth.ts",
+                                 "frontend/services/authService.ts"
+                             ],
+                 "input":  [
+                               "frontend/components/ui/input.tsx"
+                           ],
+                 "cors":  [
+                              "backend/src/main/java/com/eventpulse/config/SecurityConfig.java",
+                              "backend/src/main/resources/application.yml"
+                          ],
+                 "rbac":  [
+                              "backend/src/main/java/com/eventpulse/user/entity/Role.java"
+                          ],
+                 "profile":  [
+                                 "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java",
+                                 "frontend/app/vendor/profile/page.tsx",
+                                 "frontend/app/vendors/[vendorId]/page.tsx"
+                             ],
+                 "form-validation":  [
+                                         "frontend/app/book/[vendorId]/page.tsx"
+                                     ],
+                 "native-query":  [
+                                      "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java",
+                                      "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                  ],
+                 "booking":  [
+                                 "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java",
+                                 "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java",
+                                 "frontend/app/book/[vendorId]/page.tsx"
+                             ],
+                 "availability":  [
+                                      "frontend/app/vendor/page.tsx"
+                                  ],
+                 "public-api":  [
+                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                ],
+                 "dto":  [
+                             "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
+                             "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java",
+                             "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java",
+                             "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java",
+                             "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java",
+                             "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java",
+                             "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java",
+                             "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java",
+                             "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java",
+                             "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java",
+                             "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java",
+                             "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
+                         ],
+                 "login":  [
+                               "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                               "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
+                               "frontend/app/login/page.tsx"
+                           ],
+                 "portfolio":  [
+                                   "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java",
+                                   "backend/src/main/java/com/eventpulse/vendor/repository/PortfolioItemRepository.java",
+                                   "frontend/app/vendor/portfolio/page.tsx",
+                                   "frontend/app/vendors/[vendorId]/page.tsx"
+                               ],
+                 "fetch":  [
+                               "frontend/services/api.ts"
+                           ],
+                 "react":  [
+                               "frontend/hooks/useAuth.ts"
+                           ],
+                 "rest":  [
+                              "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                              "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java",
+                              "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java",
+                              "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                          ],
+                 "discovery":  [
+                                   "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                               ],
+                 "inquiries":  [
+                                   "frontend/app/my-inquiries/page.tsx",
+                                   "frontend/services/api.ts"
+                               ],
+                 "endpoints":  [
+                                   "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java"
+                               ],
+                 "search":  [
+                                "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
+                            ],
+                 "vendor":  [
+                                "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java",
+                                "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java",
+                                "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java",
+                                "frontend/app/book/[vendorId]/page.tsx",
+                                "frontend/app/vendor/bookings/[id]/page.tsx",
+                                "frontend/app/vendor/bookings/page.tsx",
+                                "frontend/app/vendor/page.tsx",
+                                "frontend/app/vendor/portfolio/page.tsx",
+                                "frontend/app/vendor/profile/page.tsx",
+                                "frontend/app/vendors/[vendorId]/page.tsx",
+                                "frontend/components/VendorNav.tsx"
+                            ],
+                 "vendor-portal":  [
+                                       "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                   ]
+             },
+    "symbols":  {
+                    "next":  [
+                                 "frontend/package.json"
+                             ],
+                    "DataSeeder.run":  [
+                                           "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                                       ],
+                    "VendorMapProps":  [
+                                           "frontend/components/VendorMap.tsx"
+                                       ],
+                    "VendorProfileRepository.findByCategory":  [
+                                                                   "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                                               ],
+                    "passwordEncoder":  [
+                                            "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                                            "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
+                                        ],
+                    "PortfolioItemDto.sortOrder":  [
+                                                       "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java"
+                                                   ],
+                    "EventMarketplaceApplication.main":  [
+                                                             "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
+                                                         ],
+                    "VendorServiceImpl.getVendorDetail":  [
+                                                              "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                                          ],
+                    "VendorProfile.category":  [
+                                                   "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
+                                               ],
+                    "useMap":  [
+                                   "frontend/components/LocationPicker.tsx",
+                                   "frontend/components/ui/map.tsx"
+                               ],
+                    "AuthResponse":  [
+                                         "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java"
+                                     ],
+                    "hibernate-spatial":  [
+                                              "backend/pom.xml"
+                                          ],
+                    "RegisterPage":  [
+                                         "frontend/app/register/page.tsx"
+                                     ],
+                    "User.fullName":  [
+                                          "backend/src/main/java/com/eventpulse/user/entity/User.java"
+                                      ],
+                    "DetailSkeleton":  [
+                                           "frontend/app/vendor/bookings/[id]/page.tsx"
+                                       ],
+                    "InquiryServiceImpl.createInquiry":  [
+                                                             "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
+                                                         ],
+                    "password":  [
+                                     "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
+                                     "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java"
+                                 ],
+                    "VendorDetailDto.portfolioItems":  [
+                                                           "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java"
+                                                       ],
+                    "metadata":  [
+                                     "frontend/app/layout.tsx"
+                                 ],
+                    "VendorCategory.SOUND_LIGHTING":  [
+                                                          "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                                      ],
+                    "ButtonSize":  [
+                                       "frontend/components/ui/button.tsx"
+                                   ],
+                    "MarkerTooltip":  [
+                                          "frontend/components/ui/map.tsx"
+                                      ],
+                    "Geist_Mono":  [
+                                       "frontend/app/layout.tsx"
+                                   ],
+                    "handleSubmit":  [
+                                         "frontend/app/login/page.tsx",
+                                         "frontend/app/register/page.tsx"
+                                     ],
+                    "jts-core:1.19.0":  [
+                                            "backend/pom.xml"
+                                        ],
+                    "CommandLineRunner":  [
+                                              "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                                          ],
+                    "AuthController":  [
+                                           "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java"
+                                       ],
+                    "spring-boot-starter-web":  [
+                                                    "backend/pom.xml"
+                                                ],
+                    "PortfolioItem.id":  [
+                                             "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java"
+                                         ],
+                    "generateToken":  [
+                                          "backend/src/main/java/com/eventpulse/config/JwtService.java"
+                                      ],
+                    "CardTitle":  [
+                                      "frontend/components/ui/card.tsx"
+                                  ],
+                    "tailwind-merge":  [
+                                           "frontend/lib/utils.ts"
+                                       ],
+                    "PortfolioItem.vendor":  [
+                                                 "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java"
+                                             ],
+                    "handleUseMyLocation":  [
+                                                "frontend/app/vendor/profile/page.tsx"
+                                            ],
+                    "VendorProfileUpdateRequest.serviceRadiusKm":  [
+                                                                       "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
+                                                                   ],
+                    "Button":  [
+                                   "frontend/components/ui/button.tsx"
+                               ],
+                    "Map":  [
+                                "frontend/components/ui/map.tsx"
+                            ],
+                    "InquiryDetailContent":  [
+                                                 "frontend/app/my-inquiries/[id]/page.tsx"
+                                             ],
+                    "/api/vendor-portal/profile":  [
+                                                       "frontend/app/vendor/portfolio/page.tsx",
+                                                       "frontend/app/vendor/profile/page.tsx"
+                                                   ],
+                    "VendorDashboardPage":  [
+                                                "frontend/app/vendor/page.tsx"
+                                            ],
+                    "VendorDiscoveryController.getAllVendors":  [
+                                                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                                                ],
+                    "getVendorProfile":  [
+                                             "frontend/services/api.ts"
+                                         ],
+                    "InquiryRepository.findByVendorIdAndStatusOrderByCreatedAtDesc":  [
+                                                                                          "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java"
+                                                                                      ],
+                    "VendorPortfolioPage":  [
+                                                "frontend/app/vendor/portfolio/page.tsx"
+                                            ],
+                    "VendorProfilePage":  [
+                                              "frontend/app/vendor/profile/page.tsx",
+                                              "frontend/app/vendors/[vendorId]/page.tsx"
+                                          ],
+                    "jjwt.version:0.12.6":  [
+                                                "backend/pom.xml"
+                                            ],
+                    "NearbyCountSummaryDto.byCategory":  [
+                                                             "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java"
+                                                         ],
+                    "PATCH /api/vendor-portal/availability":  [
+                                                                  "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                              ],
+                    "tailwindcss":  [
+                                        "frontend/package.json"
+                                    ],
+                    "updateInquiryStatus":  [
+                                                "frontend/app/vendor/bookings/[id]/page.tsx",
+                                                "frontend/app/vendor/bookings/page.tsx",
+                                                "frontend/services/api.ts"
+                                            ],
+                    "usePathname":  [
+                                        "frontend/components/VendorNav.tsx"
+                                    ],
+                    "register":  [
+                                     "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                                     "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                                     "frontend/app/register/page.tsx",
+                                     "frontend/hooks/useAuth.ts"
+                                 ],
+                    "handleQuickLogin":  [
+                                             "frontend/app/login/page.tsx"
+                                         ],
+                    "VendorProfileRepository.findByUserId":  [
+                                                                 "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                                             ],
+                    "AuthRequest":  [
+                                        "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java"
+                                    ],
+                    "VendorCardDto.businessName":  [
+                                                       "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
+                                                   ],
+                    "MarkerPopup":  [
+                                        "frontend/components/ui/map.tsx"
+                                    ],
+                    "/api/inquiries/my-inquiries":  [
+                                                        "frontend/app/my-inquiries/page.tsx"
+                                                    ],
+                    "variantClasses":  [
+                                           "frontend/components/ui/badge.tsx"
+                                       ],
+                    "Role.CUSTOMER":  [
+                                          "backend/src/main/java/com/eventpulse/user/entity/Role.java"
+                                      ],
+                    "InquiryService.getInquiryById":  [
+                                                          "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
+                                                      ],
+                    "VendorPortalController.updateMyProfile":  [
+                                                                   "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                               ],
+                    "useAuth":  [
+                                    "frontend/app/book/[vendorId]/page.tsx",
+                                    "frontend/app/login/page.tsx",
+                                    "frontend/app/my-inquiries/[id]/page.tsx",
+                                    "frontend/app/my-inquiries/page.tsx",
+                                    "frontend/app/page.tsx",
+                                    "frontend/app/register/page.tsx",
+                                    "frontend/app/vendor/portfolio/page.tsx",
+                                    "frontend/hooks/useAuth.ts"
+                                ],
+                    "getVendorInbox":  [
+                                           "frontend/app/vendor/bookings/page.tsx",
+                                           "frontend/app/vendor/page.tsx",
+                                           "frontend/services/api.ts"
+                                       ],
+                    "viewport":  [
+                                     "frontend/app/layout.tsx"
+                                 ],
+                    "Input":  [
+                                  "frontend/components/ui/input.tsx"
+                              ],
+                    "User.email":  [
+                                       "backend/src/main/java/com/eventpulse/user/entity/User.java"
+                                   ],
+                    "InquiryService.updateInquiryStatus":  [
+                                                               "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
+                                                           ],
+                    "Label":  [
+                                  "frontend/components/ui/input.tsx"
+                              ],
+                    "VendorCategory.CATERER":  [
+                                                   "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                               ],
+                    "BadgeVariant":  [
+                                         "frontend/components/ui/badge.tsx"
+                                     ],
+                    "doFilterInternal":  [
+                                             "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java"
+                                         ],
+                    "JWT_SECRET":  [
+                                       "backend/src/main/resources/application.yml"
+                                   ],
+                    "STATUS_MAP":  [
+                                       "frontend/app/my-inquiries/[id]/page.tsx",
+                                       "frontend/app/my-inquiries/page.tsx",
+                                       "frontend/app/vendor/bookings/page.tsx",
+                                       "frontend/app/vendor/page.tsx"
+                                   ],
+                    "formatCreatedAt":  [
+                                            "frontend/app/vendor/bookings/page.tsx"
+                                        ],
+                    "InquiryRepository.findByVendorIdOrderByCreatedAtDesc":  [
+                                                                                 "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java"
+                                                                             ],
+                    "email":  [
+                                  "backend/src/main/java/com/eventpulse/auth/dto/AuthRequest.java",
+                                  "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java"
+                              ],
+                    "GET /api/vendors/count-nearby":  [
+                                                          "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                                      ],
+                    "leaflet":  [
+                                    "frontend/package.json"
+                                ],
+                    "VendorPortalController.getMyProfile":  [
+                                                                "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                            ],
+                    "copyPhone":  [
+                                      "frontend/app/my-inquiries/[id]/page.tsx"
+                                  ],
+                    "@SpringBootApplication":  [
+                                                   "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
+                                               ],
+                    "VendorCategory":  [
+                                           "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                                       ],
+                    "VendorMap":  [
+                                      "frontend/components/VendorMap.tsx"
+                                  ],
+                    "useParams":  [
+                                      "frontend/app/book/[vendorId]/page.tsx"
+                                  ],
+                    "/api/vendors/:id":  [
+                                             "frontend/app/book/[vendorId]/page.tsx",
+                                             "frontend/app/vendors/[vendorId]/page.tsx"
+                                         ],
+                    "VendorDiscoveryController.searchVendors":  [
+                                                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                                                ],
+                    "isTokenValid":  [
+                                         "backend/src/main/java/com/eventpulse/config/JwtService.java"
+                                     ],
+                    "MarkerContent":  [
+                                          "frontend/components/ui/map.tsx"
+                                      ],
+                    "VendorServiceImpl.calculateDistance":  [
+                                                                "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                                            ],
+                    "VendorCardDto.distanceKm":  [
+                                                     "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
+                                                 ],
+                    "VendorCardDto.ratingAvg":  [
+                                                    "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
+                                                ],
+                    "CardDescription":  [
+                                            "frontend/components/ui/card.tsx"
+                                        ],
+                    "leaflet.css":  [
+                                        "frontend/app/layout.tsx"
+                                    ],
+                    "VendorDiscoveryController.countNearby":  [
+                                                                  "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                                              ],
+                    "DB_HOST":  [
+                                    "backend/src/main/resources/application.yml"
+                                ],
+                    "CORS_ALLOWED_ORIGINS":  [
+                                                 "backend/src/main/resources/application.yml"
+                                             ],
+                    "/api/vendor-portal/portfolio":  [
+                                                         "frontend/app/vendor/portfolio/page.tsx"
+                                                     ],
+                    "Badge":  [
+                                  "frontend/app/my-inquiries/page.tsx",
+                                  "frontend/app/vendors/[vendorId]/page.tsx",
+                                  "frontend/components/ui/badge.tsx"
+                              ],
+                    "Geist":  [
+                                  "frontend/app/layout.tsx"
+                              ],
+                    "JwtAuthenticationFilter":  [
+                                                    "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java"
+                                                ],
+                    "InquiryStatus.ACCEPTED":  [
+                                                   "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java"
+                                               ],
+                    "/api/inquiries/:id":  [
+                                               "frontend/app/my-inquiries/[id]/page.tsx"
+                                           ],
+                    "BookVendorContent":  [
+                                              "frontend/app/book/[vendorId]/page.tsx"
+                                          ],
+                    "AuthResponse.vendorId":  [
+                                                  "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java"
+                                              ],
+                    "InquiryServiceImpl.getInquiryById":  [
+                                                              "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
+                                                          ],
+                    "InquiryResponse.vendorNotes":  [
+                                                        "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java"
+                                                    ],
+                    "VendorServiceImpl.searchNearestVendors":  [
+                                                                   "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                                               ],
+                    "lucide-react":  [
+                                         "frontend/package.json"
+                                     ],
+                    "clsx":  [
+                                 "frontend/lib/utils.ts"
+                             ],
+                    "GET /my-inquiries":  [
+                                              "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                          ],
+                    "login":  [
+                                  "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                                  "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                                  "frontend/hooks/useAuth.ts"
+                              ],
+                    "globals.css":  [
+                                        "frontend/app/layout.tsx"
+                                    ],
+                    "VendorProfile.businessName":  [
+                                                       "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
+                                                   ],
+                    "handleStatus":  [
+                                         "frontend/app/vendor/bookings/page.tsx"
+                                     ],
+                    "VendorCategory.DJ":  [
+                                              "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                          ],
+                    "PortfolioItem":  [
+                                          "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                                      ],
+                    "GET /api/vendor-portal/profile":  [
+                                                           "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                       ],
+                    "AuthResponse.token":  [
+                                               "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java"
+                                           ],
+                    "searchVendors":  [
+                                          "frontend/services/api.ts"
+                                      ],
+                    "MapInteractions":  [
+                                            "frontend/components/LocationPicker.tsx"
+                                        ],
+                    "InquiryResponse.vendorBusinessName":  [
+                                                               "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java"
+                                                           ],
+                    "loginApi":  [
+                                     "frontend/services/authService.ts"
+                                 ],
+                    "getMeApi":  [
+                                     "frontend/services/authService.ts"
+                                 ],
+                    "useSearchParams":  [
+                                            "frontend/app/book/[vendorId]/page.tsx",
+                                            "frontend/app/vendors/[vendorId]/page.tsx"
+                                        ],
+                    "LoginPage":  [
+                                      "frontend/app/login/page.tsx"
+                                  ],
+                    "registerApi":  [
+                                        "frontend/services/authService.ts"
+                                    ],
+                    "isValidSession":  [
+                                           "frontend/hooks/useAuth.ts"
+                                       ],
+                    "SHOW_DEMO_LOGINS":  [
+                                             "frontend/app/login/page.tsx"
+                                         ],
+                    "VendorCategory.EMCEE":  [
+                                                 "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                             ],
+                    "submitInquiry":  [
+                                          "frontend/app/book/[vendorId]/page.tsx",
+                                          "frontend/services/api.ts"
+                                      ],
+                    "handleAction":  [
+                                         "frontend/app/vendor/bookings/[id]/page.tsx"
+                                     ],
+                    "tryConsume":  [
+                                       "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java"
+                                   ],
+                    "CategoryCountProjection.getCount":  [
+                                                             "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java"
+                                                         ],
+                    "FILTERS":  [
+                                    "frontend/app/vendor/bookings/page.tsx"
+                                ],
+                    "VendorCardDto.category":  [
+                                                   "backend/src/main/java/com/eventpulse/vendor/dto/VendorCardDto.java"
+                                               ],
+                    "showPassword":  [
+                                         "frontend/app/login/page.tsx"
+                                     ],
+                    "VendorService.toggleAvailability":  [
+                                                             "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                                                         ],
+                    "PortfolioItem.imageUrl":  [
+                                                   "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java"
+                                               ],
+                    "VendorBookingsPage":  [
+                                               "frontend/app/vendor/bookings/page.tsx"
+                                           ],
+                    "formatEventDate":  [
+                                            "frontend/app/vendor/bookings/page.tsx",
+                                            "frontend/app/vendor/page.tsx"
+                                        ],
+                    "Role.VENDOR":  [
+                                        "backend/src/main/java/com/eventpulse/user/entity/Role.java"
+                                    ],
+                    "InquiryRequest.eventType":  [
+                                                     "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java"
+                                                 ],
+                    "PortfolioItem.sortOrder":  [
+                                                    "backend/src/main/java/com/eventpulse/vendor/entity/PortfolioItem.java"
+                                                ],
+                    "InquiryResponse.status":  [
+                                                   "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryResponse.java"
+                                               ],
+                    "InquiryStatus.COMPLETED":  [
+                                                    "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java"
+                                                ],
+                    "spring-boot-starter-parent:3.3.4":  [
+                                                             "backend/pom.xml"
+                                                         ],
+                    "@NotNull":  [
+                                     "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
+                                 ],
+                    "customer@example.com":  [
+                                                 "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                                             ],
+                    "AuthResponse.userId":  [
+                                                "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java"
+                                            ],
+                    "API_BASE":  [
+                                     "frontend/services/api.ts"
+                                 ],
+                    "VendorServiceImpl.countNearby":  [
+                                                          "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                                      ],
+                    "DataSeeder.createVendor":  [
+                                                    "backend/src/main/java/com/eventpulse/common/DataSeeder.java"
+                                                ],
+                    "VendorService.updateVendorProfile":  [
+                                                              "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                                                          ],
+                    "getVendorDetail":  [
+                                            "frontend/app/book/[vendorId]/page.tsx",
+                                            "frontend/app/vendors/[vendorId]/page.tsx"
+                                        ],
+                    "VendorPortalController.addPortfolioItem":  [
+                                                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                                ],
+                    "status":  [
+                                   "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
+                               ],
+                    "getMyProfile":  [
+                                         "frontend/app/vendor/page.tsx",
+                                         "frontend/app/vendor/portfolio/page.tsx",
+                                         "frontend/app/vendor/profile/page.tsx",
+                                         "frontend/services/api.ts"
+                                     ],
+                    "User.role":  [
+                                      "backend/src/main/java/com/eventpulse/user/entity/User.java"
+                                  ],
+                    "VendorBookingDetailPage":  [
+                                                    "frontend/app/vendor/bookings/[id]/page.tsx"
+                                                ],
+                    "VendorDistanceProjection.getId":  [
+                                                           "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
+                                                       ],
+                    "Inquiry.customer":  [
+                                             "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java"
+                                         ],
+                    "authenticationManager":  [
+                                                  "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
+                                              ],
+                    "PortfolioItemDto.imageUrl":  [
+                                                      "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java"
+                                                  ],
+                    "VendorNav":  [
+                                      "frontend/app/vendor/page.tsx",
+                                      "frontend/components/VendorNav.tsx"
+                                  ],
+                    "Navbar":  [
+                                   "frontend/app/my-inquiries/[id]/page.tsx",
+                                   "frontend/app/my-inquiries/page.tsx",
+                                   "frontend/app/register/page.tsx",
+                                   "frontend/app/vendors/[vendorId]/page.tsx"
+                               ],
+                    "resolveClientIp":  [
+                                            "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java"
+                                        ],
+                    "category":  [
+                                     "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java"
+                                 ],
+                    "InquiryServiceImpl.mapToResponse":  [
+                                                             "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
+                                                         ],
+                    "GET /api/vendors/all":  [
+                                                 "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                             ],
+                    "UserSession":  [
+                                        "frontend/services/authService.ts"
+                                    ],
+                    "CategoryCountProjection.getCategory":  [
+                                                                "backend/src/main/java/com/eventpulse/vendor/dto/CategoryCountProjection.java"
+                                                            ],
+                    "ButtonVariant":  [
+                                          "frontend/components/ui/button.tsx"
+                                      ],
+                    "useMarker":  [
+                                      "frontend/components/ui/map.tsx"
+                                  ],
+                    "Card":  [
+                                 "frontend/app/vendors/[vendorId]/page.tsx",
+                                 "frontend/components/ui/card.tsx"
+                             ],
+                    "role":  [
+                                 "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java"
+                             ],
+                    "Inquiry.vendor":  [
+                                           "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java"
+                                       ],
+                    "handleRateLimit":  [
+                                            "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java"
+                                        ],
+                    "VendorService.getVendorDetail":  [
+                                                          "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                                                      ],
+                    "LocationPicker":  [
+                                           "frontend/app/vendor/profile/page.tsx",
+                                           "frontend/components/LocationPicker.tsx"
+                                       ],
+                    "handleValidation":  [
+                                             "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java"
+                                         ],
+                    "/api/inquiries":  [
+                                           "frontend/app/book/[vendorId]/page.tsx"
+                                       ],
+                    "onSelectVendor":  [
+                                           "frontend/components/VendorMap.tsx"
+                                       ],
+                    "ButtonProps":  [
+                                        "frontend/components/ui/button.tsx"
+                                    ],
+                    "corsConfigurationSource":  [
+                                                    "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
+                                                ],
+                    "VendorCategory.PHOTOGRAPHER":  [
+                                                        "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                                    ],
+                    "java.version:21":  [
+                                            "backend/pom.xml"
+                                        ],
+                    "toForm":  [
+                                   "frontend/app/vendor/profile/page.tsx"
+                               ],
+                    "InquiryRequest.eventDate":  [
+                                                     "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java"
+                                                 ],
+                    "handleSaveNotes":  [
+                                            "frontend/app/vendor/bookings/[id]/page.tsx"
+                                        ],
+                    "validateSecret":  [
+                                           "backend/src/main/java/com/eventpulse/config/JwtService.java"
+                                       ],
+                    "ApiResponse":  [
+                                        "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java",
+                                        "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                    ],
+                    "GET /api/vendors/search":  [
+                                                    "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                                ],
+                    "getInquiryById":  [
+                                           "frontend/app/my-inquiries/[id]/page.tsx",
+                                           "frontend/app/vendor/bookings/[id]/page.tsx"
+                                       ],
+                    "fieldClasses":  [
+                                         "frontend/components/ui/input.tsx"
+                                     ],
+                    "Loader2":  [
+                                    "frontend/components/ui/button.tsx"
+                                ],
+                    "VendorProfileUpdateRequest.businessName":  [
+                                                                    "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
+                                                                ],
+                    "VendorDistanceProjection.getDistanceKm":  [
+                                                                   "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
+                                                               ],
+                    "PATCH /{id}/status":  [
+                                               "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                           ],
+                    "201 CREATED":  [
+                                        "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                    ],
+                    "User.phone":  [
+                                       "backend/src/main/java/com/eventpulse/user/entity/User.java"
+                                   ],
+                    "Textarea":  [
+                                     "frontend/components/ui/input.tsx"
+                                 ],
+                    "fetchVendorsData":  [
+                                             "frontend/app/page.tsx"
+                                         ],
+                    "STORAGE_KEY":  [
+                                        "frontend/hooks/useAuth.ts"
+                                    ],
+                    "VendorDetailDto.distanceKm":  [
+                                                       "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java"
+                                                   ],
+                    "RegisterRequest":  [
+                                            "backend/src/main/java/com/eventpulse/auth/dto/RegisterRequest.java"
+                                        ],
+                    "InquiryServiceImpl.updateInquiryStatus":  [
+                                                                   "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
+                                                               ],
+                    "MyInquiriesPage":  [
+                                            "frontend/app/my-inquiries/page.tsx"
+                                        ],
+                    "InquiryService.getVendorInquiries":  [
+                                                              "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
+                                                          ],
+                    "VendorPortalController.toggleAvailability":  [
+                                                                      "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                                  ],
+                    "VendorService.addPortfolioItem":  [
+                                                           "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                                                       ],
+                    "UserRepository.existsByEmail":  [
+                                                         "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java"
+                                                     ],
+                    "@PreAuthorize":  [
+                                          "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                      ],
+                    "VendorDiscoveryController.getVendorDetail":  [
+                                                                      "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                                                  ],
+                    "NearbyCountSummaryDto.total":  [
+                                                        "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java"
+                                                    ],
+                    "MapMarker":  [
+                                      "frontend/components/LocationPicker.tsx",
+                                      "frontend/components/ui/map.tsx"
+                                  ],
+                    "403 handler":  [
+                                        "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                    ],
+                    "deletePortfolioItem":  [
+                                                "frontend/app/vendor/portfolio/page.tsx"
+                                            ],
+                    "loading":  [
+                                    "frontend/components/ui/button.tsx"
+                                ],
+                    "InquiryService.getCustomerInquiries":  [
+                                                                "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
+                                                            ],
+                    "maplibre-gl":  [
+                                        "frontend/components/ui/map.tsx",
+                                        "frontend/package.json"
+                                    ],
+                    "NearbyCountSummaryDto.radiusKm":  [
+                                                           "backend/src/main/java/com/eventpulse/vendor/dto/NearbyCountSummaryDto.java"
+                                                       ],
+                    "ApiResponse.error":  [
+                                              "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java"
+                                          ],
+                    "hover":  [
+                                  "frontend/components/ui/card.tsx"
+                              ],
+                    "VendorProfile.portfolioItems":  [
+                                                         "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
+                                                     ],
+                    "PortfolioItemDto.id":  [
+                                                "backend/src/main/java/com/eventpulse/vendor/dto/PortfolioItemDto.java"
+                                            ],
+                    "ApiResponse.timestamp":  [
+                                                  "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java"
+                                              ],
+                    "VendorPortalController.deletePortfolioItem":  [
+                                                                       "backend/src/main/java/com/eventpulse/vendor/controller/VendorPortalController.java"
+                                                                   ],
+                    "InquiryServiceImpl.isValidTransition":  [
+                                                                 "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
+                                                             ],
+                    "RootLayout":  [
+                                       "frontend/app/layout.tsx"
+                                   ],
+                    "onChange":  [
+                                     "frontend/components/LocationPicker.tsx"
+                                 ],
+                    "@Size":  [
+                                  "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
+                              ],
+                    "Field":  [
+                                  "frontend/components/ui/input.tsx"
+                              ],
+                    "EMPTY_FORM":  [
+                                       "frontend/app/vendor/portfolio/page.tsx"
+                                   ],
+                    "NEXT_PUBLIC_API_URL":  [
+                                                "frontend/services/api.ts"
+                                            ],
+                    "SpringApplication.run":  [
+                                                  "backend/src/main/java/com/eventpulse/EventMarketplaceApplication.java"
+                                              ],
+                    "HomePage":  [
+                                     "frontend/app/page.tsx"
+                                 ],
+                    "UserRepository.findByEmail":  [
+                                                       "backend/src/main/java/com/eventpulse/user/repository/UserRepository.java"
+                                                   ],
+                    "Select":  [
+                                   "frontend/components/ui/input.tsx"
+                               ],
+                    "LocationPickerValue":  [
+                                                "frontend/components/LocationPicker.tsx"
+                                            ],
+                    "BookingDetailContent":  [
+                                                 "frontend/app/vendor/bookings/[id]/page.tsx"
+                                             ],
+                    "spring-boot-starter-data-jpa":  [
+                                                         "backend/pom.xml"
+                                                     ],
+                    "VendorDistanceProjection.getCategory":  [
+                                                                 "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
+                                                             ],
+                    "toggleVendorAvailability":  [
+                                                     "frontend/app/vendor/page.tsx"
+                                                 ],
+                    "InquiryRequest.vendorId":  [
+                                                    "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java"
+                                                ],
+                    "LocationPickerProps":  [
+                                                "frontend/components/LocationPicker.tsx"
+                                            ],
+                    "useRouter":  [
+                                      "frontend/app/my-inquiries/page.tsx",
+                                      "frontend/app/register/page.tsx"
+                                  ],
+                    "TABS":  [
+                                 "frontend/components/VendorNav.tsx"
+                             ],
+                    "VendorProfileContent":  [
+                                                 "frontend/app/vendors/[vendorId]/page.tsx"
+                                             ],
+                    "AuthService":  [
+                                        "backend/src/main/java/com/eventpulse/auth/service/AuthService.java"
+                                    ],
+                    "Inquiry.eventDate":  [
+                                              "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java"
+                                          ],
+                    "cn":  [
+                               "frontend/components/LocationPicker.tsx",
+                               "frontend/components/ui/badge.tsx",
+                               "frontend/components/ui/button.tsx",
+                               "frontend/components/ui/card.tsx",
+                               "frontend/components/ui/input.tsx",
+                               "frontend/components/ui/skeleton.tsx",
+                               "frontend/components/VendorNav.tsx",
+                               "frontend/lib/utils.ts"
+                           ],
+                    "GET /vendor-inbox":  [
+                                              "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                          ],
+                    "VendorServiceImpl.updateVendorProfile":  [
+                                                                  "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                                              ],
+                    "/api/auth/register":  [
+                                               "frontend/app/register/page.tsx"
+                                           ],
+                    "handleDetectLocation":  [
+                                                 "frontend/app/page.tsx"
+                                             ],
+                    "typescript":  [
+                                       "frontend/package.json"
+                                   ],
+                    "filteredVendors":  [
+                                            "frontend/app/page.tsx"
+                                        ],
+                    "PortfolioItemRepository.findByVendorIdOrderBySortOrderAsc":  [
+                                                                                      "backend/src/main/java/com/eventpulse/vendor/repository/PortfolioItemRepository.java"
+                                                                                  ],
+                    "InquiryService.createInquiry":  [
+                                                         "backend/src/main/java/com/eventpulse/inquiry/service/InquiryService.java"
+                                                     ],
+                    "updateMyProfile":  [
+                                            "frontend/app/vendor/profile/page.tsx"
+                                        ],
+                    "Spinner":  [
+                                    "frontend/components/ui/skeleton.tsx"
+                                ],
+                    "handleToggleAvailability":  [
+                                                     "frontend/app/vendor/page.tsx"
+                                                 ],
+                    "InquiryStatus":  [
+                                          "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
+                                      ],
+                    "AuthResponse.role":  [
+                                              "backend/src/main/java/com/eventpulse/auth/dto/AuthResponse.java"
+                                          ],
+                    "logoutApi":  [
+                                      "frontend/services/authService.ts"
+                                  ],
+                    "VendorCategory.MAKEUP_ARTIST":  [
+                                                         "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                                     ],
+                    "searchNearestVendors":  [
+                                                 "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                             ],
+                    "VendorCategory.VENUE":  [
+                                                 "backend/src/main/java/com/eventpulse/vendor/entity/VendorCategory.java"
+                                             ],
+                    "VendorDetailDto.postalCode":  [
+                                                       "backend/src/main/java/com/eventpulse/vendor/dto/VendorDetailDto.java"
+                                                   ],
+                    "Skeleton":  [
+                                     "frontend/components/ui/skeleton.tsx"
+                                 ],
+                    "VendorProfileRepository.countNearbyByCategory":  [
+                                                                          "backend/src/main/java/com/eventpulse/vendor/repository/VendorProfileRepository.java"
+                                                                      ],
+                    "extractUsername":  [
+                                            "backend/src/main/java/com/eventpulse/config/JwtService.java"
+                                        ],
+                    "InquiryStatus.PENDING":  [
+                                                  "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java"
+                                              ],
+                    "securityFilterChain":  [
+                                                "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
+                                            ],
+                    "GET /api/vendors/{id}":  [
+                                                  "backend/src/main/java/com/eventpulse/vendor/controller/VendorDiscoveryController.java"
+                                              ],
+                    "JWT_EXPIRATION_MS":  [
+                                              "backend/src/main/resources/application.yml"
+                                          ],
+                    "InquiryRepository.findByCustomerIdOrderByCreatedAtDesc":  [
+                                                                                   "backend/src/main/java/com/eventpulse/inquiry/repository/InquiryRepository.java"
+                                                                               ],
+                    "VendorDistanceProjection.getBusinessName":  [
+                                                                     "backend/src/main/java/com/eventpulse/vendor/dto/VendorDistanceProjection.java"
+                                                                 ],
+                    "addPortfolioItem":  [
+                                             "frontend/app/vendor/portfolio/page.tsx"
+                                         ],
+                    "VENDOR_CATEGORIES":  [
+                                              "frontend/app/register/page.tsx"
+                                          ],
+                    "loginRateLimiter":  [
+                                             "backend/src/main/java/com/eventpulse/auth/service/AuthService.java",
+                                             "backend/src/main/java/com/eventpulse/auth/service/LoginRateLimiter.java"
+                                         ],
+                    "VendorServiceImpl.toggleAvailability":  [
+                                                                 "backend/src/main/java/com/eventpulse/vendor/service/impl/VendorServiceImpl.java"
+                                                             ],
+                    "InquiryServiceImpl.isContactVisible":  [
+                                                                "backend/src/main/java/com/eventpulse/inquiry/service/impl/InquiryServiceImpl.java"
+                                                            ],
+                    "getCustomerInquiries":  [
+                                                 "frontend/app/my-inquiries/page.tsx"
+                                             ],
+                    "SecurityConfig":  [
+                                           "backend/src/main/java/com/eventpulse/config/SecurityConfig.java"
+                                       ],
+                    "VendorProfileUpdateRequest.category":  [
+                                                                "backend/src/main/java/com/eventpulse/vendor/dto/VendorProfileUpdateRequest.java"
+                                                            ],
+                    "Role.ADMIN":  [
+                                       "backend/src/main/java/com/eventpulse/user/entity/Role.java"
+                                   ],
+                    "DetailRow":  [
+                                      "frontend/app/my-inquiries/[id]/page.tsx",
+                                      "frontend/app/vendor/bookings/[id]/page.tsx"
+                                  ],
+                    "getMe":  [
+                                  "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                                  "backend/src/main/java/com/eventpulse/auth/service/AuthService.java"
+                              ],
+                    "react":  [
+                                  "frontend/package.json"
+                              ],
+                    "vendorNotes":  [
+                                        "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryStatusUpdateRequest.java"
+                                    ],
+                    "spring-boot-starter-security":  [
+                                                         "backend/pom.xml"
+                                                     ],
+                    "ApiResponse.success":  [
+                                                "backend/src/main/java/com/eventpulse/common/dto/ApiResponse.java"
+                                            ],
+                    "logout":  [
+                                   "backend/src/main/java/com/eventpulse/auth/controller/AuthController.java",
+                                   "frontend/hooks/useAuth.ts"
+                               ],
+                    "jwtService":  [
+                                       "backend/src/main/java/com/eventpulse/config/JwtAuthenticationFilter.java",
+                                       "backend/src/main/java/com/eventpulse/config/JwtService.java"
+                                   ],
+                    "CATEGORIES":  [
+                                       "frontend/app/vendor/profile/page.tsx"
+                                   ],
+                    "Inquiry.status":  [
+                                           "backend/src/main/java/com/eventpulse/inquiry/entity/Inquiry.java"
+                                       ],
+                    "POST /api/inquiries":  [
+                                                "backend/src/main/java/com/eventpulse/inquiry/controller/InquiryController.java"
+                                            ],
+                    "InquiryRequest.message":  [
+                                                   "backend/src/main/java/com/eventpulse/inquiry/dto/InquiryRequest.java"
+                                               ],
+                    "VendorProfile.updateCoordinates":  [
+                                                            "backend/src/main/java/com/eventpulse/common/DataSeeder.java",
+                                                            "backend/src/main/java/com/eventpulse/vendor/entity/VendorProfile.java"
+                                                        ],
+                    "VendorService.searchNearestVendors":  [
+                                                               "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                                                           ],
+                    "VendorService.countNearby":  [
+                                                      "backend/src/main/java/com/eventpulse/vendor/service/VendorService.java"
+                                                  ],
+                    "InquiryStatus.DECLINED":  [
+                                                   "backend/src/main/java/com/eventpulse/inquiry/entity/InquiryStatus.java"
+                                               ],
+                    "dot":  [
+                                "frontend/components/ui/badge.tsx"
+                            ]
+                },
+    "docs":  {
+                 "decisions.md":  [
+                                      "Decisions (ADRs) â€” EventPulse",
+                                      "2026-10-08 â€” Booking hardening kept controller-thin: local exception handlers + CUSTOMER-scoped my-inquiries",
+                                      "2026-10-08 â€” Secure login: keep Bearer, harden in place (no cookie rewrite)",
+                                      "2026-10-08 â€” Agent memory lives in `.agents/memory/`, hash-tracked",
+                                      "2026-10-08 â€” PowerShell 5.1 compatibility for tooling"
+                                  ],
+                 "key_facts.md":  [
+                                      "Key Facts â€” EventPulse (verified 2026-10-08)",
+                                      "Runtime",
+                                      "Auth \u0026 roles",
+                                      "Domain constants",
+                                      "Memory system"
+                                  ],
+                 "bugs.md":  [
+                                 "Bugs â€” EventPulse",
+                                 "2026-10-08 â€” Register email check bypassed normalization + echoed PII; missing-token returned 403",
+                                 "2026-10-08 â€” `check-memory.ps1` counted 763 files (node_modules leak)",
+                                 "2026-10-08 â€” `check-memory.ps1` syntax error on PowerShell 5.1",
+                                 "2026-10-08 â€” `gen-index.ps1` silently wrote to a garbage filename"
+                             ],
+                 "learnings.md":  [
+                                      "Learnings â€” EventPulse",
+                                      "2026-10-08 â€” Secure-login hardening touchpoints (2026-10-08 session)",
+                                      "2026-10-08 â€” `frontend/lib/types.ts` is a dead duplicate of `lib/utils.ts`",
+                                      "2026-10-08 â€” Backend is feature-packaged, not flat",
+                                      "2026-10-08 â€” `LocationPicker` prop API is `value`/`onChange`, not lat/lng props"
+                                  ],
+                 "task_plan.md":  [
+                                      "Task Plan â€” EventPulse (active work tracker)",
+                                      "Active: _none_",
+                                      "Done"
+                                  ],
+                 "codebase.md":  [
+                                     "Codebase Map â€” EventPulse (analyzed 2026-10-08)",
+                                     "Backend â€” `backend/src/main/java/com/eventpulse/` (Spring Boot 3.3.4, Java 21)",
+                                     "Frontend â€” `frontend/` (Next.js 16, React 19, Tailwind 4)",
+                                     "Request path (end to end)"
+                                 ]
+             }
+}

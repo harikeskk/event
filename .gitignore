@@ -1,0 +1,34 @@
+# ==========================================
+# EventPulse Root Git Ignore Rules
+# ==========================================
+
+# Operating System & Editor Files
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/
+
+# Logs & Scratch files
+*.log
+pg-start.log
+backend-run.log
+frontend-run.log
+scratch/
+
+# Backend (Spring Boot / Maven)
+backend/target/
+backend/.env
+!backend/.env.example
+
+# Frontend (Next.js / Node)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env.local
+frontend/.env*.local
+!frontend/.env.example
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+frontend/.vercel/

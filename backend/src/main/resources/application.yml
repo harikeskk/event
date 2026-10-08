@@ -1,0 +1,45 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: event-marketplace-api
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:event_marketplace}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:1234}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+app:
+  jwt:
+    # Signing secret MUST come from the JWT_SECRET environment variable in
+    # production. No default is committed to source; if unset, the backend
+    # generates an ephemeral key at startup (dev-only, tokens don't survive
+    # restarts). Value must be Base64 with at least 256 bits.
+    secret: ${JWT_SECRET:}
+    # Short-lived access token (8h default). Override via JWT_EXPIRATION_MS.
+    expiration-ms: ${JWT_EXPIRATION_MS:28800000} # 8 hours
+  auth:
+    rate-limit:
+      max-attempts: ${AUTH_RATE_LIMIT_MAX_ATTEMPTS:10}
+      window-ms: ${AUTH_RATE_LIMIT_WINDOW_MS:300000} # 5 minutes
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173,http://localhost:3001}
+
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    com.eventpulse: DEBUG
